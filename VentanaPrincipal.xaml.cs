@@ -148,6 +148,25 @@ namespace ProyectoIPo
             // Establecer el contexto de datos para el enlace
             DataContext = this;
         }
+        private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            // Verificar si el desplazamiento es vertical
+            if (FestivalScrollViewer != null)
+            {
+                // Aplicar desplazamiento hacia arriba o hacia abajo según el movimiento de la rueda
+                if (e.Delta > 0)
+                {
+                    FestivalScrollViewer.ScrollToVerticalOffset(FestivalScrollViewer.VerticalOffset - 30); // Ajusta el valor de desplazamiento
+                }
+                else
+                {
+                    FestivalScrollViewer.ScrollToVerticalOffset(FestivalScrollViewer.VerticalOffset + 30); // Ajusta el valor de desplazamiento
+                }
+            }
+
+            e.Handled = true;  // Evita que el evento sea manejado de otra manera
+        }
+
     }
 
     public class Festival

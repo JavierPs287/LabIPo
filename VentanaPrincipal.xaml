@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoIPo"
         mc:Ignorable="d"
-        Title="Gestión de Festivales" Height="450" Width="800">
+        Title="Gestión de Festivales" Height="450" Width="800"
+        PreviewMouseWheel="Window_PreviewMouseWheel">
 
     <Window.Resources>
+        <!-- Convertidores de fecha para colores -->
         <local:PastDateConverter x:Key="PastDateConverter"/>
         <local:FutureDateConverter x:Key="FutureDateConverter"/>
         <local:TodayDateConverter x:Key="TodayDateConverter"/>
     </Window.Resources>
 
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ScrollViewer x:Name="FestivalScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <ListBox ItemsSource="{Binding Festivales}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -50,9 +52,13 @@
                                     </TextBlock>
                                 </StackPanel>
                             </Expander.Header>
+
+                            <!-- Detalles del Festival -->
                             <StackPanel>
                                 <TextBlock Text="{Binding Ubicacion}" FontWeight="Bold" Margin="5,10,0,5"/>
                                 <TextBlock Text="Artistas:" FontWeight="Bold" Margin="5,10,0,5" />
+
+                                <!-- Lista de Artistas -->
                                 <ItemsControl ItemsSource="{Binding Artistas}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
