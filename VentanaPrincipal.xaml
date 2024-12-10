@@ -5,8 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoIPo"
         mc:Ignorable="d"
-        Title="VentanaPrincipal" Height="450" Width="800">
+        Title="Gestión de Festivales" Height="450" Width="800">
+
+    <Window.Resources>
+        <local:PastDateConverter x:Key="PastDateConverter"/>
+        <local:FutureDateConverter x:Key="FutureDateConverter"/>
+        <local:TodayDateConverter x:Key="TodayDateConverter"/>
+    </Window.Resources>
+
     <Grid>
-        
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ListBox ItemsSource="{Binding Festivales}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Expander Margin="5">
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- Nombre del Festival -->
+                                    <TextBlock Text="{Binding Nombre}" FontWeight="Bold" Margin="0,0,10,0" />
+
+                                    <!-- Fecha del Festival con formato dd/MM/yyyy y lógica de color -->
+                                    <TextBlock Text="{Binding Fecha, StringFormat='dd/MM/yyyy'}" Margin="10,0,0,0">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="Gray" />
+                                                <Style.Triggers>
+                                                    <!-- Fecha pasada -->
+                                                    <DataTrigger Binding="{Binding Fecha, Converter={StaticResource PastDateConverter}}" Value="True">
+                                                        <Setter Property="Foreground" Value="Red" />
+                                                    </DataTrigger>
+
+                                                    <!-- Fecha futura -->
+                                                    <DataTrigger Binding="{Binding Fecha, Converter={StaticResource FutureDateConverter}}" Value="True">
+                                                        <Setter Property="Foreground" Value="Green" />
+                                                    </DataTrigger>
+
+                                                    <!-- Fecha de hoy -->
+                                                    <DataTrigger Binding="{Binding Fecha, Converter={StaticResource TodayDateConverter}}" Value="True">
+                                                        <Setter Property="Foreground" Value="Purple" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Ubicacion}" FontWeight="Bold" Margin="5,10,0,5"/>
+                                <TextBlock Text="Artistas:" FontWeight="Bold" Margin="5,10,0,5" />
+                                <ItemsControl ItemsSource="{Binding Artistas}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" Margin="10,0,0,0" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Expander>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
     </Grid>
 </Window>
