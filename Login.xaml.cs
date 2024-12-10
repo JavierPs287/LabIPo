@@ -52,6 +52,21 @@ namespace ProyectoIPo
                 lblPassword.Visibility = Visibility.Visible; // Muestra "Contraseña" si está vacío
             }
         }
+        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnLogin_Click(sender, e); // Llama al método de clic del botón
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnLogin_Click(sender, e); // Llama al método de clic del botón
+            }
+        }
 
         // Evento del botón Login
         private void btnLogin_Click(object sender, RoutedEventArgs e)

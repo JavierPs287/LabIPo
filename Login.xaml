@@ -28,7 +28,9 @@
                  HorizontalAlignment="Left"
                  GotFocus="txtUsuario_GotFocus"
                  LostFocus="txtUsuario_LostFocus"
-                 Panel.ZIndex="0" Background="#B1FFFFFF" />
+                 KeyDown="txtUsuario_KeyDown"
+                 Panel.ZIndex="0" 
+                 Background="#B1FFFFFF" />
 
         <!-- Campo Contraseña -->
         <TextBlock Name="lblPassword"
@@ -47,7 +49,10 @@
                      VerticalAlignment="Top"
                      HorizontalAlignment="Left"
                      GotFocus="txtPassword_GotFocus"
-                     LostFocus="txtPassword_LostFocus" Background="#B2FFFFFF" />
+                     LostFocus="txtPassword_LostFocus"
+                     KeyDown="txtPassword_KeyDown"
+                     Panel.ZIndex="0" 
+                     Background="#B2FFFFFF" />
 
         <!-- Botón Login -->
         <Button Content="Login"
