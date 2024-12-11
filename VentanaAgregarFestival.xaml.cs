@@ -43,6 +43,8 @@ namespace ProyectoIPo
                     Artistas = artistas
                 };
 
+                MessageBox.Show("Festival creado correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 FestivalAdded?.Invoke(this, nuevoFestival); // Notificar que se ha agregado un nuevo festival
                 Close();
             }
