@@ -23,7 +23,6 @@
                             <TextBlock Text="{Binding Genero}" FontWeight="Bold" />
                             <TextBlock Text="Redes sociales:" FontWeight="Bold" />
                             <StackPanel Orientation="Horizontal">
-                                <!-- Bind solo los nombres de usuario -->
                                 <ItemsControl ItemsSource="{Binding RedesSociales}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -32,6 +31,18 @@
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </StackPanel>
+                            <TextBlock Text="Hits:" FontWeight="Bold" Margin="0,10,0,0"/>
+                            <ItemsControl ItemsSource="{Binding Hits}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Key}" FontWeight="Bold" Margin="0,0,10,0" />
+                                            <TextBlock Text="{Binding Value.Value}" Margin="0,0,10,0"/>
+                                            <TextBlock Text="{Binding Value.Key}" Margin="0,0,10,0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </StackPanel>
                     </Expander>
                 </DataTemplate>

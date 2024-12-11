@@ -41,18 +41,19 @@ namespace ProyectoIPo
         public string Genero { get; set; }
         public string Biografia { get; set; }
         public List<KeyValuePair<string, string>> RedesSociales { get; set; } = new List<KeyValuePair<string, string>>();
+        public List<KeyValuePair<string, KeyValuePair<string, string>>> Hits { get; set; } = new List<KeyValuePair<string, KeyValuePair<string, string>>>();
 
         public Artista() { }
 
-        public Artista(string nombre, string imagen, string genero, string biografia, List<KeyValuePair<string, string>> redesSociales)
+        public Artista(string nombre, string imagen, string genero, string biografia, List<KeyValuePair<string, string>> redesSociales, List<KeyValuePair<string, KeyValuePair<string, string>>> hits)
         {
             Nombre = nombre;
             Imagen = imagen;
             Genero = genero;
             Biografia = biografia;
             RedesSociales = redesSociales;
+            Hits = hits;
         }
     }
-
 
 }

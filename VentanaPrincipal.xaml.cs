@@ -27,8 +27,8 @@ namespace ProyectoIPo
             // Datos de ejemplo
             Festivales = new ObservableCollection<Festival>
             {
-               new Festival
-{
+                new Festival
+                {
                     Nombre = "Rock Fest",
                     Fecha = new DateTime(2024, 6, 15),
                     Ubicacion = "Madrid, España",
@@ -37,27 +37,43 @@ namespace ProyectoIPo
                         new Artista
                         {
                             Nombre = "Queen",
-                            Imagen = "Recursos/queen.jpg", // URL o ruta de imagen (puedes dejar vacía o especificar una ruta si tienes una imagen)
+                            Imagen = "Recursos/queen.jpg",
                             Genero = "Rock",
                             Biografia = "Una banda de rock icónica formada en 1970 en Londres, conocida por éxitos como 'Bohemian Rhapsody' y 'We Will Rock You'.",
                             RedesSociales = new List<KeyValuePair<string, string>>
                             {
                                 new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/Queen/"),
                                 new KeyValuePair<string, string>("Twitter", "https://twitter.com/queenwillrock"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/queen/")
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/queen/"),
+                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/QueenTheBest/"),
+                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/4BIzZ5N8rAqTjMUC6ibClm")
+                            },
+                            Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>>
+                            {
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Bohemian Rhapsody", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/3z8h0TU7ReDPLIbEnYhWZb?si=6b12b1a4d7864400", "1B")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("We Will Rock You", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/4pbJqGIASGPr0ZpGpnWkDn?si=a0db7a9b5cf948fe", "750M")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Another One Bites the Dust", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/2k1yPYf9WGA4LiqcLVwtzn?si=c1fe292236f84040", "500M"))
                             }
                         },
                         new Artista
                         {
                             Nombre = "The Rolling Stones",
-                            Imagen = "Recursos/rollingstones.jpg", // URL o ruta de imagen (puedes dejar vacía o especificar una ruta si tienes una imagen)
+                            Imagen = "Recursos/rollingstones.jpg",
                             Genero = "Rock",
                             Biografia = "Una banda de rock británica formada en 1962, famosa por su estilo musical enérgico y éxitos como 'Paint It Black' y 'Sympathy for the Devil'.",
                             RedesSociales = new List<KeyValuePair<string, string>>
                             {
                                 new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/rollingstones/"),
                                 new KeyValuePair<string, string>("Twitter", "https://twitter.com/rollingstones"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/therollingstones/")
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/therollingstones/"),
+                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/therollingstones/"),
+                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2")
+                            },
+                            Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>>
+                            {
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Paint It, Black", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/63T7DJ1AFDD6Bn8VzG6JE8?si=1f2f0249edf74a9f", "600M")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Sympathy for the Devil", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/75zMKn5euxQdlkZgu4P42J?si=a415e6ca07b441ee", "700M")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Street Fighting Man", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/51jnsY9d9kPv1sGw82L6Fe?si=8272dac24b7646ed", "400M"))
                             }
                         }
                     }
@@ -79,7 +95,14 @@ namespace ProyectoIPo
                             {
                                 new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/MilesDavis/"),
                                 new KeyValuePair<string, string>("Twitter", "https://twitter.com/milesdavis"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/milesdavis/")
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/milesdavis/"),
+                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/channel/UCI9b7tBwH9mbzgQg3Y6Kwxg"),
+                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/2nF3W41fN2KiTjANkVpt9n")
+                            },
+                            Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>>
+                            {
+                                new KeyValuePair<string, KeyValuePair<string, string>>("So What", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/7azylXFRsebfrIoAtwfjaB?si=4586ef880e20402d", "700M")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Freddie Freeloader", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/1UOH2i8z5xitX8PgVUH6nU?si=94e1fdd173b54276", "500M"))
                             }
                         },
                         new Artista
@@ -92,12 +115,18 @@ namespace ProyectoIPo
                             {
                                 new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/johncoltrane/"),
                                 new KeyValuePair<string, string>("Twitter", "https://twitter.com/johncoltrane"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/johncoltrane/")
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/johncoltrane/"),
+                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/johncoltrane"),
+                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/5eGBYz9UoRTW4Aw1XW7omI")
+                            },
+                            Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>>
+                            {
+                                new KeyValuePair<string, KeyValuePair<string, string>>("A Love Supreme", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/album/7Eoz7hJvaX1eFkbpQxC5PA?si=5950209d962841c9", "800M")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Naima", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/25ajcQN4gqQ8gLwB4zwS7a?si=4d6c6aeac68447c3", "600M"))
                             }
                         }
                     }
                 },
-
                 new Festival
                 {
                     Nombre = "Trap Beats",
@@ -115,7 +144,14 @@ namespace ProyectoIPo
                             {
                                 new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/BadBunny/"),
                                 new KeyValuePair<string, string>("Twitter", "https://twitter.com/soybadbunny"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/badbunny/")
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/badbunny/"),
+                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/badbunny"),
+                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/6AfBCxRXi3EMvDQvp9Gep5")
+                            },
+                            Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>>
+                            {
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Safaera", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/2DEZmgHKAvm41k4J3R2E9Y?si=4fa55e3dee794551", "1.5B")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Yonaguni", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/2JPLbjOn0wPCngEot2STUS?si=fe44b7e7f40b48ba", "1B"))
                             }
                         },
                         new Artista
@@ -128,12 +164,18 @@ namespace ProyectoIPo
                             {
                                 new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/anuel/"),
                                 new KeyValuePair<string, string>("Twitter", "https://twitter.com/anuel_2blea"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/anuel/")
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/anuel/"),
+                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/AnuelAA/"),
+                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/2hzPHk74TBMltuEFO0Zwd5")
+                            },
+                            Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>>
+                            {
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Adictiva", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/6MJUCumnQsQEKbCy28tbCP?si=71263cf337854b39", "900M")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Amanece", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/1LiN0Z98FkR1t0m8KmLcAH?si=1bed6a958705435c", "910M"))
                             }
                         }
                     }
                 },
-
                 new Festival
                 {
                     Nombre = "Reggaeton Party",
@@ -151,7 +193,14 @@ namespace ProyectoIPo
                             {
                                 new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/daddyyankee/"),
                                 new KeyValuePair<string, string>("Twitter", "https://twitter.com/daddyyankee"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/daddyyankee/")
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/daddyyankee/"),
+                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/DaddyYankee"),
+                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/0HKh6k7zNpLwX8m1HkXu02")
+                            },
+                            Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>>
+                            {
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Gasolina", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/228BxWXUYQPJrJYHDLOHkj?si=3b78983f2b26452c", "1.2B")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Rompe", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/4Xtlw8oXkIOvzV7crUBKeZ?si=ed3c233db11943ef", "950M"))
                             }
                         },
                         new Artista
@@ -162,14 +211,20 @@ namespace ProyectoIPo
                             Biografia = "Uno de los artistas más influyentes del reggaetón, conocido por éxitos como 'Mi Gente' y su estilo innovador.",
                             RedesSociales = new List<KeyValuePair<string, string>>
                             {
-                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/JBalvin/"),
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/jbalvin/"),
                                 new KeyValuePair<string, string>("Twitter", "https://twitter.com/jbalvin"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/jbalvin/")
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/jbalvin/"),
+                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/jbalvin"),
+                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/3Cdzt4XihkmCrh6IQj9H19")
+                            },
+                            Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>>
+                            {
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Mi Gente", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/7COfe3P7KgfwDwIRB8LIDw?si=7a652db019844290", "1B")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Ay Vamos", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/6Ges5C2IE738iJh4HyQizQ?si=86a86ef7fcc04170", "850M"))
                             }
                         }
                     }
                 },
-
                 new Festival
                 {
                     Nombre = "Electronic Beats",
@@ -177,32 +232,44 @@ namespace ProyectoIPo
                     Ubicacion = "Ibiza, España",
                     Artistas = new List<Artista>
                     {
-                        new Artista
-                        {
-                            Nombre = "Calvin Harris",
-                            Imagen = "Recursos/calvinharris.jpg",
-                            Genero = "Electronic",
-                            Biografia = "Un DJ y productor líder en música electrónica, conocido por éxitos como 'Summer' y su estilo dance-pop.",
-                            RedesSociales = new List<KeyValuePair<string, string>>
+                        new Artista(
+                            nombre: "Calvin Harris",
+                            imagen: "Recursos/calvinharris.jpg",
+                            genero: "Electronic",
+                            biografia: "Un DJ y productor líder en música electrónica, conocido por éxitos como 'Summer' y su estilo dance-pop.",
+                            redesSociales: new List<KeyValuePair<string, string>>
                             {
-                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/calvinharris/"),
-                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/calvinharris"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/calvinharris/")
-                            }
-                        },
-                        new Artista
-                        {
-                            Nombre = "David Guetta",
-                            Imagen = "Recursos/davidguetta.jpg",
-                            Genero = "Electronic",
-                            Biografia = "Un DJ y productor innovador, conocido por éxitos como 'Titanium' y 'Hey Mama'.",
-                            RedesSociales = new List<KeyValuePair<string, string>>
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/CalvinHarris/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/CalvinHarris"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/calvinharris/"),
+                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/CalvinHarris/"),
+                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/2jvAxNRV4wDWwF9RlUT4M2")
+                            },
+                            hits: new List<KeyValuePair<string, KeyValuePair<string, string>>>
                             {
-                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/davidguetta/"),
-                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/davidguetta"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/davidguetta/")
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Summer", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/6YUTL4dYpB9xZO5qExPf05?si=6186219dad7945a4", "200M")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("I'm not alone", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/07POri5O6Xu0aVZzlvOcpy?si=3612d4fca0e84a3a", "150M"))
                             }
-                        }
+                        ),
+                        new Artista(
+                            nombre: "David Guetta",
+                            imagen: "Recursos/davidguetta.jpg",
+                            genero: "Electronic",
+                            biografia: "Un DJ y productor talentoso en la escena de la música electrónica, conocido por éxitos como 'Titanium' y su innovador estilo de house.",
+                            redesSociales: new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/DavidGuetta/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/DavidGuetta"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/DavidGuetta/"),
+                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/DavidGuetta"),
+                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/3hHj7J8wB4w2LHI7X9FjZ3")
+                            },
+                            hits: new List<KeyValuePair<string, KeyValuePair<string, string>>>
+                            {
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Titanium", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/0TDLuuLlV54CkRRUOahJb4?si=2df727383af94aa8", "300M")),
+                                new KeyValuePair<string, KeyValuePair<string, string>>("Play hard", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/5YPMEOJ58kfl56VHxTgwx3?si=109f622a012d4f79", "120M"))
+                            }
+                        )
                     }
                 },
                 new Festival
