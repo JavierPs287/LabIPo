@@ -31,10 +31,13 @@ namespace ProyectoIPo
             var nombre = NombreTextBox.Text;
             var ubicacion = UbicacionTextBox.Text;
             var fecha = FechaDatePicker.SelectedDate ?? DateTime.Now;
-            var artistas = ArtistasTextBox.Text.Split(',').Select(a => a.Trim()).ToArray();
+            var artistasTexto = ArtistasTextBox.Text.Split(',').Select(a => a.Trim());
 
             if (!string.IsNullOrWhiteSpace(nombre) && !string.IsNullOrWhiteSpace(ubicacion))
             {
+                // Crear la lista de artistas desde el texto proporcionado
+                var artistas = artistasTexto.Select(nombreArtista => new Artista { Nombre = nombreArtista }).ToList();
+
                 var nuevoFestival = new Festival
                 {
                     Nombre = nombre,

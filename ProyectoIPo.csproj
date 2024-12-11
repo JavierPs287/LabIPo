@@ -55,8 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Festival.cs" />
     <Compile Include="VentanaAgregarFestival.xaml.cs">
       <DependentUpon>VentanaAgregarFestival.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanaDetallesArtistas.xaml.cs">
+      <DependentUpon>VentanaDetallesArtistas.xaml</DependentUpon>
     </Compile>
     <Compile Include="VentanaPrincipal.xaml.cs">
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
@@ -74,6 +78,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="VentanaAgregarFestival.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanaDetallesArtistas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,9 +120,20 @@
     <Resource Include="FondoPantallaLogin.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Recursos\Login\FondoPantallaLogin.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\queen.jpg" />
+    <Resource Include="Recursos\rollingstones.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\anuelaa.jpg" />
+    <Resource Include="Recursos\badbunny.jpg" />
+    <Resource Include="Recursos\calvinharris.jpg" />
+    <Resource Include="Recursos\daddyyankee.jpg" />
+    <Resource Include="Recursos\davidguetta.jpg" />
+    <Resource Include="Recursos\jbalvin.jpg" />
+    <Resource Include="Recursos\johncoltrane.jpg" />
+    <Resource Include="Recursos\milesdavis.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

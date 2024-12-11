@@ -27,117 +27,260 @@ namespace ProyectoIPo
             // Datos de ejemplo
             Festivales = new ObservableCollection<Festival>
             {
-                new Festival
-                {
+               new Festival
+{
                     Nombre = "Rock Fest",
                     Fecha = new DateTime(2024, 6, 15),
                     Ubicacion = "Madrid, España",
-                    Artistas = new[] { "Queen", "The Rolling Stones" }
+                    Artistas = new List<Artista>
+                    {
+                        new Artista
+                        {
+                            Nombre = "Queen",
+                            Imagen = "Recursos/queen.jpg", // URL o ruta de imagen (puedes dejar vacía o especificar una ruta si tienes una imagen)
+                            Genero = "Rock",
+                            Biografia = "Una banda de rock icónica formada en 1970 en Londres, conocida por éxitos como 'Bohemian Rhapsody' y 'We Will Rock You'.",
+                            RedesSociales = new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/Queen/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/queenwillrock"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/queen/")
+                            }
+                        },
+                        new Artista
+                        {
+                            Nombre = "The Rolling Stones",
+                            Imagen = "Recursos/rollingstones.jpg", // URL o ruta de imagen (puedes dejar vacía o especificar una ruta si tienes una imagen)
+                            Genero = "Rock",
+                            Biografia = "Una banda de rock británica formada en 1962, famosa por su estilo musical enérgico y éxitos como 'Paint It Black' y 'Sympathy for the Devil'.",
+                            RedesSociales = new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/rollingstones/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/rollingstones"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/therollingstones/")
+                            }
+                        }
+                    }
                 },
                 new Festival
                 {
                     Nombre = "Jazz Nights",
                     Fecha = new DateTime(2024, 5, 20),
                     Ubicacion = "Barcelona, España",
-                    Artistas = new[] { "Miles Davis", "John Coltrane" }
+                    Artistas = new List<Artista>
+                    {
+                        new Artista
+                        {
+                            Nombre = "Miles Davis",
+                            Imagen = "Recursos/milesdavis.jpg",
+                            Genero = "Jazz",
+                            Biografia = "Una de las figuras más influyentes en la historia del jazz, conocido por su estilo único y por álbumes como 'Kind of Blue'.",
+                            RedesSociales = new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/MilesDavis/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/milesdavis"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/milesdavis/")
+                            }
+                        },
+                        new Artista
+                        {
+                            Nombre = "John Coltrane",
+                            Imagen = "Recursos/johncoltrane.jpg",
+                            Genero = "Jazz",
+                            Biografia = "Pionero del saxofón tenor, conocido por su estilo avant-garde y álbumes icónicos como 'A Love Supreme'.",
+                            RedesSociales = new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/johncoltrane/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/johncoltrane"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/johncoltrane/")
+                            }
+                        }
+                    }
                 },
+
                 new Festival
                 {
                     Nombre = "Trap Beats",
                     Fecha = new DateTime(2024, 12, 10),
                     Ubicacion = "Buenos Aires, Argentina",
-                    Artistas = new[] { "Bad Bunny", "Anuel AA" }
+                    Artistas = new List<Artista>
+                    {
+                        new Artista
+                        {
+                            Nombre = "Bad Bunny",
+                            Imagen = "Recursos/badbunny.jpg",
+                            Genero = "Trap",
+                            Biografia = "Una de las figuras más influyentes del trap, conocido por éxitos como 'YHLQMDLG' y su estilo único de fusión.",
+                            RedesSociales = new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/BadBunny/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/soybadbunny"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/badbunny/")
+                            }
+                        },
+                        new Artista
+                        {
+                            Nombre = "Anuel AA",
+                            Imagen = "Recursos/anuelaa.jpg",
+                            Genero = "Trap",
+                            Biografia = "Un pionero del reggaetón y el trap, conocido por sus colaboraciones y éxitos como 'Adictiva'.",
+                            RedesSociales = new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/anuel/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/anuel_2blea"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/anuel/")
+                            }
+                        }
+                    }
                 },
+
                 new Festival
                 {
                     Nombre = "Reggaeton Party",
                     Fecha = new DateTime(2025, 3, 10),
                     Ubicacion = "Miami, USA",
-                    Artistas = new[] { "Daddy Yankee", "J Balvin" }
+                    Artistas = new List<Artista>
+                    {
+                        new Artista
+                        {
+                            Nombre = "Daddy Yankee",
+                            Imagen = "Recursos/daddyyankee.jpg",
+                            Genero = "Reggaeton",
+                            Biografia = "Una leyenda del reggaetón, conocido por éxitos como 'Gasolina' y su influencia en el género.",
+                            RedesSociales = new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/daddyyankee/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/daddyyankee"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/daddyyankee/")
+                            }
+                        },
+                        new Artista
+                        {
+                            Nombre = "J Balvin",
+                            Imagen = "Recursos/jbalvin.jpg",
+                            Genero = "Reggaeton",
+                            Biografia = "Uno de los artistas más influyentes del reggaetón, conocido por éxitos como 'Mi Gente' y su estilo innovador.",
+                            RedesSociales = new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/JBalvin/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/jbalvin"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/jbalvin/")
+                            }
+                        }
+                    }
                 },
+
                 new Festival
                 {
                     Nombre = "Electronic Beats",
                     Fecha = new DateTime(2024, 7, 12),
                     Ubicacion = "Ibiza, España",
-                    Artistas = new[] { "Calvin Harris", "David Guetta" }
+                    Artistas = new List<Artista>
+                    {
+                        new Artista
+                        {
+                            Nombre = "Calvin Harris",
+                            Imagen = "Recursos/calvinharris.jpg",
+                            Genero = "Electronic",
+                            Biografia = "Un DJ y productor líder en música electrónica, conocido por éxitos como 'Summer' y su estilo dance-pop.",
+                            RedesSociales = new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/calvinharris/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/calvinharris"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/calvinharris/")
+                            }
+                        },
+                        new Artista
+                        {
+                            Nombre = "David Guetta",
+                            Imagen = "Recursos/davidguetta.jpg",
+                            Genero = "Electronic",
+                            Biografia = "Un DJ y productor innovador, conocido por éxitos como 'Titanium' y 'Hey Mama'.",
+                            RedesSociales = new List<KeyValuePair<string, string>>
+                            {
+                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/davidguetta/"),
+                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/davidguetta"),
+                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/davidguetta/")
+                            }
+                        }
+                    }
                 },
                 new Festival
                 {
                     Nombre = "Blues Legends",
                     Fecha = new DateTime(2024, 8, 10),
                     Ubicacion = "Chicago, USA",
-                    Artistas = new[] { "B.B. King", "Muddy Waters" }
+                    Artistas = new[] { "B.B. King", "Muddy Waters" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 },
                 new Festival
                 {
                     Nombre = "Metal Mayhem",
                     Fecha = new DateTime(2024, 9, 5),
                     Ubicacion = "Berlin, Alemania",
-                    Artistas = new[] { "Metallica", "Iron Maiden" }
+                    Artistas = new[] { "Metallica", "Iron Maiden" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 },
                 new Festival
                 {
                     Nombre = "Classical Evenings",
                     Fecha = new DateTime(2024, 6, 30),
                     Ubicacion = "Viena, Austria",
-                    Artistas = new[] { "Ludwig van Beethoven", "Wolfgang Amadeus Mozart" }
+                    Artistas = new[] { "Ludwig van Beethoven", "Wolfgang Amadeus Mozart" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 },
                 new Festival
                 {
                     Nombre = "Reggae Sun",
                     Fecha = new DateTime(2024, 7, 25),
                     Ubicacion = "Kingston, Jamaica",
-                    Artistas = new[] { "Bob Marley", "Peter Tosh" }
+                    Artistas = new[] { "Bob Marley", "Peter Tosh" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 },
                 new Festival
                 {
                     Nombre = "PopFest",
                     Fecha = new DateTime(2024, 10, 2),
                     Ubicacion = "Los Ángeles, USA",
-                    Artistas = new[] { "Ariana Grande", "Taylor Swift" }
+                    Artistas = new[] { "Ariana Grande", "Taylor Swift" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 },
                 new Festival
                 {
                     Nombre = "Indie Vibes",
                     Fecha = new DateTime(2024, 8, 20),
                     Ubicacion = "Londres, UK",
-                    Artistas = new[] { "The Strokes", "Arctic Monkeys" }
+                    Artistas = new[] { "The Strokes", "Arctic Monkeys" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 },
                 new Festival
                 {
                     Nombre = "Country Jam",
                     Fecha = new DateTime(2024, 9, 15),
                     Ubicacion = "Nashville, USA",
-                    Artistas = new[] { "Johnny Cash", "Dolly Parton" }
+                    Artistas = new[] { "Johnny Cash", "Dolly Parton" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 },
                 new Festival
                 {
                     Nombre = "R&B Soul Fest",
                     Fecha = new DateTime(2024, 11, 1),
                     Ubicacion = "Atlanta, USA",
-                    Artistas = new[] { "Aretha Franklin", "Marvin Gaye" }
+                    Artistas = new[] { "Aretha Franklin", "Marvin Gaye" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 },
                 new Festival
                 {
                     Nombre = "Latin Fusion",
                     Fecha = new DateTime(2024, 6, 25),
                     Ubicacion = "México D.F., México",
-                    Artistas = new[] { "Carlos Santana", "Shakira" }
+                    Artistas = new[] { "Carlos Santana", "Shakira" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 },
                 new Festival
                 {
                     Nombre = "Punk Rock Riot",
                     Fecha = new DateTime(2024, 7, 19),
                     Ubicacion = "Los Ángeles, USA",
-                    Artistas = new[] { "Green Day", "The Offspring" }
+                    Artistas = new[] { "Green Day", "The Offspring" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 },
                 new Festival
                 {
                     Nombre = "Hip Hop Summit",
                     Fecha = new DateTime(2024, 9, 25),
                     Ubicacion = "Nueva York, USA",
-                    Artistas = new[] { "Kendrick Lamar", "Drake" }
+                    Artistas = new[] { "Kendrick Lamar", "Drake" }.Select(nombre => new Artista { Nombre = nombre }).ToList()
                 }
             };
 
@@ -211,14 +354,20 @@ namespace ProyectoIPo
             }
         }
 
-    }
+        private void OnViewArtistsClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                // Obtener el festival asociado a este botón
+                var festivalSeleccionado = button.DataContext as Festival;
+                if (festivalSeleccionado != null)
+                {
+                    var ventanaDetallesArtistas = new VentanaDetallesArtistas(festivalSeleccionado.Artistas);
+                    ventanaDetallesArtistas.ShowDialog(); // Mostrar la ventana de detalles de los artistas
+                }
+            }
+        }
 
-    public class Festival
-    {
-        public string Nombre { get; set; }
-        public DateTime Fecha { get; set; }  // Fecha única del festival
-        public string Ubicacion { get; set; }  // Ubicación del festival
-        public string[] Artistas { get; set; }  // Lista de artistas
     }
 
     public class FutureDateConverter : IValueConverter
