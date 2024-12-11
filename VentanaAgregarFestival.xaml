@@ -1,0 +1,27 @@
+﻿<Window x:Class="ProyectoIPo.VentanaAgregarFestival"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Agregar Festival" Height="350" Width="400">
+
+    <Grid>
+        <StackPanel Margin="10">
+
+            <Label Content="Nombre:"/>
+            <TextBox x:Name="NombreTextBox" KeyDown="NombreTextBox_KeyDown" Margin="0,0,0,10"/>
+
+            <Label Content="Ubicación:"/>
+            <TextBox x:Name="UbicacionTextBox" KeyDown="UbicacionTextBox_KeyDown" Margin="0,0,0,10"/>
+
+            <Label Content="Fecha:"/>
+            <DatePicker x:Name="FechaDatePicker" Margin="0,0,0,10"/>
+
+            <Label Content="Artistas (separados por coma):"/>
+            <TextBox x:Name="ArtistasTextBox" KeyDown="ArtistasTextBox_KeyDown" Margin="0,0,0,10"/>
+
+            <Button Content="Agregar Festival" Click="OnAgregarFestivalClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

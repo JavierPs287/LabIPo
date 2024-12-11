@@ -167,6 +167,50 @@ namespace ProyectoIPo
             e.Handled = true;  // Evita que el evento sea manejado de otra manera
         }
 
+        private void OnAddFestivalClick(object sender, RoutedEventArgs e)
+        {
+            // Crear una nueva ventana para ingresar los datos del nuevo festival
+            var ventanaAgregarFestival = new VentanaAgregarFestival();
+            ventanaAgregarFestival.FestivalAdded += OnFestivalAdded; // Suscribimos al evento para actualizar la lista
+            ventanaAgregarFestival.ShowDialog();
+        }
+
+        private void OnFestivalAdded(object sender, Festival nuevoFestival)
+        {
+            // Agregar el nuevo festival al principio
+            Festivales.Add(nuevoFestival);
+
+            // Ordenar nuevamente los festivales por la fecha
+            Festivales = new ObservableCollection<Festival>(Festivales.OrderBy(f => f.Fecha));
+
+            // Notificar el cambio para que la vista se actualice
+            FestivalListBox.ItemsSource = null; // Vaciar el ItemsSource
+            FestivalListBox.ItemsSource = Festivales; // Asignar la nueva colección ordenada
+        }
+
+        private void ExpanderHeader_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Expander expander)
+            {
+                expander.IsExpanded = !expander.IsExpanded; // Alternar el estado del Expander
+            }
+        }
+
+        private void FestivalListBox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Iterar sobre los items en el ListBox para buscar el Expander asociado
+            var item = e.OriginalSource as FrameworkElement;
+            while (item != null && !(item is Expander))
+            {
+                item = item.Parent as FrameworkElement;
+            }
+
+            if (item is Expander expander)
+            {
+                expander.IsExpanded = !expander.IsExpanded; // Alternar el estado del Expander
+            }
+        }
+
     }
 
     public class Festival
