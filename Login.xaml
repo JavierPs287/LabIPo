@@ -1,4 +1,4 @@
-﻿<Window x:Class="ProyectoIPo.Login"
+﻿    <Window x:Class="ProyectoIPo.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,57 +10,84 @@
         <Grid.Background>
             <ImageBrush ImageSource="/FondoPantallaLogin.jpg"/>
         </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
         <!-- Campo Usuario -->
-        <TextBlock Name="lblUsuario"
-                   Text="Usuario"
-                   FontSize="14"
-                   Foreground="Gray"
-                   Margin="300,140,0,0"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Visibility="Visible"
-                   IsHitTestVisible="False" 
-                   Panel.ZIndex="1" />
-        <TextBox Name="txtUsuario"
-                 Width="200"
-                 Margin="300,140,0,0"
-                 VerticalAlignment="Top"
-                 HorizontalAlignment="Left"
-                 GotFocus="txtUsuario_GotFocus"
-                 LostFocus="txtUsuario_LostFocus"
-                 KeyDown="txtUsuario_KeyDown"
-                 Panel.ZIndex="0" 
-                 Background="#B1FFFFFF" />
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <Grid>
+                <TextBlock Name="lblUsuario"
+                           Text="Usuario"
+                           FontSize="14"
+                           Foreground="Gray"
+                           Margin="0,5,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           IsHitTestVisible="False"
+                           Panel.ZIndex="1"
+                          />
+                <TextBox Name="txtUsuario"
+                         Width="200"
+                         Height="20"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         GotFocus="txtUsuario_GotFocus"
+                         LostFocus="txtUsuario_LostFocus"
+                         KeyDown="txtUsuario_KeyDown"
+                         Panel.ZIndex="0"
+                         Background="#B1FFFFFF" />
+            </Grid>
+        </StackPanel>
 
         <!-- Campo Contraseña -->
-        <TextBlock Name="lblPassword"
-                   Text="Contraseña"
-                   FontSize="14"
-                   Foreground="Gray"
-                   Margin="300,200,0,0"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Left"
-                   Visibility="Visible"
-                   IsHitTestVisible="False" 
-                   Panel.ZIndex="1" />
-        <PasswordBox Name="txtPassword"
-                     Width="200"
-                     Margin="300,200,0,0"
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Left"
-                     GotFocus="txtPassword_GotFocus"
-                     LostFocus="txtPassword_LostFocus"
-                     KeyDown="txtPassword_KeyDown"
-                     Panel.ZIndex="0" 
-                     Background="#B2FFFFFF" />
+        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <Grid>
+                <TextBlock Name="lblPassword"
+                           Text="Contraseña"
+                           FontSize="14"
+                           Foreground="Gray"
+                           Margin="0,5,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           IsHitTestVisible="False"
+                           Panel.ZIndex="1"
+                          />
+                <PasswordBox Name="txtPassword"
+                             Width="200"
+                             Height="20"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             GotFocus="txtPassword_GotFocus"
+                             LostFocus="txtPassword_LostFocus"
+                             KeyDown="txtPassword_KeyDown"
+                             Panel.ZIndex="0"
+                             Background="#B2FFFFFF" />
+            </Grid>
+        </StackPanel>
 
-        <!-- Botón Login -->
-        <Button Content="Login"
-                Width="100"
-                Height="30"
-                Margin="350,250,0,0"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Click="btnLogin_Click" />
+        <!-- Botones Login y Registrarse -->
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10">
+            <Button Content="Login"
+                    Width="100"
+                    Height="30"
+                    Margin="5"
+                    Click="btnLogin_Click" />
+            <Button Content="Registrarse"
+                    Width="100"
+                    Height="30"
+                    Margin="5"
+                    Click="btnRegister_Click" />
+        </StackPanel>
     </Grid>
+        
 </Window>

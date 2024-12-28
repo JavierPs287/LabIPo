@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Drawing;
 
 namespace ProyectoIPo
 {
     public partial class VentanaPrincipal : Window
     {
+        public class Festival
+        {
+            public string Nombre { get; set; }
+            public DateTime Fecha { get; set; }
+            public string Ubicacion { get; set; }
+            public List<Artista> Artistas { get; set; }
+            public string ArtistasTexto { get; set; }
+        }
+
+
         public ObservableCollection<Festival> Festivales { get; set; }
+        private ObservableCollection<Festival> FestivalesOriginales { get; set; }
 
         public VentanaPrincipal()
         {
@@ -26,59 +30,26 @@ namespace ProyectoIPo
 
             // Datos de ejemplo
             Festivales = new ObservableCollection<Festival>
+        {
+            new Festival
             {
-                new Festival
+                Nombre = "Rock Fest",
+                Fecha = new DateTime(2024, 6, 15),
+                Ubicacion = "Madrid, España",
+                Artistas = new List<Artista>
                 {
-                    Nombre = "Rock Fest",
-                    Fecha = new DateTime(2024, 6, 15),
-                    Ubicacion = "Madrid, España",
-                    Artistas = new List<Artista>
+                    new Artista
                     {
-                        new Artista
-                        {
-                            Nombre = "Queen",
-                            Imagen = "Recursos/queen.jpg",
-                            Genero = "Rock",
-                            Biografia = "Una banda de rock icónica formada en 1970 en Londres, conocida por éxitos como 'Bohemian Rhapsody' y 'We Will Rock You'.",
-                            RedesSociales = new List<KeyValuePair<string, string>>
-                            {
-                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/Queen/"),
-                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/queenwillrock"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/queen/"),
-                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/QueenTheBest/"),
-                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/4BIzZ5N8rAqTjMUC6ibClm")
-                            },
-                            Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>>
-                            {
-                                new KeyValuePair<string, KeyValuePair<string, string>>("Bohemian Rhapsody", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/3z8h0TU7ReDPLIbEnYhWZb?si=6b12b1a4d7864400", "1B")),
-                                new KeyValuePair<string, KeyValuePair<string, string>>("We Will Rock You", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/4pbJqGIASGPr0ZpGpnWkDn?si=a0db7a9b5cf948fe", "750M")),
-                                new KeyValuePair<string, KeyValuePair<string, string>>("Another One Bites the Dust", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/2k1yPYf9WGA4LiqcLVwtzn?si=c1fe292236f84040", "500M"))
-                            }
-                        },
-                        new Artista
-                        {
-                            Nombre = "The Rolling Stones",
-                            Imagen = "Recursos/rollingstones.jpg",
-                            Genero = "Rock",
-                            Biografia = "Una banda de rock británica formada en 1962, famosa por su estilo musical enérgico y éxitos como 'Paint It Black' y 'Sympathy for the Devil'.",
-                            RedesSociales = new List<KeyValuePair<string, string>>
-                            {
-                                new KeyValuePair<string, string>("Facebook", "https://www.facebook.com/rollingstones/"),
-                                new KeyValuePair<string, string>("Twitter", "https://twitter.com/rollingstones"),
-                                new KeyValuePair<string, string>("Instagram", "https://www.instagram.com/therollingstones/"),
-                                new KeyValuePair<string, string>("YouTube", "https://www.youtube.com/user/therollingstones/"),
-                                new KeyValuePair<string, string>("Spotify", "https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2")
-                            },
-                            Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>>
-                            {
-                                new KeyValuePair<string, KeyValuePair<string, string>>("Paint It, Black", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/63T7DJ1AFDD6Bn8VzG6JE8?si=1f2f0249edf74a9f", "600M")),
-                                new KeyValuePair<string, KeyValuePair<string, string>>("Sympathy for the Devil", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/75zMKn5euxQdlkZgu4P42J?si=a415e6ca07b441ee", "700M")),
-                                new KeyValuePair<string, KeyValuePair<string, string>>("Street Fighting Man", new KeyValuePair<string, string>("https://open.spotify.com/intl-es/track/51jnsY9d9kPv1sGw82L6Fe?si=8272dac24b7646ed", "400M"))
-                            }
-                        }
+                        Nombre = "Queen",
+                        Imagen = "Recursos/queen.jpg",
+                        Genero = "Rock",
+                        Biografia = "Una banda de rock icónica formada en 1970 en Londres.",
+                        RedesSociales = new List<KeyValuePair<string, string>> { /* ... */ },
+                        Hits = new List<KeyValuePair<string, KeyValuePair<string, string>>> { /* ... */ }
                     }
-                },
-                new Festival
+                }
+            },
+            new Festival
                 {
                     Nombre = "Jazz Nights",
                     Fecha = new DateTime(2024, 5, 20),
@@ -351,142 +322,103 @@ namespace ProyectoIPo
                 }
             };
 
+            // Guardar la lista original de festivales
+            FestivalesOriginales = new ObservableCollection<Festival>(Festivales);
 
             // Ordenar los festivales por la fecha
             Festivales = new ObservableCollection<Festival>(Festivales.OrderBy(f => f.Fecha));
 
+            // Añadir la propiedad ArtistasTexto para mostrar los nombres de los artistas en una sola columna
+            foreach (var festival in Festivales)
+            {
+                festival.ArtistasTexto = string.Join(", ", festival.Artistas.Select(a => a.Nombre));
+            }
+
             // Establecer el contexto de datos para el enlace
             DataContext = this;
         }
-        private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            // Verificar si el desplazamiento es vertical
-            if (FestivalScrollViewer != null)
-            {
-                // Aplicar desplazamiento hacia arriba o hacia abajo según el movimiento de la rueda
-                if (e.Delta > 0)
-                {
-                    FestivalScrollViewer.ScrollToVerticalOffset(FestivalScrollViewer.VerticalOffset - 30); // Ajusta el valor de desplazamiento
-                }
-                else
-                {
-                    FestivalScrollViewer.ScrollToVerticalOffset(FestivalScrollViewer.VerticalOffset + 30); // Ajusta el valor de desplazamiento
-                }
-            }
 
-            e.Handled = true;  // Evita que el evento sea manejado de otra manera
+        // Método para aplicar filtros
+        private void FiltrarFestivales(object sender, RoutedEventArgs e)
+        {
+            var filtroNombre = txtFiltroNombre.Text.ToLower();
+            var filtroArtista = txtFiltroArtista.Text.ToLower();
+            var filtroFecha = dpFiltroFecha.SelectedDate;
+
+            var festivalesFiltrados = FestivalesOriginales.Where(f =>
+                (string.IsNullOrWhiteSpace(filtroNombre) || f.Nombre.ToLower().Contains(filtroNombre)) &&
+                (string.IsNullOrWhiteSpace(filtroArtista) || f.Artistas.Any(a => a.Nombre.ToLower().Contains(filtroArtista))) &&
+                (!filtroFecha.HasValue || f.Fecha.Date == filtroFecha.Value.Date));
+
+            Festivales = new ObservableCollection<Festival>(festivalesFiltrados);
+            FestivalDataGrid.ItemsSource = Festivales; // Refrescar el DataGrid
         }
 
+        // Método para cancelar los filtros
+        private void CancelarFiltros(object sender, RoutedEventArgs e)
+        {
+            txtFiltroNombre.Clear();
+            txtFiltroArtista.Clear();
+            dpFiltroFecha.SelectedDate = null;
+            Festivales = new ObservableCollection<Festival>(FestivalesOriginales);
+            FestivalDataGrid.ItemsSource = Festivales; // Refrescar el DataGrid
+        }
+
+        // Evento para agregar un nuevo festival
         private void OnAddFestivalClick(object sender, RoutedEventArgs e)
         {
-            // Crear una nueva ventana para ingresar los datos del nuevo festival
             var ventanaAgregarFestival = new VentanaAgregarFestival();
-            ventanaAgregarFestival.FestivalAdded += OnFestivalAdded; // Suscribimos al evento para actualizar la lista
+            ventanaAgregarFestival.FestivalAdded += OnFestivalAdded;
             ventanaAgregarFestival.ShowDialog();
         }
 
+        // Evento que maneja la adición de un nuevo festival
         private void OnFestivalAdded(object sender, Festival nuevoFestival)
         {
-            // Agregar el nuevo festival al principio
+            if (nuevoFestival == null) return;
+
+            nuevoFestival.ArtistasTexto = string.Join(", ", nuevoFestival.Artistas.Select(a => a.Nombre));
             Festivales.Add(nuevoFestival);
-
-            // Ordenar nuevamente los festivales por la fecha
             Festivales = new ObservableCollection<Festival>(Festivales.OrderBy(f => f.Fecha));
-
-            // Notificar el cambio para que la vista se actualice
-            FestivalListBox.ItemsSource = null; // Vaciar el ItemsSource
-            FestivalListBox.ItemsSource = Festivales; // Asignar la nueva colección ordenada
+            FestivalDataGrid.ItemsSource = null; // Necesario para refrescar el DataGrid
+            FestivalDataGrid.ItemsSource = Festivales;
         }
 
-        private void ExpanderHeader_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is Expander expander)
-            {
-                expander.IsExpanded = !expander.IsExpanded; // Alternar el estado del Expander
-            }
-        }
 
-        private void FestivalListBox_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            // Iterar sobre los items en el ListBox para buscar el Expander asociado
-            var item = e.OriginalSource as FrameworkElement;
-            while (item != null && !(item is Expander))
-            {
-                item = item.Parent as FrameworkElement;
-            }
 
-            if (item is Expander expander)
-            {
-                expander.IsExpanded = !expander.IsExpanded; // Alternar el estado del Expander
-            }
-        }
-
+        // Evento para ver los artistas de un festival
         private void OnViewArtistsClick(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
             {
-                // Obtener el festival asociado a este botón
                 var festivalSeleccionado = button.DataContext as Festival;
                 if (festivalSeleccionado != null)
                 {
                     var ventanaDetallesArtistas = new VentanaDetallesArtistas(festivalSeleccionado.Artistas);
-                    ventanaDetallesArtistas.ShowDialog(); // Mostrar la ventana de detalles de los artistas
+                    ventanaDetallesArtistas.ShowDialog();
                 }
             }
         }
 
-    }
-
-    public class FutureDateConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        // Evento para cancelar un festival
+        private void OnCancelFestivalClick(object sender, RoutedEventArgs e)
         {
-            if (value is DateTime fecha)
+            if (sender is Button button)
             {
-                return fecha > DateTime.Now; // Devolver un valor booleano
-            }
-            return false; // En caso de no ser DateTime, se devuelve false
-        }
+                var festivalSeleccionado = button.DataContext as Festival;
+                if (festivalSeleccionado != null)
+                {
+                    MessageBoxResult result = MessageBox.Show($"¿Estás seguro de que deseas cancelar el festival '{festivalSeleccionado.Nombre}'?",
+                        "Confirmar Cancelación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        Festivales.Remove(festivalSeleccionado);
+                        FestivalDataGrid.ItemsSource = Festivales; // Refrescar el DataGrid
+                    }
+                }
+            }
         }
     }
-
-    public class PastDateConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is DateTime fecha)
-            {
-                return fecha < DateTime.Now; // Devolver un valor booleano
-            }
-            return false; // En caso de no ser DateTime, se devuelve false
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class TodayDateConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is DateTime fecha)
-            {
-                // Compara solo la fecha, sin tener en cuenta la hora
-                return fecha.Date == DateTime.Now.Date;
-            }
-            return false;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
 }
+

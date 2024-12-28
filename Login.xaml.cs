@@ -52,6 +52,7 @@ namespace ProyectoIPo
                 lblPassword.Visibility = Visibility.Visible; // Muestra "Contraseña" si está vacío
             }
         }
+
         private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -76,7 +77,7 @@ namespace ProyectoIPo
 
             if (username == "admin" && password == "admin")
             {
-                MessageBox.Show("¡Login exitoso!", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Bienvenido {username}", "¡Login Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
                 ventanaPrincipal.Show();
@@ -87,6 +88,27 @@ namespace ProyectoIPo
                 MessageBox.Show("Credenciales incorrectas.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            string username = txtUsuario.Text;
+            string password = txtPassword.Password;
 
-    }
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Registro fallido. Porfavor rellene todos los campos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                MessageBox.Show($"Bienvenido {username}", "¡Registro Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
+                VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+                ventanaPrincipal.Show();
+                this.Close();
+            }
+           
+        }
+
 }
+
+    
+}
+

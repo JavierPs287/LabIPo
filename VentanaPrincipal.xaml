@@ -1,84 +1,54 @@
 ﻿<Window x:Class="ProyectoIPo.VentanaPrincipal"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProyectoIPo"
-        mc:Ignorable="d"
-        Title="Gestión de Festivales" Height="450" Width="800"
-        PreviewMouseWheel="Window_PreviewMouseWheel">
-
-    <Window.Resources>
-        <!-- Convertidores de fecha para colores -->
-        <local:PastDateConverter x:Key="PastDateConverter"/>
-        <local:FutureDateConverter x:Key="FutureDateConverter"/>
-        <local:TodayDateConverter x:Key="TodayDateConverter"/>
-    </Window.Resources>
-
+        Title="Gestión de Festivales" Height="450" Width="800">
     <Grid>
-        <ScrollViewer x:Name="FestivalScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <ListBox x:Name="FestivalListBox" ItemsSource="{Binding Festivales}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Expander Margin="5">
-                            <Expander.Header>
-                                <StackPanel Orientation="Vertical">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-                                        <!-- Nombre del Festival -->
-                                        <TextBlock Text="{Binding Nombre}" FontWeight="Bold" Grid.Row="0" />
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Margin="10">
+            <!-- Campo Filtro por Nombre -->
+            <Grid Margin="5">
+                <TextBox x:Name="txtFiltroNombre" Width="150" TextChanged="FiltrarFestivales"/>
+                <TextBlock Text="Filtrar por nombre" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" />
+            </Grid>
 
-                                        <!-- Ubicación del festival -->
-                                        <TextBlock Text="{Binding Ubicacion}" FontWeight="Bold" Grid.Row="1" />
+            <!-- Campo Filtro por Artista -->
+            <Grid Margin="5">
+                <TextBox x:Name="txtFiltroArtista" Width="150" TextChanged="FiltrarFestivales"/>
+                <TextBlock Text="Filtrar por artista" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" />
+            </Grid>
 
-                                        <!-- Fecha del Festival con formato dd/MM/yyyy y lógica de color -->
-                                        <TextBlock Text="{Binding Fecha, StringFormat='dd/MM/yyyy'}" Grid.Row="2">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Foreground" Value="Gray" />
-                                                    <Style.Triggers>
-                                                        <!-- Fecha pasada -->
-                                                        <DataTrigger Binding="{Binding Fecha, Converter={StaticResource PastDateConverter}}" Value="True">
-                                                            <Setter Property="Foreground" Value="Red" />
-                                                        </DataTrigger>
-
-                                                        <!-- Fecha futura -->
-                                                        <DataTrigger Binding="{Binding Fecha, Converter={StaticResource FutureDateConverter}}" Value="True">
-                                                            <Setter Property="Foreground" Value="Green" />
-                                                        </DataTrigger>
-
-                                                        <!-- Fecha de hoy -->
-                                                        <DataTrigger Binding="{Binding Fecha, Converter={StaticResource TodayDateConverter}}" Value="True">
-                                                            <Setter Property="Foreground" Value="Purple" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </Grid>
-                                </StackPanel>
-                            </Expander.Header>
-
-                            <!-- Detalles del Festival -->
-                            <StackPanel>
-
-                                <!-- Botón para ver los artistas -->
-                                <Button Content="Ver Artistas" HorizontalAlignment="Left" Margin="10,0,0,0" Click="OnViewArtistsClick" />
-                            </StackPanel>
-                        </Expander>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ScrollViewer>
-
-        <!-- Botón para agregar festival fuera del ListBox -->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10,0,10">
-            <Button Content="Agregar Festival" Click="OnAddFestivalClick" />
+            <DatePicker x:Name="dpFiltroFecha" Width="150" Margin="5" SelectedDateChanged="FiltrarFestivales"/>
+            <Button Content="Cancelar Filtros" Click="CancelarFiltros" Margin="5"/>
+            <Button Content="Agregar Festival" Click="OnAddFestivalClick" Margin="5"/>
         </StackPanel>
+
+        <DataGrid x:Name="FestivalDataGrid" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Festivales}" IsReadOnly="True" SelectionMode="Single" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}" Width="*"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat='dd/MM/yyyy'}" Width="*"/>
+                <DataGridTemplateColumn Header="Artistas" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ArtistasTexto}" TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Acciones" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Ver Artistas" Margin="2" Click="OnViewArtistsClick"/>
+                                <Button Content="Cancelar" Margin="2" Click="OnCancelFestivalClick"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
