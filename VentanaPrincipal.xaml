@@ -42,7 +42,6 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Ver Artistas" Margin="2" Click="OnViewArtistsClick"/>
                                 <Button Content="Cancelar" Margin="2" Click="OnCancelFestivalClick"/>
                             </StackPanel>
                         </DataTemplate>

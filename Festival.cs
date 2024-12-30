@@ -11,11 +11,12 @@ namespace ProyectoIPo
         public string Nombre { get; set; }
         public DateTime Fecha { get; set; }
         public string Ubicacion { get; set; }
-        public List<Artista> Artistas { get; set; } // Lista de artistas del festival
+        public List<String> Artistas { get; set; } // Lista de artistas del festival
+        public string ArtistasTexto => string.Join(", ", Artistas);
 
-    public Festival() { }
+        public Festival() { }
 
-        public Festival(string nombre, DateTime fecha, string ubicacion, List<Artista> artistas)
+        public Festival(string nombre, DateTime fecha, string ubicacion, List<String> artistas)
         {
             Nombre = nombre;
             Fecha = fecha;
@@ -23,37 +24,14 @@ namespace ProyectoIPo
             Artistas = artistas;
         }
 
-        public void AgregarArtista(Artista artista)
+        public void AgregarArtista(String artista)
         {
             Artistas.Add(artista);
         }
 
-        public void EliminarArtista(Artista artista)
+        public void EliminarArtista(String artista)
         {
             Artistas.Remove(artista);
         }
     }
-
-    public class Artista
-    {
-        public string Nombre { get; set; }
-        public string Imagen { get; set; }
-        public string Genero { get; set; }
-        public string Biografia { get; set; }
-        public List<KeyValuePair<string, string>> RedesSociales { get; set; } = new List<KeyValuePair<string, string>>();
-        public List<KeyValuePair<string, KeyValuePair<string, string>>> Hits { get; set; } = new List<KeyValuePair<string, KeyValuePair<string, string>>>();
-
-        public Artista() { }
-
-        public Artista(string nombre, string imagen, string genero, string biografia, List<KeyValuePair<string, string>> redesSociales, List<KeyValuePair<string, KeyValuePair<string, string>>> hits)
-        {
-            Nombre = nombre;
-            Imagen = imagen;
-            Genero = genero;
-            Biografia = biografia;
-            RedesSociales = redesSociales;
-            Hits = hits;
-        }
-    }
-
 }
