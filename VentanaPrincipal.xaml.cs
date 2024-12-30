@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace ProyectoIPo
 {
@@ -198,6 +200,20 @@ namespace ProyectoIPo
                     FestivalDataGrid.ItemsSource = Festivales; // Refrescar el DataGrid
                 }
             }
+        }
+
+        private void OnAplazarFestivalClick(object sender, RoutedEventArgs e)
+        {
+            // Aquí debes agregar el comportamiento que deseas al aplazar el festival.
+            // Por ejemplo, mostrar un diálogo o cambiar el estado del festival.
+            MessageBox.Show("Festival aplazado.");
+        }
+
+        private void OnDeleteFestivalClick(object sender, RoutedEventArgs e)
+        {
+            // Aquí debes agregar el comportamiento que deseas al aplazar el festival.
+            // Por ejemplo, mostrar un diálogo o cambiar el estado del festival.
+            MessageBox.Show("Festival borrado.");
         }
 
         private void OnTextBoxGotFocus(object sender, RoutedEventArgs e)
