@@ -11,7 +11,7 @@ namespace ProyectoIPo
     {
 
         public ObservableCollection<Festival> Festivales { get; set; }
-        private ObservableCollection<Festival> FestivalesOriginales { get; set; }
+        public ObservableCollection<Festival> FestivalesFiltrados { get; set; }
 
         public VentanaPrincipal()
         {
@@ -134,7 +134,6 @@ namespace ProyectoIPo
                 }
             };
 
-            FestivalesOriginales = new ObservableCollection<Festival>(Festivales);
             Festivales = new ObservableCollection<Festival>(Festivales.OrderBy(f => f.Fecha));
 
             // Establecer el contexto de datos para la ventana
@@ -147,13 +146,13 @@ namespace ProyectoIPo
             string filtroArtista = txtFiltroArtista.Text?.ToLower() ?? string.Empty;
             DateTime? filtroFecha = dpFiltroFecha.SelectedDate;
 
-            var festivalesFiltrados = FestivalesOriginales.Where(f =>
+            var festivalesFiltrados = Festivales.Where(f =>
                 (string.IsNullOrWhiteSpace(filtroNombre) || f.Nombre.ToLower().Contains(filtroNombre)) &&
                 (string.IsNullOrWhiteSpace(filtroArtista) || f.Artistas.Any(a => a.ToLower().Contains(filtroArtista))) &&
                 (!filtroFecha.HasValue || f.Fecha.Date == filtroFecha.Value.Date));
 
-            Festivales = new ObservableCollection<Festival>(festivalesFiltrados);
-            FestivalDataGrid.ItemsSource = Festivales; // Refrescar el DataGrid
+            FestivalesFiltrados = new ObservableCollection<Festival>(festivalesFiltrados);
+            FestivalDataGrid.ItemsSource = FestivalesFiltrados; // Refrescar el DataGrid
         }
 
         private void CancelarFiltros(object sender, RoutedEventArgs e)
@@ -162,7 +161,10 @@ namespace ProyectoIPo
             txtFiltroArtista.Clear();
             dpFiltroFecha.SelectedDate = null;
 
-            Festivales = new ObservableCollection<Festival>(FestivalesOriginales);
+            // Refrescar el DataGrid llamando a Items.Refresh
+            FestivalDataGrid.Items.Refresh(); // Asegura que los datos se actualizan
+
+            FestivalDataGrid.ItemsSource = null; // Resetear el ItemsSource antes de asignar nuevamente
             FestivalDataGrid.ItemsSource = Festivales; // Refrescar el DataGrid
         }
 
@@ -176,7 +178,6 @@ namespace ProyectoIPo
         private void OnFestivalAdded(object sender, Festival festival)
         {
             Festivales.Add(festival);
-            FestivalesOriginales.Add(festival);
             Festivales = new ObservableCollection<Festival>(Festivales.OrderBy(f => f.Fecha));
             FestivalDataGrid.ItemsSource = null; // Refrescar el DataGrid
             FestivalDataGrid.ItemsSource = Festivales;
