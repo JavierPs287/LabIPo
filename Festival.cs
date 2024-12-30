@@ -24,14 +24,5 @@ namespace ProyectoIPo
             Artistas = artistas;
         }
 
-        public void AgregarArtista(String artista)
-        {
-            Artistas.Add(artista);
-        }
-
-        public void EliminarArtista(String artista)
-        {
-            Artistas.Remove(artista);
-        }
     }
 }
