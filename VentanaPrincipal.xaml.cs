@@ -199,5 +199,38 @@ namespace ProyectoIPo
                 }
             }
         }
+
+        private void OnTextBoxGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox textBox && textBox.Text == string.Empty)
+            {
+                if (textBox.Name == "txtFiltroNombre")
+                {
+                    textBlockNombre.Visibility = Visibility.Collapsed;
+                }
+                else if (textBox.Name == "txtFiltroArtista")
+                {
+                    textBlockArtista.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private void OnTextBoxLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                if (textBox.Text == string.Empty)
+                {
+                    if (textBox.Name == "txtFiltroNombre")
+                    {
+                        textBlockNombre.Visibility = Visibility.Visible;
+                    }
+                    else if (textBox.Name == "txtFiltroArtista")
+                    {
+                        textBlockArtista.Visibility = Visibility.Visible;
+                    }
+                }
+            }
+        }
     }
 }

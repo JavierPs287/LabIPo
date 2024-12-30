@@ -11,14 +11,14 @@
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Margin="10">
             <!-- Campo Filtro por Nombre -->
             <Grid Margin="5">
-                <TextBox x:Name="txtFiltroNombre" Width="150" TextChanged="FiltrarFestivales"/>
-                <TextBlock Text="Filtrar por nombre" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" />
+                <TextBox x:Name="txtFiltroNombre" Width="150" TextChanged="FiltrarFestivales" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus"/>
+                <TextBlock x:Name="textBlockNombre" Text="Filtrar por nombre" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
             </Grid>
 
             <!-- Campo Filtro por Artista -->
             <Grid Margin="5">
-                <TextBox x:Name="txtFiltroArtista" Width="150" TextChanged="FiltrarFestivales"/>
-                <TextBlock Text="Filtrar por artista" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" />
+                <TextBox x:Name="txtFiltroArtista" Width="150" TextChanged="FiltrarFestivales" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus"/>
+                <TextBlock x:Name="textBlockArtista" Text="Filtrar por artista" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
             </Grid>
 
             <DatePicker x:Name="dpFiltroFecha" Width="150" Margin="5" SelectedDateChanged="FiltrarFestivales"/>
