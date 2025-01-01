@@ -11,6 +11,7 @@ namespace ProyectoIPo
 {
     public class Festival
     {
+        public string Estado { get; set; } = "ACTIVO";
         public string Nombre { get; set; }
         public DateTime Fecha { get; set; }
         public string Ubicacion { get; set; }
@@ -26,7 +27,7 @@ namespace ProyectoIPo
             Ubicacion = ubicacion;
             Artistas = artistas;
         }
-
+     
     }
 
     public class DateVisibilityConverter : IValueConverter

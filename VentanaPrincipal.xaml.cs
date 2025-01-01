@@ -24,7 +24,7 @@ namespace ProyectoIPo
         {
             new Festival
             {
-                Nombre = "Rock Fest",
+                Nombre = "Rock fest",
                 Fecha = new DateTime(2024, 6, 15),
                 Ubicacion = "Madrid, España",
                 Artistas = new List<String> {"Queen", "Bon Jovi", "Guns N' Roses", "AC/DC"}
@@ -187,34 +187,12 @@ namespace ProyectoIPo
         }
 
 
-        private void OnCancelFestivalClick(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button && button.DataContext is Festival festivalSeleccionado)
-            {
-                MessageBoxResult result = MessageBox.Show($"¿Estás seguro de que deseas cancelar el festival '{festivalSeleccionado.Nombre}'?",
-                    "Confirmar Cancelación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    Festivales.Remove(festivalSeleccionado);
-                    FestivalDataGrid.ItemsSource = Festivales; // Refrescar el DataGrid
-                }
-            }
-        }
-
-        private void OnAplazarFestivalClick(object sender, RoutedEventArgs e)
-        {
-            // Aquí debes agregar el comportamiento que deseas al aplazar el festival.
-            // Por ejemplo, mostrar un diálogo o cambiar el estado del festival.
-            MessageBox.Show("Festival aplazado.");
-        }
-
         private void OnDeleteFestivalClick(object sender, RoutedEventArgs e)
         {
             // Aquí debes agregar el comportamiento que deseas al aplazar el festival.
             // Por ejemplo, mostrar un diálogo o cambiar el estado del festival.
             MessageBox.Show("Festival borrado.");
-        }
+        }   
 
         private void OnTextBoxGotFocus(object sender, RoutedEventArgs e)
         {
