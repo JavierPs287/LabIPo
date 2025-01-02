@@ -55,13 +55,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SeleccionarArtistaGrupo.xaml.cs">
+      <DependentUpon>SeleccionarArtistaGrupo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarArtistas.xaml.cs">
+      <DependentUpon>AgregarArtistas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanaArtistas.xaml.cs">
+      <DependentUpon>VentanaArtistas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Festival.cs" />
     <Compile Include="VentanaAgregarFestival.xaml.cs">
       <DependentUpon>VentanaAgregarFestival.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AgregarEscenarios.xaml.cs">
+      <DependentUpon>AgregarEscenarios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanaPrincipal.xaml.cs">
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
     </Compile>
+    <Page Include="SeleccionarArtistaGrupo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AgregarArtistas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VentanaArtistas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +101,10 @@
     <Page Include="VentanaAgregarFestival.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AgregarEscenarios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="VentanaPrincipal.xaml">
       <SubType>Designer</SubType>

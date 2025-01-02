@@ -186,6 +186,54 @@ namespace ProyectoIPo
 
         }
 
+        private void EscenariosButton_Click(object sender, RoutedEventArgs e)
+        {
+            var boton = sender as Button;
+            dynamic fila = boton.DataContext;
+
+            if (fila != null)
+            {
+                var agregarEscenariosVentana = new AgregarEscenarios();
+                if (agregarEscenariosVentana.ShowDialog() == true)
+                {
+                    if (agregarEscenariosVentana.NuevosEscenarios.Count > 0)
+                    {
+                        // Aquí puedes agregar la lógica para manejar los nuevos escenarios como desees
+                        // Por ejemplo, podrías agregar los nuevos escenarios a la lista de escenarios del festival actual
+                        fila.Escenarios.AddRange(agregarEscenariosVentana.NuevosEscenarios);
+                    }
+                }
+            }
+        }
+
+
+        private void VisualizarButton_Click(object sender, RoutedEventArgs e)
+        {
+            var boton = sender as Button;
+            var festival = boton?.DataContext as Festival;
+
+            if (festival != null)
+            {
+                var ventanaArtistas = new VentanaArtistas(festival.Artistas);
+                ventanaArtistas.ShowDialog();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void OnDeleteFestivalClick(object sender, RoutedEventArgs e)
         {

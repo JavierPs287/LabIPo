@@ -1,0 +1,66 @@
+﻿<Window x:Class="ProyectoIPo.VentanaArtistas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Artistas" Height="300" Width="600"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Lista de Artistas">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="ArtistasListBox" Grid.Column="0" Grid.Row="0" SelectedIndex="0" Margin="5">
+                        <ListBoxItem>Queen</ListBoxItem>
+                        <ListBoxItem>Bon Jovi</ListBoxItem>
+                        <ListBoxItem>Guns N' Roses</ListBoxItem>
+                        <ListBoxItem>AC/DC</ListBoxItem>
+                    </ListBox>
+                    <GridSplitter Grid.Column="1" Grid.Row="0" Width="5" HorizontalAlignment="Stretch"/>
+                    <StackPanel x:Name="spDetallesArtista" Grid.Column="2" Grid.Row="0" Orientation="Vertical" Margin="5">
+                        <DataGrid x:Name="dataGridArtistas" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nombre del Artista" Binding="{Binding NombreArtista}" />
+                                <DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" />
+                                <DataGridTextColumn Header="Datos Personales" Binding="{Binding DatosPersonales}" />
+                                <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
+                                <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
+                                <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
+                                <DataGridTextColumn Header="Día y Hora de Actuación" Binding="{Binding DiaHoraActuacion}" />
+                                <DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" />
+                                <DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding LugarAlojamiento}" />
+                                <DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" />
+                                <DataGridTemplateColumn Header="Estado" Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
+                                                <ComboBox.Items>
+                                                    <sys:String>ACTIVO</sys:String>
+                                                    <sys:String>APLAZADO</sys:String>
+                                                    <sys:String>CANCELADO</sys:String>
+                                                </ComboBox.Items>
+                                            </ComboBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock Text="Detalles del Artista" Margin="10" FontWeight="Bold" />
+                        <TextBox x:Name="txtDetallesArtista" Margin="10" Height="100" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
+                    </StackPanel>
+                    <Button Content="Añadir Artista" Grid.Column="0" Grid.Row="1" Click="AñadirArtista_Click" Margin="5"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
+
+
