@@ -189,9 +189,24 @@ namespace ProyectoIPo
 
         private void OnDeleteFestivalClick(object sender, RoutedEventArgs e)
         {
-            // Aquí debes agregar el comportamiento que deseas al aplazar el festival.
-            // Por ejemplo, mostrar un diálogo o cambiar el estado del festival.
-            MessageBox.Show("Festival borrado.");
+            // Obtener el botón que fue clickeado.
+            Button button = sender as Button;
+            if (button != null)
+            {
+                // Obtener el objeto Festival vinculado a la fila del botón clickeado.
+                Festival festivalToDelete = button.DataContext as Festival;
+                if (festivalToDelete != null)
+                {
+                    // Confirmar la eliminación con el usuario
+                    MessageBoxResult result = MessageBox.Show("¿Estás seguro de que quieres borrar el festival " + festivalToDelete.Nombre + "?", "Confirmar eliminación", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        // Eliminar el festival de la colección.
+                        Festivales.Remove(festivalToDelete);
+                        MessageBox.Show("Festival borrado.");
+                    }
+                }
+            }
         }   
 
         private void OnTextBoxGotFocus(object sender, RoutedEventArgs e)

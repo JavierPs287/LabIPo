@@ -64,7 +64,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Borrar" Margin="2" Click="OnDeleteFestivalClick" Visibility="{Binding Fecha, Converter={StaticResource DateVisibilityConverter}, ConverterParameter='Delete'}"/>
+                                <Button Content="Borrar" Margin="2" Click="OnDeleteFestivalClick"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
