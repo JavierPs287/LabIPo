@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 
-namespace ProyectoIPo
 {
     public partial class VentanaArtistas : Window
     {
