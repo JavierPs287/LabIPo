@@ -19,16 +19,11 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <ListBox x:Name="ArtistasListBox" Grid.Column="0" Grid.Row="0" SelectedIndex="0" Margin="5">
-                        <ListBoxItem>Queen</ListBoxItem>
-                        <ListBoxItem>Bon Jovi</ListBoxItem>
-                        <ListBoxItem>Guns N' Roses</ListBoxItem>
-                        <ListBoxItem>AC/DC</ListBoxItem>
                     </ListBox>
                     <GridSplitter Grid.Column="1" Grid.Row="0" Width="5" HorizontalAlignment="Stretch"/>
                     <StackPanel x:Name="spDetallesArtista" Grid.Column="2" Grid.Row="0" Orientation="Vertical" Margin="5">
                         <DataGrid x:Name="dataGridArtistas" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nombre del Artista" Binding="{Binding NombreArtista}" />
                                 <DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" />
                                 <DataGridTextColumn Header="Datos Personales" Binding="{Binding DatosPersonales}" />
                                 <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />

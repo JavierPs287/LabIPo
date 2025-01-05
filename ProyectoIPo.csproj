@@ -55,9 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SeleccionarArtistaGrupo.xaml.cs">
-      <DependentUpon>SeleccionarArtistaGrupo.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AgregarArtistas.xaml.cs">
       <DependentUpon>AgregarArtistas.xaml</DependentUpon>
     </Compile>
@@ -74,10 +71,6 @@
     <Compile Include="VentanaPrincipal.xaml.cs">
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
     </Compile>
-    <Page Include="SeleccionarArtistaGrupo.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="AgregarArtistas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -206,6 +206,33 @@ namespace ProyectoIPo
             }
         }
 
+        private List<string> ObtenerTodosLosArtistas()
+        {
+            return Festivales.SelectMany(f => f.Artistas).Distinct().ToList();
+        }
+
+        private void VisualizarTodosLosArtistasButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ventanaArtistas = new VentanaArtistas(Festivales.ToList());
+            if (ventanaArtistas.ShowDialog() == true)
+            {
+                var artistasAsignados = ventanaArtistas.ObtenerArtistasAsignados();
+
+                // Actualizar los festivales con los artistas asignados
+                foreach (var festival in Festivales)
+                {
+                    var artistasFestival = artistasAsignados.Where(a => festival.Artistas.Contains(a)).ToList();
+                    festival.Artistas = artistasFestival;
+                }
+
+                FestivalDataGrid.ItemsSource = null; // Refrescar el DataGrid
+                FestivalDataGrid.ItemsSource = Festivales;
+            }
+        }
+
+
+
+
 
         private void VisualizarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -214,14 +241,10 @@ namespace ProyectoIPo
 
             if (festival != null)
             {
-                var ventanaArtistas = new VentanaArtistas(festival.Artistas);
+                var ventanaArtistas = new VentanaArtistas(new List<Festival> { festival });
                 ventanaArtistas.ShowDialog();
             }
         }
-
-
-
-
 
 
 

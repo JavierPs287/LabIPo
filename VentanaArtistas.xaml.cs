@@ -1,57 +1,53 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
+namespace ProyectoIPo
 {
     public partial class VentanaArtistas : Window
     {
-        private List<string> artistas;
+        private List<Festival> festivales;
         private Dictionary<string, EstadoArtista> estadoArtistas;
 
-        public VentanaArtistas(List<string> artistas)
+        public ObservableCollection<string> Artistas { get; set; }
+
+        public VentanaArtistas(List<Festival> festivales)
         {
             InitializeComponent();
-            this.artistas = artistas;
+            this.festivales = festivales;
+            Artistas = new ObservableCollection<string>(festivales.SelectMany(f => f.Artistas).Distinct());
+            DataContext = this;
 
-            // Asegurarse de que ArtistasListBox esté vacío antes de establecer ItemsSource
-            if (ArtistasListBox.Items.Count > 0)
-            {
-                ArtistasListBox.Items.Clear();
-            }
-            ArtistasListBox.ItemsSource = this.artistas;
+            ArtistasListBox.Items.Clear();
+            ArtistasListBox.ItemsSource = Artistas;
+
 
             ArtistasListBox.SelectionChanged += ArtistasListBox_SelectionChanged;
 
-            // Inicializar el diccionario de estados de artistas con datos de ejemplo
-            estadoArtistas = new Dictionary<string, EstadoArtista>
+            estadoArtistas = new Dictionary<string, EstadoArtista>();
+            InicializarEstadoArtistas();
+        }
+
+        private void InicializarEstadoArtistas()
+        {
+            foreach (var artista in Artistas)
             {
-                { "Freddie Mercury", new EstadoArtista
-                    {
-                        GeneroMusical = "Rock",
-                        DatosPersonales = "Freddie Mercury",
-                        CorreoElectronico = "freddie@queen.com",
-                        RedesSociales = "@freddiemercury",
-                        Cache = "$100000",
-                        DiaHoraActuacion = "12/12/2023 20:00",
-                        Escenario = "Main Stage",
-                        LugarAlojamiento = "Hotel XYZ",
-                        PeticionEspecial = "Sin peticiones especiales",
-                        Estado = "Confirmado",
-                        Detalles = "Freddie Mercury fue un cantante, compositor y productor británico, conocido por ser el vocalista principal de la banda de rock Queen."
-                    }
-                }
-            };
+                estadoArtistas[artista] = new EstadoArtista
+                {
+                    Nombre = artista,
+                    Detalles = $"Información de {artista}"
+                };
+            }
         }
 
         private void ArtistasListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (ArtistasListBox.SelectedItem != null)
+            if (ArtistasListBox.SelectedItem is string artistaSeleccionado &&
+                estadoArtistas.ContainsKey(artistaSeleccionado))
             {
-                string artistaSeleccionado = ArtistasListBox.SelectedItem.ToString();
-                if (estadoArtistas != null && estadoArtistas.ContainsKey(artistaSeleccionado))
-                {
-                    dataGridArtistas.ItemsSource = new List<EstadoArtista> { estadoArtistas[artistaSeleccionado] };
-                    txtDetallesArtista.Text = estadoArtistas[artistaSeleccionado].Detalles;
-                }
+                dataGridArtistas.ItemsSource = new List<EstadoArtista> { estadoArtistas[artistaSeleccionado] };
+                txtDetallesArtista.Text = estadoArtistas[artistaSeleccionado].Detalles;
             }
         }
 
@@ -61,25 +57,52 @@ using System.Windows;
             if (agregarArtistaWindow.ShowDialog() == true)
             {
                 var nuevoArtista = agregarArtistaWindow.NuevoArtista;
-                if (nuevoArtista != null)
+                if (nuevoArtista != null && !string.IsNullOrEmpty(nuevoArtista.Nombre) && !Artistas.Contains(nuevoArtista.Nombre))
                 {
-                    string nombreArtista = nuevoArtista.DatosPersonales; // Asume que DatosPersonales contiene el nombre del artista
-                    artistas.Add(nombreArtista);
-                    estadoArtistas[nombreArtista] = nuevoArtista;
+                    Artistas.Add(nuevoArtista.Nombre);
+                    if (!estadoArtistas.ContainsKey(nuevoArtista.Nombre) && nuevoArtista.Nombre != null)
+                    {
+                        estadoArtistas[nuevoArtista.Nombre] = nuevoArtista;
+                    }
+
+                    // Asociar el artista a los festivales seleccionados
+                    foreach (var festival in festivales)
+                    {
+                        if (!festival.Artistas.Contains(nuevoArtista.Nombre))
+                        {
+                            festival.Artistas.Add(nuevoArtista.Nombre);
+                        }
+                    }
+
                     ArtistasListBox.Items.Refresh();
                 }
+
+
             }
         }
 
-        public void AñadirArtista(string artista)
+
+        public List<string> ObtenerArtistasAsignados()
         {
-            artistas.Add(artista);
-            ArtistasListBox.Items.Refresh();
+            return Artistas.ToList(); // Convertir ObservableCollection a lista
         }
+
+
+
+
+
+
+
+
+
+
+
     }
+
 
     public class EstadoArtista
     {
+        public string Nombre { get; set; }
         public string GeneroMusical { get; set; }
         public string DatosPersonales { get; set; }
         public string CorreoElectronico { get; set; }

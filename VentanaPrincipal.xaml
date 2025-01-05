@@ -59,7 +59,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Borrar" Margin="2" Click="OnDeleteFestivalClick"/>
-                                <Button Content="Visualizar Artistas" Margin="2" Click="VisualizarButton_Click"/>
+                                <Button Content="Visualizar Artistas" Margin="2" Click="VisualizarButton_Click" />
                                 <Button Content="Escenarios" Margin="2" Click="EscenariosButton_Click"/>
                             </StackPanel>
                         </DataTemplate>
