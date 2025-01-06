@@ -156,5 +156,8 @@
     <Resource Include="Recursos\johncoltrane.jpg" />
     <Resource Include="Recursos\milesdavis.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

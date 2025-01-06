@@ -66,7 +66,7 @@ namespace ProyectoIPo
                 MessageBox.Show($"Bienvenido {username}", "¡Login Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Datos del usuario autenticado
-                string profileImagePath = "recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
+                string profileImagePath = "user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
                 DateTime lastAccessDate = DateTime.Now;
 
                 VentanaUsuario ventanaUsuario = new VentanaUsuario(username, profileImagePath, lastAccessDate);
