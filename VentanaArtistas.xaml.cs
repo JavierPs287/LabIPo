@@ -91,16 +91,7 @@ namespace ProyectoIPo
         {
             return Artistas.Select(a => a.Nombre).ToList(); // Convertir ObservableCollection a lista de nombres
         }
-
-
-
-
-
-
-
-
     }
-
 
     public class EstadoArtista
     {
