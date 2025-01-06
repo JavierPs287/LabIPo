@@ -1,0 +1,13 @@
+﻿<Window x:Class="ProyectoIPo.VentanaUsuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Datos del Usuario" Height="300" Width="400">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image x:Name="imgPerfil" Width="100" Height="100" Margin="10"/>
+            <TextBlock x:Name="txtNombreUsuario" FontSize="16" Margin="10"/>
+            <TextBlock x:Name="txtUltimoAcceso" FontSize="16" Margin="10"/>
+            <Button Content="Continuar" Click="OnContinuarClick" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,23 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ProyectoIPo
 {
-    /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
-    /// </summary>
     public partial class Login : Window
     {
         public Login()
@@ -79,8 +65,12 @@ namespace ProyectoIPo
             {
                 MessageBox.Show($"Bienvenido {username}", "¡Login Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
-                ventanaPrincipal.Show();
+                // Datos del usuario autenticado
+                string profileImagePath = "recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
+                DateTime lastAccessDate = DateTime.Now;
+
+                VentanaUsuario ventanaUsuario = new VentanaUsuario(username, profileImagePath, lastAccessDate);
+                ventanaUsuario.Show();
                 this.Close();
             }
             else
@@ -88,6 +78,7 @@ namespace ProyectoIPo
                 MessageBox.Show("Credenciales incorrectas.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsuario.Text;
@@ -95,20 +86,24 @@ namespace ProyectoIPo
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Registro fallido. Porfavor rellene todos los campos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Registro fallido. Por favor, rellene todos los campos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
                 MessageBox.Show($"Bienvenido {username}", "¡Registro Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
-                VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
-                ventanaPrincipal.Show();
+
+                // Datos del usuario registrado
+                string profileImagePath = "recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
+                DateTime lastAccessDate = DateTime.Now;
+
+                VentanaUsuario ventanaUsuario = new VentanaUsuario(username, profileImagePath, lastAccessDate);
+                ventanaUsuario.Show();
                 this.Close();
             }
-           
         }
 
+
+    }
 }
 
-    
-}
 

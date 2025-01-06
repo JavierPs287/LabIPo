@@ -11,16 +11,31 @@ namespace ProyectoIPo
 {
     public partial class VentanaPrincipal : Window
     {
+        public string Username { get; set; }
+        public string ProfileImagePath { get; set; }
+        public DateTime LastAccessDate { get; set; }
 
         public ObservableCollection<Festival> Festivales { get; set; }
         public ObservableCollection<Festival> FestivalesFiltrados { get; set; }
 
+
         public VentanaPrincipal()
         {
             InitializeComponent();
-
-            // Datos de ejemplo
-            Festivales = new ObservableCollection<Festival>
+            InicializarDatos();
+        }
+        public VentanaPrincipal(string username, string profileImagePath, DateTime lastAccessDate)
+        {
+            InitializeComponent();
+            Username = username;
+            ProfileImagePath = profileImagePath;
+            LastAccessDate = lastAccessDate;
+            InicializarDatos();
+        }
+        private void InicializarDatos()
+        { 
+        // Datos de ejemplo
+        Festivales = new ObservableCollection<Festival>
         {
             new Festival
             {

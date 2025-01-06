@@ -68,6 +68,9 @@
     <Compile Include="AgregarEscenarios.xaml.cs">
       <DependentUpon>AgregarEscenarios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanaUsuario.xaml.cs">
+      <DependentUpon>VentanaUsuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanaPrincipal.xaml.cs">
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AgregarEscenarios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VentanaUsuario.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
