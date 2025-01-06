@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:ProyectoIPo"
-        Title="Gestión de Festivales" Height="450" Width="800">
+        Title="Gestión de Festivales" Height="auto" Width="auto">
     <Window.Resources>
         <!-- El conversor DateVisibilityConverter definido aquí -->
         <local:DateVisibilityConverter x:Key="DateVisibilityConverter"/>
@@ -32,15 +32,16 @@
             <DatePicker x:Name="dpFiltroFecha" Width="150" Margin="5" SelectedDateChanged="FiltrarFestivales"/>
             <Button Content="Cancelar Filtros" Click="CancelarFiltros" Margin="5"/>
             <Button Content="Agregar Festival" Click="OnAddFestivalClick" Margin="5"/>
+            <Button Content="Cerrar Sesión" Click="CerrarSesionClick" Margin="5"/>
         </StackPanel>
 
         <DataGrid x:Name="FestivalDataGrid" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Festivales}" IsReadOnly="False" SelectionMode="Single" Margin="10" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
                 <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}" Width="*"/>
-                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat='dd/MM/yyyy'}" Width="*"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat='dd/MM/yyyy'}" Width="auto"/>
 
-                <DataGridTemplateColumn Header="Estado" Width="*">
+                <DataGridTemplateColumn Header="Estado" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
@@ -54,13 +55,14 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Acciones" Width="220">
+                <DataGridTemplateColumn Header="Acciones" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Borrar" Margin="2" Click="OnDeleteFestivalClick"/>
+                                <Button Content="Dar de Baja" Margin="2" Click="OnDeleteFestivalClick"/>
                                 <Button Content="Visualizar Artistas" Margin="2" Click="VisualizarButton_Click" />
                                 <Button Content="Escenarios" Margin="2" Click="EscenariosButton_Click"/>
+                                <Button Content="Modificar Festival" Margin="2" Click="ModificarFestivalClick"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="VentanaModificarFestival.xaml.cs">
+      <DependentUpon>VentanaModificarFestival.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AgregarArtistas.xaml.cs">
       <DependentUpon>AgregarArtistas.xaml</DependentUpon>
     </Compile>
@@ -74,6 +77,10 @@
     <Compile Include="VentanaPrincipal.xaml.cs">
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
     </Compile>
+    <Page Include="VentanaModificarFestival.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="AgregarArtistas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -143,21 +150,58 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\queen.jpg" />
-    <Resource Include="Recursos\rollingstones.jpg" />
+    <EmbeddedResource Include="Recursos\queen.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\rollingstones.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\anuelaa.jpg" />
-    <Resource Include="Recursos\badbunny.jpg" />
-    <Resource Include="Recursos\calvinharris.jpg" />
-    <Resource Include="Recursos\daddyyankee.jpg" />
-    <Resource Include="Recursos\davidguetta.jpg" />
-    <Resource Include="Recursos\jbalvin.jpg" />
-    <Resource Include="Recursos\johncoltrane.jpg" />
-    <Resource Include="Recursos\milesdavis.jpg" />
+    <EmbeddedResource Include="Recursos\anuelaa.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\badbunny.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\calvinharris.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\daddyyankee.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\davidguetta.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\jbalvin.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\johncoltrane.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recursos\milesdavis.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Recursos\Anuel AA.jpg" />
+    <Resource Include="Recursos\Recursos\Bad Bunny.jpg" />
+    <Resource Include="Recursos\Recursos\Bon Jovi.jpg" />
+    <Resource Include="Recursos\Recursos\Calvin Harris.jpg" />
+    <Resource Include="Recursos\Recursos\Daddy Yankee.jpg" />
+    <Resource Include="Recursos\Recursos\David Guetta.jpg" />
+    <Resource Include="Recursos\Recursos\Duki.jpg" />
+    <Resource Include="Recursos\Recursos\Eladio Carrión.jpg" />
+    <Resource Include="Recursos\Recursos\Feid.jpg" />
+    <Resource Include="Recursos\Recursos\Guns N%27 Roses.jpg" />
+    <Resource Include="Recursos\Recursos\jbalvin.jpg" />
+    <Resource Include="Recursos\Recursos\John Coltrane.jpg" />
+    <Resource Include="Recursos\Recursos\Miles Davis.jpg" />
+    <Resource Include="Recursos\Recursos\Queen.jpg" />
+    <Resource Include="Recursos\Recursos\rollingstones.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

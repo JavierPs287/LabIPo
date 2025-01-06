@@ -10,46 +10,42 @@ namespace ProyectoIPo
         private List<Festival> festivales;
         private Dictionary<string, EstadoArtista> estadoArtistas;
 
-        public ObservableCollection<string> Artistas { get; set; }
+        public ObservableCollection<EstadoArtista> Artistas { get; set; }
 
         public VentanaArtistas(List<Festival> festivales)
         {
             InitializeComponent();
             this.festivales = festivales;
-            Artistas = new ObservableCollection<string>(festivales.SelectMany(f => f.Artistas).Distinct());
+            Artistas = new ObservableCollection<EstadoArtista>(
+                festivales.SelectMany(f => f.Artistas)
+                          .Distinct()
+                          .Select(nombre => new EstadoArtista { Nombre = nombre, LogoPath = ObtenerRutaLogo(nombre) })
+            );
             DataContext = this;
 
             ArtistasListBox.Items.Clear();
             ArtistasListBox.ItemsSource = Artistas;
 
-
             ArtistasListBox.SelectionChanged += ArtistasListBox_SelectionChanged;
 
             estadoArtistas = new Dictionary<string, EstadoArtista>();
-            InicializarEstadoArtistas();
-        }
-
-        private void InicializarEstadoArtistas()
-        {
-            foreach (var artista in Artistas)
-            {
-                estadoArtistas[artista] = new EstadoArtista
-                {
-                    Nombre = artista,
-                    Detalles = $"Información de {artista}"
-                };
-            }
         }
 
         private void ArtistasListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (ArtistasListBox.SelectedItem is string artistaSeleccionado &&
-                estadoArtistas.ContainsKey(artistaSeleccionado))
+            if (ArtistasListBox.SelectedItem is EstadoArtista artistaSeleccionado)
             {
-                dataGridArtistas.ItemsSource = new List<EstadoArtista> { estadoArtistas[artistaSeleccionado] };
-                txtDetallesArtista.Text = estadoArtistas[artistaSeleccionado].Detalles;
+                if (!estadoArtistas.ContainsKey(artistaSeleccionado.Nombre))
+                {
+                    estadoArtistas[artistaSeleccionado.Nombre] = artistaSeleccionado;
+                }
+
+                dataGridArtistas.ItemsSource = new List<EstadoArtista> { estadoArtistas[artistaSeleccionado.Nombre] };
+                txtDetallesArtista.Text = estadoArtistas[artistaSeleccionado.Nombre].Detalles;
             }
         }
+
+
 
         private void AñadirArtista_Click(object sender, RoutedEventArgs e)
         {
@@ -57,9 +53,10 @@ namespace ProyectoIPo
             if (agregarArtistaWindow.ShowDialog() == true)
             {
                 var nuevoArtista = agregarArtistaWindow.NuevoArtista;
-                if (nuevoArtista != null && !string.IsNullOrEmpty(nuevoArtista.Nombre) && !Artistas.Contains(nuevoArtista.Nombre))
+                if (nuevoArtista != null && !string.IsNullOrEmpty(nuevoArtista.Nombre) && !Artistas.Any(a => a.Nombre == nuevoArtista.Nombre))
                 {
-                    Artistas.Add(nuevoArtista.Nombre);
+                    nuevoArtista.LogoPath = ObtenerRutaLogo(nuevoArtista.Nombre);
+                    Artistas.Add(nuevoArtista);
                     if (!estadoArtistas.ContainsKey(nuevoArtista.Nombre) && nuevoArtista.Nombre != null)
                     {
                         estadoArtistas[nuevoArtista.Nombre] = nuevoArtista;
@@ -76,19 +73,24 @@ namespace ProyectoIPo
 
                     ArtistasListBox.Items.Refresh();
                 }
-
-
             }
         }
+
+        private string ObtenerRutaLogo(string nombreArtista)
+        {
+            // Obtener la ruta completa del directorio de la aplicación
+            string directorioAplicacion = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            // Combinar la ruta del directorio de la aplicación con la ruta relativa de la imagen
+            return System.IO.Path.Combine(directorioAplicacion, "Recursos", $"{nombreArtista}.jpg");
+        }
+
+
 
 
         public List<string> ObtenerArtistasAsignados()
         {
-            return Artistas.ToList(); // Convertir ObservableCollection a lista
+            return Artistas.Select(a => a.Nombre).ToList(); // Convertir ObservableCollection a lista de nombres
         }
-
-
-
 
 
 
@@ -113,6 +115,7 @@ namespace ProyectoIPo
         public string LugarAlojamiento { get; set; }
         public string PeticionEspecial { get; set; }
         public string Estado { get; set; }
-        public string Detalles { get; set; } // Nueva propiedad para los detalles del artista
+        public string Detalles { get; set; } 
+        public string LogoPath { get; set; }
     }
 }

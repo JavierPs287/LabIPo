@@ -42,7 +42,7 @@ namespace ProyectoIPo
                 Nombre = "Rock fest",
                 Fecha = new DateTime(2024, 6, 15),
                 Ubicacion = "Madrid, España",
-                Artistas = new List<String> {"Queen", "Bon Jovi", "Guns N' Roses", "AC/DC"}
+                Artistas = new List<String> {"Queen", "Bon Jovi", "Guns N' Roses"}
             },
             new Festival
                 {
@@ -63,7 +63,7 @@ namespace ProyectoIPo
                     Nombre = "Reggaeton Party",
                     Fecha = new DateTime(2025, 3, 10),
                     Ubicacion = "Miami, USA",
-                    Artistas = new List<String> {"Daddy Yankee", "Feid", "JhayCo"}
+                    Artistas = new List<String> {"Daddy Yankee", "Feid", "Anuel AA"}
                 },
                 new Festival
                 {
@@ -72,83 +72,7 @@ namespace ProyectoIPo
                     Ubicacion = "Ibiza, España",
                     Artistas = new List<String> {"David Guetta","Calvin Harris"}
                 },
-                new Festival
-                {
-                    Nombre = "Blues Legends",
-                    Fecha = new DateTime(2024, 8, 10),
-                    Ubicacion = "Chicago, USA",
-                    Artistas = new List<String> {"B.B. King","Muddy Water"}
-                },
-                new Festival
-                {
-                    Nombre = "Metal Mayhem",
-                    Fecha = new DateTime(2024, 9, 5),
-                    Ubicacion = "Berlin, Alemania",
-                    Artistas = new List<String> {"Iron mayden","Metallica"}
-                },
-                new Festival
-                {
-                    Nombre = "Classical Evenings",
-                    Fecha = new DateTime(2024, 6, 30),
-                    Ubicacion = "Viena, Austria",
-                    Artistas = new List<String> {"Ludwig Van Beethoven","Wolfgang Amadeus Mozart"}
-                },
-                new Festival
-                {
-                    Nombre = "Reggae Sun",
-                    Fecha = new DateTime(2024, 7, 25),
-                    Ubicacion = "Kingston, Jamaica",
-                    Artistas = new List<String> {"Bob Marley", "Peter Tosh"}
-                },
-                new Festival
-                {
-                    Nombre = "PopFest",
-                    Fecha = new DateTime(2024, 10, 2),
-                    Ubicacion = "Los Ángeles, USA",
-                    Artistas = new List<String> {"Ariana Granda","Taylor Swift"}
-                },
-                new Festival
-                {
-                    Nombre = "Indie Vibes",
-                    Fecha = new DateTime(2024, 8, 20),
-                    Ubicacion = "Londres, UK",
-                    Artistas = new List<String> {"The Strokes","Artic Monkeys"}
-                },
-                new Festival
-                {
-                    Nombre = "Country Jam",
-                    Fecha = new DateTime(2024, 9, 15),
-                    Ubicacion = "Nashville, USA",
-                    Artistas = new List<String> {"Johnny Cash","Dolly Parton"}
-                },
-                new Festival
-                {
-                    Nombre = "R&B Soul Fest",
-                    Fecha = new DateTime(2024, 11, 1),
-                    Ubicacion = "Atlanta, USA",
-                    Artistas = new List<String> { "Aretha Franklin", "Marvin Gaye" }
-                },
-                new Festival
-                {
-                    Nombre = "Latin Fusion",
-                    Fecha = new DateTime(2024, 6, 25),
-                    Ubicacion = "México D.F., México",
-                    Artistas = new List<String> {"Carlos Santana, Shakira"}
-                },
-                new Festival
-                {
-                    Nombre = "Punk Rock Riot",
-                    Fecha = new DateTime(2024, 7, 19),
-                    Ubicacion = "Los Ángeles, USA",
-                    Artistas = new List<String> { "Green Day", "The Offspring" }
-                },
-                new Festival
-                {
-                    Nombre = "Hip Hop Summit",
-                    Fecha = new DateTime(2024, 9, 25),
-                    Ubicacion = "Nueva York, USA",
-                    Artistas = new List<String> { "Kendrick Lamar", "Drake" }
-                }
+              
             };
 
             Festivales = new ObservableCollection<Festival>(Festivales.OrderBy(f => f.Fecha));
@@ -245,6 +169,32 @@ namespace ProyectoIPo
             }
         }
 
+        private void ModificarFestivalClick(object sender, RoutedEventArgs e)
+        {
+            // Obtener el botón que fue clickeado.
+            Button button = sender as Button;
+            if (button != null)
+            {
+                // Obtener el objeto Festival vinculado a la fila del botón clickeado.
+                Festival festivalToModify = button.DataContext as Festival;
+                if (festivalToModify != null)
+                {
+                    // Crear y mostrar la ventana de modificación del festival.
+                    var ventanaModificarFestival = new VentanaModificarFestival(festivalToModify);
+                    if (ventanaModificarFestival.ShowDialog() == true)
+                    {
+                        // Actualizar el DataGrid después de modificar el festival.
+                        FestivalDataGrid.ItemsSource = null;
+                        FestivalDataGrid.ItemsSource = Festivales;
+                    }
+                }
+            }
+        }
+
+        private void CerrarSesionClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
 
 
@@ -284,12 +234,12 @@ namespace ProyectoIPo
                 if (festivalToDelete != null)
                 {
                     // Confirmar la eliminación con el usuario
-                    MessageBoxResult result = MessageBox.Show("¿Estás seguro de que quieres borrar el festival " + festivalToDelete.Nombre + "?", "Confirmar eliminación", MessageBoxButton.YesNo);
+                    MessageBoxResult result = MessageBox.Show("¿Estás seguro de que quieres dar de baja el festival " + festivalToDelete.Nombre + "?", "Confirmar eliminación", MessageBoxButton.YesNo);
                     if (result == MessageBoxResult.Yes)
                     {
                         // Eliminar el festival de la colección.
                         Festivales.Remove(festivalToDelete);
-                        MessageBox.Show("Festival borrado.");
+                        MessageBox.Show("Festival dado de baja.");
                     }
                 }
             }
