@@ -6,7 +6,7 @@
         Title="Gestión de Festivales" Height="auto" Width="auto">
     <Window.Resources>
         <!-- El conversor DateVisibilityConverter definido aquí -->
-        <local:DateVisibilityConverter x:Key="DateVisibilityConverter"/>
+        <local:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </Window.Resources>
 
     <Grid>
@@ -44,13 +44,11 @@
                 <DataGridTemplateColumn Header="Estado" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
-                                <ComboBox.Items>
-                                    <sys:String>ACTIVO</sys:String>
-                                    <sys:String>APLAZADO</sys:String>
-                                    <sys:String>CANCELADO</sys:String>
-                                </ComboBox.Items>
-                            </ComboBox>
+                            <ComboBox 
+                SelectedItem="{Binding Estado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                ItemsSource="{Binding EstadosDisponibles}" 
+                Background="LightGray"
+                IsEnabled="{Binding EsPasado, Converter={StaticResource InverseBooleanConverter}}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

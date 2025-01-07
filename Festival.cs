@@ -6,18 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
+using System.ComponentModel;
 
 namespace ProyectoIPo
 {
-    public class Festival
+    public class Festival : INotifyPropertyChanged
     {
-        public string Estado { get; set; } = "ACTIVO";
+        public string EstadoFestival { get; set; } = "ACTIVO";
         public string Nombre { get; set; }
         public DateTime Fecha { get; set; }
         public string Ubicacion { get; set; }
         public List<String> Artistas { get; set; } // Lista de artistas del festival
         public string ArtistasTexto => string.Join(", ", Artistas);
 
+        public event PropertyChangedEventHandler PropertyChanged;
         public Festival() { }
 
         public Festival(string nombre, DateTime fecha, string ubicacion, List<String> artistas)
@@ -27,34 +29,83 @@ namespace ProyectoIPo
             Ubicacion = ubicacion;
             Artistas = artistas;
         }
-     
-    }
 
-    public class DateVisibilityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public DateTime FechaFestival
         {
-            if (value is DateTime fecha)
+            get => Fecha;
+            set
             {
-                DateTime today = DateTime.Today;
-
-                if (parameter?.ToString() == "Delete")
+                if (Fecha != value)
                 {
-                    // Botón de Borrar visible solo si la fecha es menor a la actual
-                    return fecha.Date < today ? Visibility.Visible : Visibility.Collapsed;
+                    Fecha = value;
+                    OnPropertyChanged(nameof(FechaFestival));
+                    OnPropertyChanged(nameof(EsPasado));
+                    OnPropertyChanged(nameof(EstadosDisponibles));
+                    // Si la fecha ha pasado, actualizar estado a PASADO.
+                    if (EsPasado)
+                    {
+                        // Actualiza el estado internamente a PASADO.
+                        // Al establecer FechaFestival, se notifican cambios que activan el getter.
+                        OnPropertyChanged(nameof(EstadoFestival));
+                    }
+                }
+            }
+        }
+
+        public string Estado
+        {
+            get => EsPasado ? "PASADO" : EstadoFestival;
+            set
+            {
+                // Permitir cambiar el estado solo si el festival no ha pasado.
+                if (!EsPasado && EstadoFestival != value)
+                {
+                    EstadoFestival = value;
+                    OnPropertyChanged(nameof(Estado));
+                }
+            }
+        }
+
+        // Propiedad calculada que determina si el festival ya pasó.
+        public bool EsPasado => FechaFestival < DateTime.Now;
+
+        // Lista de estados disponibles según si el festival ha pasado.
+        public IEnumerable<string> EstadosDisponibles
+        {
+            get
+            {
+                if (EsPasado)
+                {
+                    return new[] { "PASADO" }; // Muestra PASADO cuando la fecha ha pasado.
                 }
                 else
                 {
-                    // Botones de Aplazar y Cancelar visibles si la fecha es igual o mayor a la actual
-                    return fecha.Date >= today ? Visibility.Visible : Visibility.Collapsed;
+                    return new[] { "ACTIVO", "APLAZADO", "CANCELADO" };
                 }
             }
-            return Visibility.Collapsed;
+        }
+
+
+
+        protected void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+
+    public class InverseBooleanConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool boolValue)
+                return !boolValue;
+            return true;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if (value is bool boolValue)
+                return !boolValue;
+            return false;
         }
     }
 }
