@@ -1,21 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-
 namespace ProyectoIPo
 {
     public partial class VentanaArtistas : Window
     {
         private List<Festival> festivales;
         private Dictionary<string, EstadoArtista> estadoArtistas;
-
         public ObservableCollection<EstadoArtista> Artistas { get; set; }
+        public ObservableCollection<Escenario> Escenarios { get; set; } = new ObservableCollection<Escenario>();
+
 
         public VentanaArtistas(List<Festival> festivales)
         {
             InitializeComponent();
             this.festivales = festivales;
+
             Artistas = new ObservableCollection<EstadoArtista>(
                 festivales.SelectMany(f => f.Artistas)
                           .Distinct()
@@ -29,6 +31,19 @@ namespace ProyectoIPo
             ArtistasListBox.SelectionChanged += ArtistasListBox_SelectionChanged;
 
             estadoArtistas = new Dictionary<string, EstadoArtista>();
+            
+            Escenarios = new ObservableCollection<Escenario>(
+                festivales.SelectMany(f => f.Escenarios)
+                          .GroupBy(e => e.Nombre) // Agrupar por nombre de escenario
+                          .Select(g => g.First()) // Tomar un escenario por cada grupo
+            );
+
+
+            // Vincular la lista de escenarios al ListBox
+            EscenariosListBox.ItemsSource = Escenarios;
+
+            EscenariosListBox.SelectionChanged += EscenariosListBox_SelectionChanged;
+
         }
 
         private void ArtistasListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -44,8 +59,6 @@ namespace ProyectoIPo
                 txtDetallesArtista.Text = estadoArtistas[artistaSeleccionado.Nombre].Detalles;
             }
         }
-
-
 
         private void AñadirArtista_Click(object sender, RoutedEventArgs e)
         {
@@ -84,13 +97,63 @@ namespace ProyectoIPo
             return System.IO.Path.Combine(directorioAplicacion, "Recursos", $"{nombreArtista}.jpg");
         }
 
-
-
-
         public List<string> ObtenerArtistasAsignados()
         {
             return Artistas.Select(a => a.Nombre).ToList(); // Convertir ObservableCollection a lista de nombres
         }
+
+
+
+        private void EscenariosListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (EscenariosListBox.SelectedItem is Escenario escenarioSeleccionado)
+            {
+                dataGridEscenarios.ItemsSource = new List<Escenario> { escenarioSeleccionado };
+                txtDetallesEscenario.Text = $"Nombre: {escenarioSeleccionado.Nombre}\n" +
+                                             $"Aforo Máximo: {escenarioSeleccionado.AforoMax}\n" +
+                                             $"Localización Entradas/Salidas: {escenarioSeleccionado.LocalizacionEntradasSalidas}\n" +
+                                             $"Servicios Médicos: {escenarioSeleccionado.ServiciosMedicos}\n" +
+                                             $"Aseos: {escenarioSeleccionado.Aseos}\n" +
+                                             $"Seguridad: {escenarioSeleccionado.Seguridad}";
+            }
+        }
+
+
+        private void AñadirEscenario_Click(object sender, RoutedEventArgs e)
+        {
+            var agregarEscenariosWindow = new AgregarEscenarios();
+
+            if (agregarEscenariosWindow.ShowDialog() == true)
+            {
+                foreach (var nuevoEscenario in agregarEscenariosWindow.NuevosEscenarios)
+                {
+                    // Verificar si el escenario ya está en la lista principal
+                    if (!Escenarios.Any(escenario => escenario.Nombre == nuevoEscenario.Nombre))
+                    {
+                        // Agregar el nuevo escenario a la colección observable
+                        Escenarios.Add(nuevoEscenario);
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     public class EstadoArtista
@@ -106,7 +169,9 @@ namespace ProyectoIPo
         public string LugarAlojamiento { get; set; }
         public string PeticionEspecial { get; set; }
         public string Estado { get; set; }
-        public string Detalles { get; set; } 
+        public string Detalles { get; set; }
         public string LogoPath { get; set; }
     }
+  
+
 }

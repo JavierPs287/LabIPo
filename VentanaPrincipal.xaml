@@ -59,7 +59,6 @@
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Dar de Baja" Margin="2" Click="OnDeleteFestivalClick"/>
                                 <Button Content="Visualizar Artistas" Margin="2" Click="VisualizarButton_Click" />
-                                <Button Content="Escenarios" Margin="2" Click="EscenariosButton_Click"/>
                                 <Button Content="Modificar Festival" Margin="2" Click="ModificarFestivalClick"/>
                             </StackPanel>
                         </DataTemplate>

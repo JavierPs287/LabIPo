@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 
 namespace ProyectoIPo
 {
@@ -17,7 +15,6 @@ namespace ProyectoIPo
 
         public ObservableCollection<Festival> Festivales { get; set; }
         public ObservableCollection<Festival> FestivalesFiltrados { get; set; }
-
 
         public VentanaPrincipal()
         {
@@ -31,6 +28,7 @@ namespace ProyectoIPo
             ProfileImagePath = profileImagePath;
             LastAccessDate = lastAccessDate;
             InicializarDatos();
+
         }
         private void InicializarDatos()
         { 
@@ -125,25 +123,7 @@ namespace ProyectoIPo
 
         }
 
-        private void EscenariosButton_Click(object sender, RoutedEventArgs e)
-        {
-            var boton = sender as Button;
-            dynamic fila = boton.DataContext;
-
-            if (fila != null)
-            {
-                var agregarEscenariosVentana = new AgregarEscenarios();
-                if (agregarEscenariosVentana.ShowDialog() == true)
-                {
-                    if (agregarEscenariosVentana.NuevosEscenarios.Count > 0)
-                    {
-                        // Aquí puedes agregar la lógica para manejar los nuevos escenarios como desees
-                        // Por ejemplo, podrías agregar los nuevos escenarios a la lista de escenarios del festival actual
-                        fila.Escenarios.AddRange(agregarEscenariosVentana.NuevosEscenarios);
-                    }
-                }
-            }
-        }
+       
 
         private List<string> ObtenerTodosLosArtistas()
         {
@@ -213,6 +193,7 @@ namespace ProyectoIPo
 
 
 
+      
 
 
 

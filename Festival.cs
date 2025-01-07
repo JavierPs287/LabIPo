@@ -16,13 +16,18 @@ namespace ProyectoIPo
         public string Nombre { get; set; }
         public DateTime Fecha { get; set; }
         public string Ubicacion { get; set; }
-        public List<String> Artistas { get; set; } // Lista de artistas del festival
+        public List<string> Artistas { get; set; } // Lista de artistas del festival
         public string ArtistasTexto => string.Join(", ", Artistas);
 
+        // Nueva propiedad para escenarios
+        public List<Escenario> Escenarios { get; set; } = new List<Escenario>();
+        public string EscenariosTexto => string.Join(", ", Escenarios.Select(e => e.Nombre));
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         public Festival() { }
 
-        public Festival(string nombre, DateTime fecha, string ubicacion, List<String> artistas)
+        public Festival(string nombre, DateTime fecha, string ubicacion, List<string> artistas)
         {
             Nombre = nombre;
             Fecha = fecha;
@@ -30,6 +35,7 @@ namespace ProyectoIPo
             Artistas = artistas;
         }
 
+      
         public DateTime FechaFestival
         {
             get => Fecha;
