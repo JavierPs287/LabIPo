@@ -40,38 +40,48 @@ namespace ProyectoIPo
                 Nombre = "Rock fest",
                 Fecha = new DateTime(2024, 6, 15),
                 Ubicacion = "Madrid, España",
-                Artistas = new List<String> {"Queen", "Bon Jovi", "Guns N' Roses"}
+                Artistas = new List<String> {"Queen", "Bon Jovi", "Guns N' Roses"},
+                PrecioEstandar = 60.00m,
+                PrecioVIP = 150.00m
             },
             new Festival
                 {
-                    Nombre = "Jazz Nights",
-                    Fecha = new DateTime(2024, 5, 20),
-                    Ubicacion = "Barcelona, España",
-                    Artistas = new List<String> {"Miles Davis","John Coltrane"}
-                },
-                new Festival
-                {
-                    Nombre = "Trap Beats",
-                    Fecha = new DateTime(2024, 12, 10),
-                    Ubicacion = "Buenos Aires, Argentina",
-                    Artistas = new List<String> {"Duki", "Bad Bunny", "Eladio Carrión"}
-                },
-                new Festival
-                {
-                    Nombre = "Reggaeton Party",
-                    Fecha = new DateTime(2025, 3, 10),
-                    Ubicacion = "Miami, USA",
-                    Artistas = new List<String> {"Daddy Yankee", "Feid", "Anuel AA"}
-                },
-                new Festival
-                {
-                    Nombre = "Electronic Beats",
-                    Fecha = new DateTime(2024, 7, 12),
-                    Ubicacion = "Ibiza, España",
-                    Artistas = new List<String> {"David Guetta","Calvin Harris"}
-                },
+                Nombre = "Jazz Nights",
+                Fecha = new DateTime(2024, 5, 20),
+                Ubicacion = "Barcelona, España",
+                Artistas = new List<String> {"Miles Davis","John Coltrane"},
+                PrecioEstandar = 50.00m,
+                PrecioVIP = 180.00m
+            },
+            new Festival
+            {
+                Nombre = "Trap Beats",
+                Fecha = new DateTime(2024, 12, 10),
+                Ubicacion = "Buenos Aires, Argentina",
+                Artistas = new List<String> {"Duki", "Bad Bunny", "Eladio Carrión"},
+                PrecioEstandar = 40.00m,
+                PrecioVIP = 100.00m
+            },
+            new Festival
+            {
+                Nombre = "Reggaeton Party",
+                Fecha = new DateTime(2025, 3, 10),
+                Ubicacion = "Miami, USA",
+                Artistas = new List<String> {"Daddy Yankee", "Feid", "Anuel AA"},
+                PrecioEstandar = 70.00m,
+                PrecioVIP = 200.00m
+            },
+            new Festival
+            {
+                Nombre = "Electronic Beats",
+                Fecha = new DateTime(2024, 7, 12),
+                Ubicacion = "Ibiza, España",
+                Artistas = new List<String> {"David Guetta","Calvin Harris"},
+                PrecioEstandar = 65.00m,
+                PrecioVIP = 175.00m
+            },
               
-            };
+        };
 
             Festivales = new ObservableCollection<Festival>(Festivales.OrderBy(f => f.Fecha));
 
@@ -149,34 +159,11 @@ namespace ProyectoIPo
             }
         }
 
-        private void ModificarFestivalClick(object sender, RoutedEventArgs e)
-        {
-            // Obtener el botón que fue clickeado.
-            Button button = sender as Button;
-            if (button != null)
-            {
-                // Obtener el objeto Festival vinculado a la fila del botón clickeado.
-                Festival festivalToModify = button.DataContext as Festival;
-                if (festivalToModify != null)
-                {
-                    // Crear y mostrar la ventana de modificación del festival.
-                    var ventanaModificarFestival = new VentanaModificarFestival(festivalToModify);
-                    if (ventanaModificarFestival.ShowDialog() == true)
-                    {
-                        // Actualizar el DataGrid después de modificar el festival.
-                        FestivalDataGrid.ItemsSource = null;
-                        FestivalDataGrid.ItemsSource = Festivales;
-                    }
-                }
-            }
-        }
 
         private void CerrarSesionClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-
-
 
 
         private void VisualizarButton_Click(object sender, RoutedEventArgs e)
@@ -190,18 +177,6 @@ namespace ProyectoIPo
                 ventanaArtistas.ShowDialog();
             }
         }
-
-
-
-      
-
-
-
-
-
-
-
-
 
 
         private void OnDeleteFestivalClick(object sender, RoutedEventArgs e)
@@ -256,6 +231,38 @@ namespace ProyectoIPo
                         textBlockArtista.Visibility = Visibility.Visible;
                     }
                 }
+            }
+        }
+
+        private void DatePicker(object sender, RoutedEventArgs e)
+        {
+            if (sender is DatePicker datePicker)
+            {
+                datePicker.DisplayDateStart = DateTime.Today.AddDays(1);
+            }
+        }
+
+        private void PrecioValido(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox tb)
+            {
+                //convertir el texto en un decimal
+                if (!decimal.TryParse(tb.Text, out _))
+                {
+                    MessageBox.Show("Introduce un número válido", "Número inválid", MessageBoxButton.OK, MessageBoxImage.Error);
+                    //volver al valor anterior si el nuevo no vale
+                    if (tb.Tag != null)
+                    {
+                        tb.Text = tb.Tag.ToString();
+                    }
+                }
+            }
+        }
+        private void AlmacenarValorPrecio(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox tb)
+            {
+                tb.Tag = tb.Text;
             }
         }
     }

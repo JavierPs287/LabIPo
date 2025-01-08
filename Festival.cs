@@ -16,6 +16,8 @@ namespace ProyectoIPo
         public string Nombre { get; set; }
         public DateTime Fecha { get; set; }
         public string Ubicacion { get; set; }
+        public decimal PrecioEstandar { get; set; }
+        public decimal PrecioVIP { get; set; }
         public List<string> Artistas { get; set; } // Lista de artistas del festival
         public string ArtistasTexto => string.Join(", ", Artistas);
 

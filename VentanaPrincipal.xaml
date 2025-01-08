@@ -39,16 +39,60 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
                 <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}" Width="*"/>
-                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha, StringFormat='dd/MM/yyyy'}" Width="auto"/>
+
+                <!-- Se han eliminado las columnas correspondientes a "Redes" -->
+
+                <DataGridTemplateColumn Header="Precio Estándar" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding PrecioEstandar}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding PrecioEstandar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValorPrecio" LostFocus="PrecioValido"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Precio VIP" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding PrecioVIP}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding PrecioVIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValorPrecio" LostFocus="PrecioValido"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Fecha" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Fecha, StringFormat='dd/MM/yyyy'}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <DatePicker 
+                                SelectedDate="{Binding Fecha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                DisplayDateStart="{x:Static sys:DateTime.Today}"
+                                Loaded="DatePicker" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn Header="Estado" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox 
-                SelectedItem="{Binding Estado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                ItemsSource="{Binding EstadosDisponibles}" 
-                Background="LightGray"
-                IsEnabled="{Binding EsPasado, Converter={StaticResource InverseBooleanConverter}}"/>
+                        SelectedItem="{Binding Estado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        ItemsSource="{Binding EstadosDisponibles}" 
+                        Background="LightGray"
+                        IsEnabled="{Binding EsPasado, Converter={StaticResource InverseBooleanConverter}}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -59,7 +103,6 @@
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Dar de Baja" Margin="2" Click="OnDeleteFestivalClick"/>
                                 <Button Content="Visualizar Artistas" Margin="2" Click="VisualizarButton_Click" />
-                                <Button Content="Modificar Festival" Margin="2" Click="ModificarFestivalClick"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
