@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -110,11 +111,8 @@ namespace ProyectoIPo
             txtFiltroArtista.Clear();
             dpFiltroFecha.SelectedDate = null;
 
-            // Refrescar el DataGrid llamando a Items.Refresh
-            FestivalDataGrid.Items.Refresh(); // Asegura que los datos se actualizan
-
-            FestivalDataGrid.ItemsSource = null; // Resetear el ItemsSource antes de asignar nuevamente
-            FestivalDataGrid.ItemsSource = Festivales; // Refrescar el DataGrid
+            actualizarDataGrid();
+            
         }
 
         private void OnAddFestivalClick(object sender, RoutedEventArgs e)
@@ -128,8 +126,8 @@ namespace ProyectoIPo
         {
             Festivales.Add(festival);
             Festivales = new ObservableCollection<Festival>(Festivales.OrderBy(f => f.Fecha));
-            FestivalDataGrid.ItemsSource = null; // Refrescar el DataGrid
-            FestivalDataGrid.ItemsSource = Festivales;
+
+            actualizarDataGrid();
 
         }
 
@@ -154,8 +152,7 @@ namespace ProyectoIPo
                     festival.Artistas = artistasFestival;
                 }
 
-                FestivalDataGrid.ItemsSource = null; // Refrescar el DataGrid
-                FestivalDataGrid.ItemsSource = Festivales;
+                actualizarDataGrid();
             }
         }
 
@@ -199,6 +196,7 @@ namespace ProyectoIPo
                     }
                 }
             }
+            actualizarDataGrid();
         }   
 
         private void OnTextBoxGotFocus(object sender, RoutedEventArgs e)
@@ -246,11 +244,16 @@ namespace ProyectoIPo
         {
             if (sender is TextBox tb)
             {
-                //convertir el texto en un decimal
-                if (!decimal.TryParse(tb.Text, out _))
+                if (decimal.TryParse(tb.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal value))
                 {
-                    MessageBox.Show("Introduce un número válido", "Número inválid", MessageBoxButton.OK, MessageBoxImage.Error);
-                    //volver al valor anterior si el nuevo no vale
+                    // Si la conversión es exitosa, formatea el valor con dos decimales
+                    tb.Text = value.ToString("F2", CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    // Muestra un mensaje de error y restaura el valor previo si existe
+                    MessageBox.Show("Introduce un número válido", "Número inválido", MessageBoxButton.OK, MessageBoxImage.Error);
+
                     if (tb.Tag != null)
                     {
                         tb.Text = tb.Tag.ToString();
@@ -258,12 +261,21 @@ namespace ProyectoIPo
                 }
             }
         }
+
+
         private void AlmacenarValorPrecio(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox tb)
             {
                 tb.Tag = tb.Text;
             }
+        }
+
+        private void actualizarDataGrid()
+        {
+            FestivalDataGrid.Items.Refresh(); // Asegura que los datos se actualizan
+            FestivalDataGrid.ItemsSource = null; // Resetear el ItemsSource antes de asignar nuevamente
+            FestivalDataGrid.ItemsSource = Festivales; // Refrescar el DataGrid
         }
     }
 }
