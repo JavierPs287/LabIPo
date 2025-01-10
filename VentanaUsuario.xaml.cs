@@ -30,7 +30,10 @@ namespace ProyectoIPo
                 {
                     // Mensaje de depuración para verificar la ruta de la imagen
                     Console.WriteLine($"Cargando imagen desde: {profileImagePath}");
-                    imgPerfil.Source = new BitmapImage(new Uri(profileImagePath, UriKind.RelativeOrAbsolute));
+
+                    // Cargar la imagen usando la ruta relativa con pack URI
+                    Uri imageUri = new Uri($"pack://application:,,,/{profileImagePath}", UriKind.Absolute);
+                    imgPerfil.Source = new BitmapImage(imageUri);
                 }
                 catch (Exception ex)
                 {
@@ -38,6 +41,7 @@ namespace ProyectoIPo
                 }
             }
         }
+
 
         private void OnContinuarClick(object sender, RoutedEventArgs e)
         {

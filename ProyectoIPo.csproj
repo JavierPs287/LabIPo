@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IntroducirDatosAdmin.xaml.cs">
+      <DependentUpon>IntroducirDatosAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanaModificarFestival.xaml.cs">
       <DependentUpon>VentanaModificarFestival.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
     <Compile Include="VentanaPrincipal.xaml.cs">
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>
     </Compile>
+    <Page Include="IntroducirDatosAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VentanaModificarFestival.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -150,7 +157,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg" />
+    <Resource Include="Recursos\user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Recursos\Anuel AA.jpg">

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
@@ -6,9 +7,13 @@ namespace ProyectoIPo
 {
     public partial class Login : Window
     {
+        // Diccionario para almacenar usuarios y contraseñas
+        Dictionary<string, string> usuariosYContraseñas = new Dictionary<string, string>();
+
         public Login()
         {
             InitializeComponent();
+            usuariosYContraseñas.Add("usuario1","usuario1");
         }
 
         // Manejo del foco para el cuadro de texto "Usuario"
@@ -66,7 +71,7 @@ namespace ProyectoIPo
                 MessageBox.Show($"Bienvenido {username}", "¡Login Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Datos del usuario autenticado
-                string profileImagePath = "user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
+                string profileImagePath = "Recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
                 DateTime lastAccessDate = DateTime.Now;
 
                 VentanaUsuario ventanaUsuario = new VentanaUsuario(username, profileImagePath, lastAccessDate);
@@ -75,7 +80,28 @@ namespace ProyectoIPo
             }
             else
             {
-                MessageBox.Show("Credenciales incorrectas.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (usuariosYContraseñas.ContainsKey(username))
+                {
+                    if (usuariosYContraseñas[username] == password)
+                    {
+                        MessageBox.Show($"Bienvenido {username}", "¡Login Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        string profileImagePath = "Recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
+                        DateTime lastAccessDate = DateTime.Now;
+
+                        VentanaUsuario ventanaUsuario = new VentanaUsuario(username, profileImagePath, lastAccessDate);
+                        ventanaUsuario.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Credenciales incorrectas.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("El usuario no existe.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -90,18 +116,39 @@ namespace ProyectoIPo
             }
             else
             {
-                MessageBox.Show($"Bienvenido {username}", "¡Registro Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (usuariosYContraseñas.ContainsKey(username))
+                {
+                    MessageBox.Show("El usuario ya existe. Intenta con otro nombre de usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    IntroducirDatosAdmin introducirDatosAdmin = new IntroducirDatosAdmin();
+                    bool? result = introducirDatosAdmin.ShowDialog();  // Muestra la ventana como modal y espera el resultado
 
-                // Datos del usuario registrado
-                string profileImagePath = "recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
-                DateTime lastAccessDate = DateTime.Now;
+                    if (result == true)
+                    {
+                        // Si la ventana devuelve un resultado válido (IsAdminValid = true), ejecutamos el código comentado
 
-                VentanaUsuario ventanaUsuario = new VentanaUsuario(username, profileImagePath, lastAccessDate);
-                ventanaUsuario.Show();
-                this.Close();
+                        MessageBox.Show($"Bienvenido {username}", "¡Registro Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        usuariosYContraseñas.Add(username, password);
+
+                        // Datos del usuario registrado
+                        string profileImagePath = "Recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
+                        DateTime lastAccessDate = DateTime.Now;
+
+                        VentanaUsuario ventanaUsuario = new VentanaUsuario(username, profileImagePath, lastAccessDate);
+                        ventanaUsuario.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        // Si no es válido, mostramos un mensaje de error
+                        MessageBox.Show("Acceso fallido al panel de administración", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
         }
-
 
     }
 }
