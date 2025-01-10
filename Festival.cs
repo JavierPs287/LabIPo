@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace ProyectoIPo
 {
@@ -116,4 +117,12 @@ namespace ProyectoIPo
             return false;
         }
     }
+
+    public static class DatosApp
+    {
+        // Diccionario estático para almacenar usuarios y contraseñas
+        public static Dictionary<string, string> UsuariosYContraseñas = new Dictionary<string, string>();
+        public static ObservableCollection<Festival> Festivales { get; set; } = new ObservableCollection<Festival>();
+    }
+
 }

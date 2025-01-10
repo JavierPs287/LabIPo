@@ -7,13 +7,10 @@ namespace ProyectoIPo
 {
     public partial class Login : Window
     {
-        // Diccionario para almacenar usuarios y contraseñas
-        Dictionary<string, string> usuariosYContraseñas = new Dictionary<string, string>();
 
         public Login()
         {
             InitializeComponent();
-            usuariosYContraseñas.Add("usuario1","usuario1");
         }
 
         // Manejo del foco para el cuadro de texto "Usuario"
@@ -80,9 +77,9 @@ namespace ProyectoIPo
             }
             else
             {
-                if (usuariosYContraseñas.ContainsKey(username))
+                if (DatosApp.UsuariosYContraseñas.ContainsKey(username))
                 {
-                    if (usuariosYContraseñas[username] == password)
+                    if (DatosApp.UsuariosYContraseñas[username] == password)
                     {
                         MessageBox.Show($"Bienvenido {username}", "¡Login Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -116,7 +113,7 @@ namespace ProyectoIPo
             }
             else
             {
-                if (usuariosYContraseñas.ContainsKey(username))
+                if (DatosApp.UsuariosYContraseñas.ContainsKey(username))
                 {
                     MessageBox.Show("El usuario ya existe. Intenta con otro nombre de usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -131,7 +128,7 @@ namespace ProyectoIPo
 
                         MessageBox.Show($"Bienvenido {username}", "¡Registro Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        usuariosYContraseñas.Add(username, password);
+                        DatosApp.UsuariosYContraseñas.Add(username, password);
 
                         // Datos del usuario registrado
                         string profileImagePath = "Recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil

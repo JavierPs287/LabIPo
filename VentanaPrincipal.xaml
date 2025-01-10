@@ -50,7 +50,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding PrecioEstandar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValorPrecio" LostFocus="PrecioValido"/>
+                            <TextBox Name="PrecioEstandarTextBox" Text="{Binding PrecioEstandar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValorPrecio" LostFocus="PrecioValido"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
@@ -63,7 +63,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding PrecioVIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValorPrecio" LostFocus="PrecioValido"/>
+                            <TextBox Name="PrecioVIPTextBox" Text="{Binding PrecioVIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValorPrecio" LostFocus="PrecioValido"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
