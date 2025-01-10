@@ -13,7 +13,7 @@
             <TextBox x:Name="UbicacionTextBox" KeyDown="UbicacionTextBox_KeyDown" Margin="0,0,0,10"/>
 
             <Label Content="Fecha:"/>
-            <DatePicker x:Name="FechaDatePicker" Margin="0,0,0,10"/>
+            <DatePicker x:Name="FechaDatePicker" Margin="0,0,0,10" Loaded="DatePicker"/>
 
             <Label Content="Artistas (separados por coma):"/>
             <TextBox x:Name="ArtistasTextBox" KeyDown="ArtistasTextBox_KeyDown" Margin="0,0,0,10"/>

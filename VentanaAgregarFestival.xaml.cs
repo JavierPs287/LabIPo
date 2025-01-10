@@ -37,40 +37,34 @@ namespace ProyectoIPo
                 .Select(a => a.Trim())
                 .Where(a => !string.IsNullOrWhiteSpace(a));
 
-            // Validar que los campos "Nombre" y "Ubicación" estén llenos
             if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(ubicacion))
             {
                 MessageBox.Show("Por favor, complete los campos Nombre y Ubicación", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            // Validar que se haya seleccionado una fecha
             if (fecha == null)
             {
                 MessageBox.Show("Por favor, seleccione una fecha válida.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            // Crear la lista de artistas a partir del texto ingresado
-            var artistas = artistasTexto.ToList(); // Convertimos a lista de strings
+            var artistas = artistasTexto.ToList();
 
-            // Crear el nuevo festival
             var nuevoFestival = new Festival
             {
                 Nombre = nombre,
                 Ubicacion = ubicacion,
                 Fecha = fecha.Value,
-                Artistas = artistas,      // Lista de strings
+                Artistas = artistas,
             };
 
-            // Confirmar al usuario y notificar que el festival ha sido agregado
             MessageBox.Show("Festival creado correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            FestivalAdded?.Invoke(this, nuevoFestival); // Notificar que se ha agregado un nuevo festival
+            FestivalAdded?.Invoke(this, nuevoFestival);
             Close(); // Cerrar la ventana
         }
 
-        // Manejo de eventos KeyDown para agregar el festival al presionar Enter
         private void NombreTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -94,6 +88,15 @@ namespace ProyectoIPo
                 OnAgregarFestivalClick(sender, e);
             }
         }
+
+        private void DatePicker(object sender, RoutedEventArgs e)
+        {
+            if (sender is DatePicker datePicker)
+            {
+                datePicker.DisplayDateStart = DateTime.Today.AddDays(1);
+            }
+        }
+
     }
 
 }
