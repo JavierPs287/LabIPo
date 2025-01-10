@@ -7,17 +7,19 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
+            <!-- Campos de texto para artista -->
             <TextBox x:Name="txtNombreArtista" Text="Nombre del artista" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtGeneroMusical" Text="Género Musical" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtDatosPersonales" Text="Datos Personales" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtCorreoElectronico" Text="Correo Electrónico" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtRedesSociales" Text="Redes Sociales" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtCache" Text="Caché" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-            <TextBox x:Name="txtDiaHoraActuacion" Text="Día y Hora de Actuación" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+            <TextBox x:Name="txtDiaHoraInicioActuacion" Text="Día y Hora de Inicio de Actuación" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+            <TextBox x:Name="txtDiaHoraFinActuacion" Text="Día y Hora de Fin de Actuación" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtEscenario" Text="Escenario" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtLugarAlojamiento" Text="Lugar de Alojamiento" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtPeticionEspecial" Text="Petición Especial" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-    
+
             <TextBlock Text="Estado" Width="130"/>
 
             <!-- Campo Estado -->
@@ -26,8 +28,10 @@
                     <sys:String>ACTIVO</sys:String>
                     <sys:String>APLAZADO</sys:String>
                     <sys:String>CANCELADO</sys:String>
+                    <sys:String>PASADO</sys:String>
                 </ComboBox.Items>
             </ComboBox>
+
             <TextBlock Text="Tipo de Artista" Width="130" RenderTransformOrigin="0.53,0.500"/>
 
             <!-- Campo Tipo de Artista -->

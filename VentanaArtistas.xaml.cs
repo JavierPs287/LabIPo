@@ -33,8 +33,8 @@ namespace ProyectoIPo
                                    .Select(g => g.First())
             );
 
+            // Asignar los datos a las vistas de la UI
             dataGridArtistas.ItemsSource = Artistas;
-
             EscenariosListBox.ItemsSource = Escenarios;
             EscenariosListBox.SelectionChanged += EscenariosListBox_SelectionChanged;
         }
@@ -47,11 +47,13 @@ namespace ProyectoIPo
                 var nuevoArtista = agregarArtistaWindow.NuevoArtista;
                 if (nuevoArtista != null && !string.IsNullOrEmpty(nuevoArtista.Nombre) && !Artistas.Any(a => a.Nombre == nuevoArtista.Nombre))
                 {
-                    // Añadiendo el nuevo artista a la lista
+                    // Añadiendo el nuevo artista a la lista y al estado del festival
                     Artistas.Add(nuevoArtista);
-
-                    // Añadiendo el nuevo artista al estado de los artistas
                     festivalSeleccionado.Artistas.Add(nuevoArtista);
+                }
+                else
+                {
+                    MessageBox.Show("El artista ya existe o el nombre es inválido.");
                 }
             }
         }
@@ -74,7 +76,6 @@ namespace ProyectoIPo
         private void AñadirEscenario_Click(object sender, RoutedEventArgs e)
         {
             var agregarEscenariosWindow = new AgregarEscenarios();
-
             if (agregarEscenariosWindow.ShowDialog() == true)
             {
                 foreach (var nuevoEscenario in agregarEscenariosWindow.NuevosEscenarios)
@@ -84,6 +85,10 @@ namespace ProyectoIPo
                     {
                         festivalSeleccionado.Escenarios.Add(nuevoEscenario);
                         Escenarios.Add(nuevoEscenario); // También se agrega al listado de la UI
+                    }
+                    else
+                    {
+                        MessageBox.Show($"El escenario {nuevoEscenario.Nombre} ya existe.");
                     }
                 }
             }

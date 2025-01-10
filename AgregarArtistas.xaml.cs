@@ -48,8 +48,11 @@ namespace ProyectoIPo
                     case "txtCache":
                         textBox.Text = "Caché";
                         break;
-                    case "txtDiaHoraActuacion":
-                        textBox.Text = "Día y Hora de Actuación";
+                    case "txtDiaHoraInicioActuacion":
+                        textBox.Text = "Día y Hora del Inicio de la Actuación";
+                        break;
+                    case "txtDiaHoraFinActuacion":
+                        textBox.Text = "Día y Hora del Fin de la Actuación";
                         break;
                     case "txtEscenario":
                         textBox.Text = "Escenario";
@@ -72,29 +75,30 @@ namespace ProyectoIPo
                 MessageBox.Show("El nombre del artista es obligatorio.", "Error");
                 return; // Salir del método si la condición es verdadera
             }
-
             else if (string.IsNullOrWhiteSpace(txtGeneroMusical.Text) || txtGeneroMusical.Text == "Género Musical")
             {
                 MessageBox.Show("El género musical es obligatorio.", "Error");
                 return; // Salir del método si la condición es verdadera
             }
-
             // Crear el objeto NuevoArtista solo si las validaciones son correctas
             else
             {
-                NuevoArtista = new Artista
-                {
-                    Nombre = txtNombreArtista.Text,
-                    GeneroMusical = txtGeneroMusical.Text,
-                    DatosPersonales = string.IsNullOrWhiteSpace(txtDatosPersonales.Text) || txtDatosPersonales.Text == "Datos Personales" ? null : txtDatosPersonales.Text,
-                    CorreoElectronico = string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) || txtCorreoElectronico.Text == "Correo Electrónico" ? null : txtCorreoElectronico.Text,
-                    RedesSociales = string.IsNullOrWhiteSpace(txtRedesSociales.Text) || txtRedesSociales.Text == "Redes Sociales" ? null : txtRedesSociales.Text,
-                    Cache = string.IsNullOrWhiteSpace(txtCache.Text) || txtCache.Text == "Caché" ? null : txtCache.Text,
-                    DiaYHoraActuacion = null,
-                    Escenario = string.IsNullOrWhiteSpace(txtEscenario.Text) || txtEscenario.Text == "Escenario" ? null : txtEscenario.Text,
-                    Alojamiento = string.IsNullOrWhiteSpace(txtLugarAlojamiento.Text) || txtLugarAlojamiento.Text == "Lugar de Alojamiento" ? null : txtLugarAlojamiento.Text,
-                    PeticionEspecial = string.IsNullOrWhiteSpace(txtPeticionEspecial.Text) || txtPeticionEspecial.Text == "Petición Especial" ? null : txtPeticionEspecial.Text,
-                };
+                NuevoArtista = new Artista(
+                    txtNombreArtista.Text,
+                    txtGeneroMusical.Text,
+                    string.IsNullOrWhiteSpace(txtDatosPersonales.Text) || txtDatosPersonales.Text == "Datos Personales" ? null : txtDatosPersonales.Text,
+                    string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) || txtCorreoElectronico.Text == "Correo Electrónico" ? null : txtCorreoElectronico.Text,
+                    string.IsNullOrWhiteSpace(txtRedesSociales.Text) || txtRedesSociales.Text == "Redes Sociales" ? null : txtRedesSociales.Text,
+                    string.IsNullOrWhiteSpace(txtCache.Text) || txtCache.Text == "Caché" ? null : txtCache.Text,
+                    null,
+                    null,  // DiaYHoraInicioActuacion
+                    null,  // DiaYHoraFinActuacion
+                    string.IsNullOrWhiteSpace(txtEscenario.Text) || txtEscenario.Text == "Escenario" ? null : txtEscenario.Text,
+                    string.IsNullOrWhiteSpace(txtLugarAlojamiento.Text) || txtLugarAlojamiento.Text == "Lugar de Alojamiento" ? null : txtLugarAlojamiento.Text,
+                    string.IsNullOrWhiteSpace(txtPeticionEspecial.Text) || txtPeticionEspecial.Text == "Petición Especial" ? null : txtPeticionEspecial.Text,
+                    cbEstado.SelectedItem.ToString() // Estado
+                );
+
 
                 // Manejo especial para grupos
                 if (cbTipoArtista.SelectedItem != null && cbTipoArtista.SelectedItem.ToString() == "Grupo")

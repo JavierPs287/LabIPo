@@ -125,42 +125,24 @@ namespace ProyectoIPo
 
     public class Artista : INotifyPropertyChanged
     {
+        // Propiedades
         public string Nombre { get; set; }
         public string GeneroMusical { get; set; }
         public string DatosPersonales { get; set; }
         public string CorreoElectronico { get; set; }
         public string RedesSociales { get; set; }
         public string Cache { get; set; }
-        public DateTime? DiaYHoraActuacion { get; set; }
         public string Escenario { get; set; }
         public string Alojamiento { get; set; }
         public string PeticionEspecial { get; set; }
-        public string Estado { get; set; } = "ACTIVO";
+        public string Estado { get; set; }
+        public DateTime? FechaFestival { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public Artista() { }
-
-        public Artista(string nombre, string generoMusical, string datosPersonales,
-                string correoElectronico, string redesSociales, string cache,
-                DateTime? diaYHoraActuacion, string escenario,
-                string alojamiento, string peticionEspecial, string estado)
-        {
-            Nombre = nombre;
-            GeneroMusical = generoMusical;
-            DatosPersonales = datosPersonales;
-            CorreoElectronico = correoElectronico;
-            RedesSociales = redesSociales;
-            Cache = cache;
-            DiaYHoraActuacion = diaYHoraActuacion;
-            Escenario = escenario;
-            Alojamiento = alojamiento;
-            PeticionEspecial = peticionEspecial;
-            Estado = estado;
-        }
+        public DateTime? DiaYHoraInicioActuacion { get; set; }
+        public DateTime? DiaYHoraFinActuacion { get; set; }
 
         // Propiedad calculada que determina si la actuación ha pasado
-        public bool EsPasado => DiaYHoraActuacion < DateTime.Now;
+        public bool EsPasado => FechaFestival < DateTime.Now;
 
         // Lista de estados disponibles para el artista dependiendo de si su actuación ya pasó
         public IEnumerable<string> EstadosDisponibles
@@ -188,13 +170,44 @@ namespace ProyectoIPo
                 {
                     Estado = value;
                     OnPropertyChanged(nameof(EstadoFinal));
+
+                    // Si el estado no es "ACTIVO" o "PASADO", borra las fechas de inicio y fin
+                    if (Estado != "ACTIVO" && Estado != "PASADO")
+                    {
+                        DiaYHoraInicioActuacion = null;
+                        DiaYHoraFinActuacion = null;
+                    }
                 }
             }
         }
 
+        // Constructor
+        public Artista(string nombre, string generoMusical, string datosPersonales,
+            string correoElectronico, string redesSociales, string cache, DateTime? fechaFestival,
+            DateTime? diaYHoraInicioActuacion, DateTime? diaYHoraFinActuacion, string escenario,
+            string alojamiento, string peticionEspecial, string estado)
+        {
+            Nombre = nombre;
+            GeneroMusical = generoMusical;
+            DatosPersonales = datosPersonales;
+            CorreoElectronico = correoElectronico;
+            RedesSociales = redesSociales;
+            Cache = cache;
+            FechaFestival = fechaFestival;
+            DiaYHoraInicioActuacion = diaYHoraInicioActuacion;
+            DiaYHoraFinActuacion = diaYHoraFinActuacion;
+            Escenario = escenario;
+            Alojamiento = alojamiento;
+            PeticionEspecial = peticionEspecial;
+            Estado = estado;
+        }
+
         protected void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
+
 
     public class Escenario
     {
@@ -231,5 +244,27 @@ namespace ProyectoIPo
         public static Dictionary<string, string> UsuariosYContraseñas = new Dictionary<string, string>();
         public static ObservableCollection<Festival> Festivales { get; set; } = new ObservableCollection<Festival>();
     }
+
+    public class DateTimeToDateConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is DateTime dateTime)
+            {
+                return dateTime.Date; // Solo la parte de la fecha sin la hora
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is DateTime date)
+            {
+                return date.AddHours(0); // Aquí puedes ajustar la hora según sea necesario
+            }
+            return null;
+        }
+    }
+
 
 }

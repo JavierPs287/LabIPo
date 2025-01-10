@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -43,10 +42,54 @@ namespace ProyectoIPo
                     Ubicacion = "Madrid, España",
                     Artistas = new ObservableCollection<Artista>
             {
-                new Artista { Nombre = "Queen", GeneroMusical = "Rock" , DatosPersonales="Hola me llamo juan", CorreoElectronico="corre@gmail.com", RedesSociales="X: @Twitter", Cache="100,000,000", DiaYHoraActuacion=null, Escenario=null, Alojamiento="Hotel Beatriz", PeticionEspecial="50 botellas Blue Label"},
-                new Artista { Nombre = "Bon Jovi", GeneroMusical = "Rock", DatosPersonales="Hola me llamo juan", CorreoElectronico="corre@gmail.com", RedesSociales="X: @Twitter", Cache="100,000,000", DiaYHoraActuacion=null, Escenario=null, Alojamiento="Hotel Beatriz", PeticionEspecial="50 botellas Blue Label" },
-                new Artista { Nombre = "Guns N' Roses", GeneroMusical = "Rock", DatosPersonales="Hola me llamo juan", CorreoElectronico="corre@gmail.com", RedesSociales="X: @Twitter", Cache="100,000,000", DiaYHoraActuacion=null, Escenario=null, Alojamiento="Hotel Beatriz", PeticionEspecial="50 botellas Blue Label" }
-            },
+               new Artista(
+                    nombre: "Queen",
+                    generoMusical: "Rock",
+                    datosPersonales: "Información personal de Queen",
+                    correoElectronico: "contacto@queen.com",
+                    redesSociales: "X: @QueenOfficial",
+                    cache: "100,000,000",
+                    fechaFestival: new DateTime(2027, 6, 15),
+                    diaYHoraInicioActuacion: null,
+                    diaYHoraFinActuacion: null,
+                    escenario: null,
+                    alojamiento: "Hotel Beatriz",
+                    peticionEspecial: "nada",
+                    estado: "ACTIVO"
+                ),
+
+                new Artista(
+                    nombre: "Bon Jovi",
+                    generoMusical: "Rock",
+                    datosPersonales: "Información personal de Bon Jovi",
+                    correoElectronico: "info@bonjovi.com",
+                    redesSociales: "X: @BonJovi",
+                    cache: "90,000,000",
+                    fechaFestival: new DateTime(2027, 6, 15),
+                    diaYHoraInicioActuacion: null,
+                    diaYHoraFinActuacion: null,
+                    escenario: null,
+                    alojamiento: "Hotel Beatriz",
+                    peticionEspecial: "nada",
+                    estado: "ACTIVO"
+                ),
+
+                new Artista(
+                     nombre: "Guns N' Roses",
+                    generoMusical: "Rock",
+                    datosPersonales: "Información personal de Guns N' Roses",
+                    correoElectronico: "contact@gunsnroses.com",
+                    redesSociales: "X: @GunsNRoses",
+                    cache: "95,000,000",
+                    fechaFestival: new DateTime(2027, 6, 15),
+                    diaYHoraInicioActuacion: null,
+                    diaYHoraFinActuacion: null,
+                    escenario: null,
+                    alojamiento: "Hotel Beatriz",
+                    peticionEspecial: "nada",
+                    estado: "ACTIVO"
+                )
+                 },
                     PrecioEstandar = 60.00m,
                     PrecioVIP = 150.00m
                 });
@@ -58,9 +101,37 @@ namespace ProyectoIPo
                     Ubicacion = "Barcelona, España",
                     Artistas = new ObservableCollection<Artista>
             {
-                new Artista { Nombre = "Miles Davis", GeneroMusical = "Jazz" },
-                new Artista { Nombre = "John Coltrane", GeneroMusical = "Jazz" }
-            },
+                new Artista(
+                    nombre: "Miles Davis",
+                    generoMusical: "Jazz",
+                    datosPersonales: "Información personal de Miles Davis",
+                    correoElectronico: "milesdavis@jazz.com",
+                    redesSociales: "@MilesDavisJazz",
+                    cache: "100,000",
+                    fechaFestival: new DateTime(2024, 5, 20),
+                    diaYHoraInicioActuacion: null,
+                    diaYHoraFinActuacion: null,
+                    escenario: null,
+                    alojamiento: "Hotel Jazz",
+                    peticionEspecial: "Ninguna",
+                    estado: "ACTIVO"
+                ),
+                new Artista(
+                    nombre: "John Coltrane",
+                    generoMusical: "Jazz",
+                    datosPersonales: "Información personal de John Coltrane",
+                    correoElectronico: "coltrane@jazz.com",
+                    redesSociales: "@JohnColtraneJazz",
+                    cache: "100,000",
+                    fechaFestival: new DateTime(2024, 5, 20),
+                    diaYHoraInicioActuacion: null,
+                    diaYHoraFinActuacion: null,
+                    escenario: null,
+                    alojamiento: "Hotel Jazz",
+                    peticionEspecial: "Ninguna",
+                    estado: "ACTIVO"
+                )
+                 },
                     PrecioEstandar = 50.00m,
                     PrecioVIP = 180.00m
                 });
@@ -72,10 +143,52 @@ namespace ProyectoIPo
                     Ubicacion = "Buenos Aires, Argentina",
                     Artistas = new ObservableCollection<Artista>
             {
-                new Artista { Nombre = "Duki", GeneroMusical = "Trap" },
-                new Artista { Nombre = "Bad Bunny", GeneroMusical = "Trap" },
-                new Artista { Nombre = "Eladio Carrión", GeneroMusical = "Trap" }
-            },
+                new Artista(
+            nombre: "Duki",
+            generoMusical: "Trap",
+            datosPersonales: "Información personal de Duki",
+            correoElectronico: "duki@trap.com",
+            redesSociales: "@DukiTrap",
+            cache: "100,000",
+                    fechaFestival: new DateTime(2024, 12, 10),
+            diaYHoraInicioActuacion: null,
+            diaYHoraFinActuacion: null,
+            escenario: null,
+            alojamiento: "Hotel Trap",
+            peticionEspecial: "Ninguna",
+            estado: "ACTIVO"
+        ),
+        new Artista(
+            nombre: "Bad Bunny",
+            generoMusical: "Trap",
+            datosPersonales: "Información personal de Bad Bunny",
+            correoElectronico: "badbunny@trap.com",
+            redesSociales: "@BadBunnyTrap",
+            cache: "100,000",
+                    fechaFestival: new DateTime(2024, 12, 10),
+            diaYHoraInicioActuacion: null,
+            diaYHoraFinActuacion: null,
+            escenario: null,
+            alojamiento: "Hotel Trap",
+            peticionEspecial: "Ninguna",
+            estado: "ACTIVO"
+        ),
+        new Artista(
+            nombre: "Eladio Carrión",
+            generoMusical: "Trap",
+            datosPersonales: "Información personal de Eladio Carrión",
+            correoElectronico: "eladio@trap.com",
+            redesSociales: "@EladioCarrion",
+            cache: "100,000",
+                    fechaFestival: new DateTime(2024, 12, 10),
+            diaYHoraInicioActuacion: null,
+            diaYHoraFinActuacion: null,
+            escenario: null,
+            alojamiento: "Hotel Trap",
+            peticionEspecial: "Ninguna",
+            estado: "ACTIVO"
+        )
+    },
                     PrecioEstandar = 40.00m,
                     PrecioVIP = 100.00m
                 });
@@ -87,10 +200,52 @@ namespace ProyectoIPo
                     Ubicacion = "Miami, USA",
                     Artistas = new ObservableCollection<Artista>
             {
-                new Artista { Nombre = "Daddy Yankee", GeneroMusical = "Reggaeton" },
-                new Artista { Nombre = "Feid", GeneroMusical = "Reggaeton" },
-                new Artista { Nombre = "Anuel AA", GeneroMusical = "Reggaeton" }
-            },
+                new Artista(
+            nombre: "Daddy Yankee",
+            generoMusical: "Reggaeton",
+            datosPersonales: "Información personal de Daddy Yankee",
+            correoElectronico: "daddyyankee@reggaeton.com",
+            redesSociales: "@DaddyYankee",
+            cache: "100,000",
+                    fechaFestival: new DateTime(2025, 3, 10),
+            diaYHoraInicioActuacion: null,
+            diaYHoraFinActuacion: null,
+            escenario: null,
+            alojamiento: "Hotel Reggaeton",
+            peticionEspecial: "Ninguna",
+            estado: "ACTIVO"
+        ),
+        new Artista(
+            nombre: "Feid",
+            generoMusical: "Reggaeton",
+            datosPersonales: "Información personal de Feid",
+            correoElectronico: "feid@reggaeton.com",
+            redesSociales: "@Feid",
+            cache: "100,000",
+                    fechaFestival: new DateTime(2025, 3, 10),
+            diaYHoraInicioActuacion: null,
+            diaYHoraFinActuacion: null,
+            escenario: null,
+            alojamiento: "Hotel Reggaeton",
+            peticionEspecial: "Ninguna",
+            estado: "ACTIVO"
+        ),
+        new Artista(
+            nombre: "Anuel AA",
+            generoMusical: "Reggaeton",
+            datosPersonales: "Información personal de Anuel AA",
+            correoElectronico: "anuel@reggaeton.com",
+            redesSociales: "@AnuelAA",
+            cache: "100,000",
+                    fechaFestival: new DateTime(2025, 3, 10),
+            diaYHoraInicioActuacion: null,
+            diaYHoraFinActuacion: null,
+            escenario: null,
+            alojamiento: "Hotel Reggaeton",
+            peticionEspecial: "Ninguna",
+            estado: "ACTIVO"
+        )
+    },
                     PrecioEstandar = 70.00m,
                     PrecioVIP = 200.00m
                 });
@@ -102,9 +257,37 @@ namespace ProyectoIPo
                     Ubicacion = "Ibiza, España",
                     Artistas = new ObservableCollection<Artista>
             {
-                new Artista { Nombre = "David Guetta", GeneroMusical = "Electrónica" },
-                new Artista { Nombre = "Calvin Harris", GeneroMusical = "Electrónica" }
-            },
+               new Artista(
+            nombre: "David Guetta",
+            generoMusical: "Electrónica",
+            datosPersonales: "Información personal de David Guetta",
+            correoElectronico: "davidguetta@electronica.com",
+            redesSociales: "@DavidGuetta",
+            cache: "100,000",
+                    fechaFestival: new DateTime(2024, 7, 12),
+            diaYHoraInicioActuacion: null,
+            diaYHoraFinActuacion: null,
+            escenario: null,
+            alojamiento: "Hotel Electrónica",
+            peticionEspecial: "Ninguna",
+            estado: "ACTIVO"
+        ),
+        new Artista(
+            nombre: "Calvin Harris",
+            generoMusical: "Electrónica",
+            datosPersonales: "Información personal de Calvin Harris",
+            correoElectronico: "calvinharris@electronica.com",
+            redesSociales: "@CalvinHarris",
+            cache: "100,000",
+                    fechaFestival: new DateTime(2024, 7, 12),
+            diaYHoraInicioActuacion: null,
+            diaYHoraFinActuacion: null,
+            escenario: null,
+            alojamiento: "Hotel Electrónica",
+            peticionEspecial: "Ninguna",
+            estado: "ACTIVO"
+        )
+    },
                     PrecioEstandar = 65.00m,
                     PrecioVIP = 175.00m
                 });
@@ -139,7 +322,7 @@ namespace ProyectoIPo
             dpFiltroFecha.SelectedDate = null;
 
             actualizarDataGrid();
-            
+
         }
 
         private void OnAddFestivalClick(object sender, RoutedEventArgs e)
@@ -200,7 +383,7 @@ namespace ProyectoIPo
                 }
             }
             actualizarDataGrid();
-        }   
+        }
 
         private void OnTextBoxGotFocus(object sender, RoutedEventArgs e)
         {
