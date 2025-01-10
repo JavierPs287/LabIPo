@@ -6,7 +6,7 @@ namespace ProyectoIPo
 {
     public partial class AgregarArtistas : Window
     {
-        public EstadoArtista NuevoArtista { get; private set; }
+        public Artista NuevoArtista { get; private set; }
 
         public AgregarArtistas()
         {
@@ -17,9 +17,8 @@ namespace ProyectoIPo
         {
             if (sender is TextBox textBox && textBox.Foreground == Brushes.Gray)
             {
-                // Borrar el texto solo si es el texto de marcador
                 textBox.Text = string.Empty;
-                textBox.Foreground = Brushes.Black; // Cambiar el color del texto a negro
+                textBox.Foreground = Brushes.Black;
             }
         }
 
@@ -27,7 +26,6 @@ namespace ProyectoIPo
         {
             if (sender is TextBox textBox && string.IsNullOrWhiteSpace(textBox.Text))
             {
-                // Restaurar el texto de marcador si el campo quedó vacío
                 textBox.Foreground = Brushes.Gray;
 
                 switch (textBox.Name)
@@ -66,73 +64,67 @@ namespace ProyectoIPo
             }
         }
 
-
-
         private void Agregar_Click(object sender, RoutedEventArgs e)
         {
             // Validar campos obligatorios
             if (string.IsNullOrWhiteSpace(txtNombreArtista.Text) || txtNombreArtista.Text == "Nombre del artista")
             {
                 MessageBox.Show("El nombre del artista es obligatorio.", "Error");
-                return;
+                return; // Salir del método si la condición es verdadera
             }
 
-            if (string.IsNullOrWhiteSpace(txtGeneroMusical.Text) || txtGeneroMusical.Text == "Género Musical")
+            else if (string.IsNullOrWhiteSpace(txtGeneroMusical.Text) || txtGeneroMusical.Text == "Género Musical")
             {
                 MessageBox.Show("El género musical es obligatorio.", "Error");
-                return;
+                return; // Salir del método si la condición es verdadera
             }
 
             // Crear el objeto NuevoArtista solo si las validaciones son correctas
-            NuevoArtista = new EstadoArtista
+            else
             {
-                Nombre = txtNombreArtista.Text,
-                GeneroMusical = txtGeneroMusical.Text,
-                DatosPersonales = txtDatosPersonales.Text,
-                CorreoElectronico = txtCorreoElectronico.Text,
-                RedesSociales = txtRedesSociales.Text,
-                Cache = txtCache.Text,
-                DiaHoraActuacion = txtDiaHoraActuacion.Text,
-                Escenario = txtEscenario.Text,
-                LugarAlojamiento = txtLugarAlojamiento.Text,
-                PeticionEspecial = txtPeticionEspecial.Text,
-                Estado = cbEstado.SelectedItem?.ToString()
-            };
+                NuevoArtista = new Artista
+                {
+                    Nombre = txtNombreArtista.Text,
+                    GeneroMusical = txtGeneroMusical.Text,
+                    DatosPersonales = string.IsNullOrWhiteSpace(txtDatosPersonales.Text) || txtDatosPersonales.Text == "Datos Personales" ? null : txtDatosPersonales.Text,
+                    CorreoElectronico = string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) || txtCorreoElectronico.Text == "Correo Electrónico" ? null : txtCorreoElectronico.Text,
+                    RedesSociales = string.IsNullOrWhiteSpace(txtRedesSociales.Text) || txtRedesSociales.Text == "Redes Sociales" ? null : txtRedesSociales.Text,
+                    Cache = string.IsNullOrWhiteSpace(txtCache.Text) || txtCache.Text == "Caché" ? null : txtCache.Text,
+                    DiaYHoraActuacion = null,
+                    Escenario = string.IsNullOrWhiteSpace(txtEscenario.Text) || txtEscenario.Text == "Escenario" ? null : txtEscenario.Text,
+                    Alojamiento = string.IsNullOrWhiteSpace(txtLugarAlojamiento.Text) || txtLugarAlojamiento.Text == "Lugar de Alojamiento" ? null : txtLugarAlojamiento.Text,
+                    PeticionEspecial = string.IsNullOrWhiteSpace(txtPeticionEspecial.Text) || txtPeticionEspecial.Text == "Petición Especial" ? null : txtPeticionEspecial.Text,
+                };
 
-            // Manejo especial para grupos
-            if (cbTipoArtista.SelectedItem != null && cbTipoArtista.SelectedItem.ToString() == "Grupo")
-            {
-                int cantidadMiembros;
-                if (int.TryParse(txtCantidadMiembros.Text, out cantidadMiembros) && cantidadMiembros > 0)
+                // Manejo especial para grupos
+                if (cbTipoArtista.SelectedItem != null && cbTipoArtista.SelectedItem.ToString() == "Grupo")
                 {
-                    // Aquí puedes implementar lógica para agregar miembros del grupo
-                    MessageBox.Show($"Grupo creado con {cantidadMiembros} miembros. Implementa lógica adicional aquí.", "Información");
+                    int cantidadMiembros;
+                    if (int.TryParse(txtCantidadMiembros.Text, out cantidadMiembros) && cantidadMiembros > 0)
+                    {
+                        // Aquí puedes implementar lógica para agregar miembros del grupo
+                        MessageBox.Show($"Grupo creado con {cantidadMiembros} miembros. Implementa lógica adicional aquí.", "Información");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor, ingrese un número válido para la cantidad de miembros.", "Error");
+                        return;
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Por favor, ingrese un número válido para la cantidad de miembros.", "Error");
-                    return;
-                }
+
+                DialogResult = true; // Todo está correcto, cerramos la ventana
+                Close();
             }
-
-            DialogResult = true; // Todo está correcto, cerramos la ventana
-            Close();
         }
-
 
         private void cbEstado_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            // Manejar cambios en la selección de estado si es necesario
         }
+
         private void cbTipoArtista_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (spGrupo == null)
-            {
-                // Handle the null case, possibly log an error or initialize spGrupo
-                return;
-            }
-
-            if (cbTipoArtista.SelectedItem.ToString() == "Grupo")
+            if (cbTipoArtista.SelectedItem?.ToString() == "Grupo")
             {
                 spGrupo.Visibility = Visibility.Visible;
             }
@@ -141,8 +133,5 @@ namespace ProyectoIPo
                 spGrupo.Visibility = Visibility.Collapsed;
             }
         }
-
-
-
     }
 }

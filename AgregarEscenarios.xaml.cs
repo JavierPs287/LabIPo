@@ -99,16 +99,4 @@ namespace ProyectoIPo
         }
     }
 
-    // Clase de escenario
-    public class Escenario
-    {
-        public string Nombre { get; set; }
-        public string AforoMax { get; set; }
-        public string LocalizacionEntradasSalidas { get; set; }
-        public string ServiciosMedicos { get; set; }
-        public string Aseos { get; set; }
-        public string Seguridad { get; set; }
-        public DateTime DiaHoraActuacion { get; set; } // Día y hora de la actuación
-        public string FotoPath { get; set; } // Ruta de la foto
-    }
 }

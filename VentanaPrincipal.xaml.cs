@@ -39,9 +39,14 @@ namespace ProyectoIPo
                 Festivales.Add(new Festival
                 {
                     Nombre = "Rock fest",
-                    Fecha = new DateTime(2024, 6, 15),
+                    Fecha = new DateTime(2027, 6, 15),
                     Ubicacion = "Madrid, España",
-                    Artistas = new List<String> { "Queen", "Bon Jovi", "Guns N' Roses" },
+                    Artistas = new ObservableCollection<Artista>
+            {
+                new Artista { Nombre = "Queen", GeneroMusical = "Rock" , DatosPersonales="Hola me llamo juan", CorreoElectronico="corre@gmail.com", RedesSociales="X: @Twitter", Cache="100,000,000", DiaYHoraActuacion=null, Escenario=null, Alojamiento="Hotel Beatriz", PeticionEspecial="50 botellas Blue Label"},
+                new Artista { Nombre = "Bon Jovi", GeneroMusical = "Rock", DatosPersonales="Hola me llamo juan", CorreoElectronico="corre@gmail.com", RedesSociales="X: @Twitter", Cache="100,000,000", DiaYHoraActuacion=null, Escenario=null, Alojamiento="Hotel Beatriz", PeticionEspecial="50 botellas Blue Label" },
+                new Artista { Nombre = "Guns N' Roses", GeneroMusical = "Rock", DatosPersonales="Hola me llamo juan", CorreoElectronico="corre@gmail.com", RedesSociales="X: @Twitter", Cache="100,000,000", DiaYHoraActuacion=null, Escenario=null, Alojamiento="Hotel Beatriz", PeticionEspecial="50 botellas Blue Label" }
+            },
                     PrecioEstandar = 60.00m,
                     PrecioVIP = 150.00m
                 });
@@ -51,44 +56,65 @@ namespace ProyectoIPo
                     Nombre = "Jazz Nights",
                     Fecha = new DateTime(2024, 5, 20),
                     Ubicacion = "Barcelona, España",
-                    Artistas = new List<String> { "Miles Davis", "John Coltrane" },
+                    Artistas = new ObservableCollection<Artista>
+            {
+                new Artista { Nombre = "Miles Davis", GeneroMusical = "Jazz" },
+                new Artista { Nombre = "John Coltrane", GeneroMusical = "Jazz" }
+            },
                     PrecioEstandar = 50.00m,
                     PrecioVIP = 180.00m
                 });
+
                 Festivales.Add(new Festival
                 {
                     Nombre = "Trap Beats",
                     Fecha = new DateTime(2024, 12, 10),
                     Ubicacion = "Buenos Aires, Argentina",
-                    Artistas = new List<String> { "Duki", "Bad Bunny", "Eladio Carrión" },
+                    Artistas = new ObservableCollection<Artista>
+            {
+                new Artista { Nombre = "Duki", GeneroMusical = "Trap" },
+                new Artista { Nombre = "Bad Bunny", GeneroMusical = "Trap" },
+                new Artista { Nombre = "Eladio Carrión", GeneroMusical = "Trap" }
+            },
                     PrecioEstandar = 40.00m,
                     PrecioVIP = 100.00m
                 });
+
                 Festivales.Add(new Festival
                 {
                     Nombre = "Reggaeton Party",
                     Fecha = new DateTime(2025, 3, 10),
                     Ubicacion = "Miami, USA",
-                    Artistas = new List<String> { "Daddy Yankee", "Feid", "Anuel AA" },
+                    Artistas = new ObservableCollection<Artista>
+            {
+                new Artista { Nombre = "Daddy Yankee", GeneroMusical = "Reggaeton" },
+                new Artista { Nombre = "Feid", GeneroMusical = "Reggaeton" },
+                new Artista { Nombre = "Anuel AA", GeneroMusical = "Reggaeton" }
+            },
                     PrecioEstandar = 70.00m,
                     PrecioVIP = 200.00m
                 });
+
                 Festivales.Add(new Festival
                 {
                     Nombre = "Electronic Beats",
                     Fecha = new DateTime(2024, 7, 12),
                     Ubicacion = "Ibiza, España",
-                    Artistas = new List<String> { "David Guetta", "Calvin Harris" },
+                    Artistas = new ObservableCollection<Artista>
+            {
+                new Artista { Nombre = "David Guetta", GeneroMusical = "Electrónica" },
+                new Artista { Nombre = "Calvin Harris", GeneroMusical = "Electrónica" }
+            },
                     PrecioEstandar = 65.00m,
                     PrecioVIP = 175.00m
                 });
-              
             }
 
             Festivales = new ObservableCollection<Festival>(Festivales.OrderBy(f => f.Fecha));
 
             DataContext = this;
         }
+
 
         private void FiltrarFestivales(object sender, RoutedEventArgs e)
         {
@@ -98,12 +124,13 @@ namespace ProyectoIPo
 
             var festivalesFiltrados = Festivales.Where(f =>
                 (string.IsNullOrWhiteSpace(filtroNombre) || f.Nombre.ToLower().Contains(filtroNombre)) &&
-                (string.IsNullOrWhiteSpace(filtroArtista) || f.Artistas.Any(a => a.ToLower().Contains(filtroArtista))) &&
+                (string.IsNullOrWhiteSpace(filtroArtista) || f.Artistas.Any(a => a.Nombre.ToLower().Contains(filtroArtista))) &&
                 (!filtroFecha.HasValue || f.Fecha.Date == filtroFecha.Value.Date));
 
             FestivalesFiltrados = new ObservableCollection<Festival>(festivalesFiltrados);
             FestivalDataGrid.ItemsSource = FestivalesFiltrados; // Refrescar el DataGrid
         }
+
 
         private void CancelarFiltros(object sender, RoutedEventArgs e)
         {
@@ -132,31 +159,6 @@ namespace ProyectoIPo
 
         }
 
-       
-
-        private List<string> ObtenerTodosLosArtistas()
-        {
-            return Festivales.SelectMany(f => f.Artistas).Distinct().ToList();
-        }
-
-        private void VisualizarTodosLosArtistasButton_Click(object sender, RoutedEventArgs e)
-        {
-            var ventanaArtistas = new VentanaArtistas(Festivales.ToList());
-            if (ventanaArtistas.ShowDialog() == true)
-            {
-                var artistasAsignados = ventanaArtistas.ObtenerArtistasAsignados();
-
-                // Actualizar los festivales con los artistas asignados
-                foreach (var festival in Festivales)
-                {
-                    var artistasFestival = artistasAsignados.Where(a => festival.Artistas.Contains(a)).ToList();
-                    festival.Artistas = artistasFestival;
-                }
-
-                actualizarDataGrid();
-            }
-        }
-
 
         private void CerrarSesionClick(object sender, RoutedEventArgs e)
         {
@@ -173,10 +175,11 @@ namespace ProyectoIPo
 
             if (festival != null)
             {
-                var ventanaArtistas = new VentanaArtistas(new List<Festival> { festival });
+                var ventanaArtistas = new VentanaArtistas(festival);  // Pasando el festival directamente
                 ventanaArtistas.ShowDialog();
             }
         }
+
 
 
         private void OnDeleteFestivalClick(object sender, RoutedEventArgs e)

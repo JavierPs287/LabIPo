@@ -14,66 +14,39 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ListBox x:Name="ArtistasListBox" SelectedIndex="0" Width="210" Margin="5">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Width="32" Height="37" Source="{Binding LogoPath}"/>
-                                    <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Nombre}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="Margin" Value="2"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Foreground" Value="Blue"/>
-                                        <Setter Property="FontWeight" Value="Bold"/>
-                                        <Setter Property="BorderBrush" Value="Blue"/>
-                                        <Setter Property="BorderThickness" Value="3"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
 
-                    <GridSplitter Grid.Column="1" Grid.Row="0" Width="5" HorizontalAlignment="Stretch"/>
-                    <StackPanel x:Name="spDetallesArtista" Grid.Column="2" Grid.Row="0" Orientation="Vertical" Margin="5">
-                        <DataGrid x:Name="dataGridArtistas" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" />
-                                <DataGridTextColumn Header="Datos Personales" Binding="{Binding DatosPersonales}" />
-                                <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
-                                <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
-                                <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
-                                <DataGridTextColumn Header="Día y Hora de Actuación" Binding="{Binding DiaHoraActuacion}" />
-                                <DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" />
-                                <DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding LugarAlojamiento}" />
-                                <DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" />
-                                <DataGridTemplateColumn Header="Estado" Width="100">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
-                                                <ComboBox.Items>
-                                                    <sys:String>ACTIVO</sys:String>
-                                                    <sys:String>APLAZADO</sys:String>
-                                                    <sys:String>CANCELADO</sys:String>
-                                                </ComboBox.Items>
-                                            </ComboBox>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <TextBlock Text="Detalles del Artista" Margin="10" FontWeight="Bold" />
-                        <TextBox x:Name="txtDetallesArtista" Margin="10" Height="100" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
-                    </StackPanel>
-                    <Button Content="Añadir Artista" Grid.Column="0" Grid.Row="1" Click="AñadirArtista_Click" Margin="5"/>
+                    <!-- DataGrid para los artistas -->
+                    <DataGrid x:Name="dataGridArtistas" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400" Margin="5">
+                        <DataGrid.Columns>
+                            <!-- Columnas para los artistas -->
+                            <DataGridTextColumn Header="Nombre del Artista" Binding="{Binding Nombre}" />
+                            <DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" />
+                            <DataGridTextColumn Header="Datos Personales" Binding="{Binding DatosPersonales}" />
+                            <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
+                            <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
+                            <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
+                            <DataGridTextColumn Header="Día y Hora de Actuación" Binding="{Binding DiaYHoraActuacion}" />
+                            <DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" />
+                            <DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding Alojamiento}" />
+                            <DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" />
+
+                            <DataGridTemplateColumn Header="Estado" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
+                                            <ComboBox.Items>
+                                                <sys:String>ACTIVO</sys:String>
+                                                <sys:String>APLAZADO</sys:String>
+                                                <sys:String>CANCELADO</sys:String>
+                                            </ComboBox.Items>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Escenarios">
@@ -141,6 +114,3 @@
         </TabControl>
     </Grid>
 </Window>
-
-
-

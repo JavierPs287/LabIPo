@@ -32,10 +32,6 @@ namespace ProyectoIPo
             var nombre = NombreTextBox.Text?.Trim();
             var ubicacion = UbicacionTextBox.Text?.Trim();
             var fecha = FechaDatePicker.SelectedDate;
-            var artistasTexto = ArtistasTextBox.Text
-                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(a => a.Trim())
-                .Where(a => !string.IsNullOrWhiteSpace(a));
 
             if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(ubicacion))
             {
@@ -49,14 +45,11 @@ namespace ProyectoIPo
                 return;
             }
 
-            var artistas = artistasTexto.ToList();
-
             var nuevoFestival = new Festival
             {
                 Nombre = nombre,
                 Ubicacion = ubicacion,
                 Fecha = fecha.Value,
-                Artistas = artistas,
             };
 
             MessageBox.Show("Festival creado correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -74,14 +67,6 @@ namespace ProyectoIPo
         }
 
         private void UbicacionTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                OnAgregarFestivalClick(sender, e);
-            }
-        }
-
-        private void ArtistasTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
