@@ -59,13 +59,21 @@ namespace ProyectoIPo
                 return;
             }
 
+            if (!int.TryParse(DuracionTextBox.Text?.Trim(), out int duracion))
+            {
+                MessageBox.Show("Por favor, ingrese un valor válido para Duracion.",
+                                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var nuevoFestival = new Festival
             {
                 Nombre = nombre,
                 Ubicacion = ubicacion,
                 Fecha = fecha.Value,
                 PrecioEstandar = precioEstandar,
-                PrecioVIP = precioVIP
+                PrecioVIP = precioVIP,
+                Duracion= duracion
             };
 
             MessageBox.Show("Festival creado correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);

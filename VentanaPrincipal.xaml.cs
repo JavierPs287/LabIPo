@@ -91,7 +91,8 @@ namespace ProyectoIPo
                 )
                  },
                     PrecioEstandar = 60,
-                    PrecioVIP = 150
+                    PrecioVIP = 150,
+                    Duracion=6
                 });
 
                 Festivales.Add(new Festival
@@ -133,7 +134,8 @@ namespace ProyectoIPo
                 )
                  },
                     PrecioEstandar = 50,
-                    PrecioVIP = 180
+                    PrecioVIP = 180,
+                    Duracion=5
                 });
 
                 Festivales.Add(new Festival
@@ -190,7 +192,8 @@ namespace ProyectoIPo
         )
     },
                     PrecioEstandar = 40,
-                    PrecioVIP = 100
+                    PrecioVIP = 100,
+                    Duracion = 4
                 });
 
                 Festivales.Add(new Festival
@@ -247,7 +250,8 @@ namespace ProyectoIPo
         )
     },
                     PrecioEstandar = 70,
-                    PrecioVIP = 200
+                    PrecioVIP = 200,
+                    Duracion = 3
                 });
 
                 Festivales.Add(new Festival
@@ -289,7 +293,8 @@ namespace ProyectoIPo
         )
     },
                     PrecioEstandar = 65,
-                    PrecioVIP = 175
+                    PrecioVIP = 175,
+                    Duracion = 8
                 });
             }
 
@@ -426,12 +431,11 @@ namespace ProyectoIPo
             }
         }
 
-        private void PrecioValido(object sender, RoutedEventArgs e)
+        private void NumeroValido(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox tb)
             {
                 // Intentar parsear el texto a entero usando la cultura invariante
-                // o puedes usar CultureInfo.CurrentCulture según tus necesidades.
                 if (int.TryParse(tb.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out int value))
                 {
                     // Formatear el valor como entero (sin decimales)
@@ -448,6 +452,10 @@ namespace ProyectoIPo
                         {
                             festival.PrecioVIP = value;
                         }
+                        else if (tb.Name == "DuracionTextBox")
+                        {
+                            festival.Duracion = value;
+                        }
 
                         // Actualizar el festival en la colección local
                         int index = Festivales.IndexOf(festival);
@@ -456,7 +464,7 @@ namespace ProyectoIPo
                             Festivales[index] = festival;
                         }
 
-                        // Actualizar el festival
+                        // Actualizar el festival en la colección global
                         index = DatosApp.Festivales.IndexOf(festival);
                         if (index >= 0)
                         {
@@ -479,7 +487,7 @@ namespace ProyectoIPo
 
 
 
-        private void AlmacenarValorPrecio(object sender, RoutedEventArgs e)
+        private void AlmacenarValor(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox tb)
             {

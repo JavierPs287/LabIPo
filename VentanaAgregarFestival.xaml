@@ -1,7 +1,7 @@
 ﻿<Window x:Class="ProyectoIPo.VentanaAgregarFestival"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Agregar Festival" Height="400" Width="400"
+        Title="Agregar Festival" Height="450" Width="400"
 		WindowStartupLocation="CenterScreen">
 
     <Grid>
@@ -15,6 +15,9 @@
 
             <Label Content="Fecha:"/>
             <DatePicker x:Name="FechaDatePicker" Margin="0,0,0,10" Loaded="DatePicker"/>
+
+            <Label Content="Duración:"/>
+            <TextBox x:Name="DuracionTextBox" Margin="0,0,0,10"/>
 
             <Label Content="Precio Estándar:"/>
             <TextBox x:Name="PrecioEstandarTextBox" Margin="0,0,0,10"/>

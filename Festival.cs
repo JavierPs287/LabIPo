@@ -19,6 +19,7 @@ namespace ProyectoIPo
         public string Ubicacion { get; set; }
         public int PrecioEstandar { get; set; }
         public int PrecioVIP { get; set; }
+        public int Duracion { get; set; }
 
         // Lista de artistas del festival, ahora contiene objetos Artista
         public ObservableCollection<Artista> Artistas { get; set; } = new ObservableCollection<Artista>();
