@@ -45,11 +45,27 @@ namespace ProyectoIPo
                 return;
             }
 
+            if (!decimal.TryParse(PrecioEstandarTextBox.Text?.Trim(), out decimal precioEstandar))
+            {
+                MessageBox.Show("Por favor, ingrese un valor válido para Precio Estándar.",
+                                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!decimal.TryParse(PrecioVIPTextBox.Text?.Trim(), out decimal precioVIP))
+            {
+                MessageBox.Show("Por favor, ingrese un valor válido para Precio VIP.",
+                                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var nuevoFestival = new Festival
             {
                 Nombre = nombre,
                 Ubicacion = ubicacion,
                 Fecha = fecha.Value,
+                PrecioEstandar = precioEstandar,
+                PrecioVIP = precioVIP
             };
 
             MessageBox.Show("Festival creado correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -3,167 +3,175 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:ProyectoIPo"
-        Title="Gestión Artistas" Height="auto" Width="auto"
-        SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <local:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
-    </Window.Resources>
+        Title="Gestión Artistas"
+        WindowState="Maximized">
+	<Window.Resources>
+		<local:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
+	</Window.Resources>
 
-    <Grid>
-        <TabControl>
-            <TabItem Header="Artistas">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+	<Grid>
+		<TabControl>
+			<TabItem Header="Artistas">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
 
-                    <!-- DataGrid para los artistas -->
-                    <DataGrid x:Name="dataGridArtistas" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400" Margin="5" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <!-- Columnas para los artistas -->
-                            <DataGridTextColumn Header="Nombre del Artista" Binding="{Binding Nombre}" />
-                            <DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" />
-                            <DataGridTextColumn Header="Datos Personales" Binding="{Binding DatosPersonales}" />
-                            <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
-                            <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
-                            <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
-                            <DataGridTemplateColumn Header="Día y Hora Inicio Actuación">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <DatePicker SelectedDate="{Binding DiaYHoraInicioActuacion, Converter={StaticResource DateTimeToDateConverter}}"/>
-                                            <ComboBox SelectedItem="{Binding HoraInicioActuacion}">
-                                                <ComboBox.Items>
-                                                    <sys:String>00:00</sys:String>
-                                                    <sys:String>01:00</sys:String>
-                                                    <sys:String>02:00</sys:String>
-                                                    <sys:String>03:00</sys:String>
-                                                    <sys:String>04:00</sys:String>
-                                                    <sys:String>05:00</sys:String>
-                                                    <!-- Agregar más horas según lo necesario -->
-                                                </ComboBox.Items>
-                                            </ComboBox>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+					<!-- DataGrid para los artistas -->
+					<DataGrid x:Name="dataGridArtistas"
+                        AutoGenerateColumns="False"
+                        Margin="3,3,3,10"
+                        CanUserAddRows="False"
+                        HeadersVisibility="Column"
+                        RowHeaderStyle="{x:Null}"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        ColumnWidth="*">
 
-                            <DataGridTemplateColumn Header="Día y Hora Fin Actuación">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <DatePicker SelectedDate="{Binding DiaYHoraFinActuacion, Converter={StaticResource DateTimeToDateConverter}}"/>
-                                            <ComboBox SelectedItem="{Binding HoraFinActuacion}">
-                                                <ComboBox.Items>
-                                                    <sys:String>00:00</sys:String>
-                                                    <sys:String>01:00</sys:String>
-                                                    <sys:String>02:00</sys:String>
-                                                    <sys:String>03:00</sys:String>
-                                                    <sys:String>04:00</sys:String>
-                                                    <sys:String>05:00</sys:String>
-                                                    <!-- Agregar más horas según lo necesario -->
-                                                </ComboBox.Items>
-                                            </ComboBox>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+						<DataGrid.Columns>
+							<!-- Columnas para los artistas -->
+							<DataGridTextColumn Header="Nombre del Artista" Binding="{Binding Nombre}" />
+							<DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" />
+							<DataGridTextColumn Header="Datos Personales" Binding="{Binding DatosPersonales}" />
+							<DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
+							<DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
+							<DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
+							<DataGridTemplateColumn Header="Día y Hora Inicio Actuación">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<StackPanel>
+											<DatePicker SelectedDate="{Binding DiaYHoraInicioActuacion, Converter={StaticResource DateTimeToDateConverter}}"/>
+											<ComboBox SelectedItem="{Binding HoraInicioActuacion}">
+												<ComboBox.Items>
+													<sys:String>00:00</sys:String>
+													<sys:String>01:00</sys:String>
+													<sys:String>02:00</sys:String>
+													<sys:String>03:00</sys:String>
+													<sys:String>04:00</sys:String>
+													<sys:String>05:00</sys:String>
+													<!-- Agregar más horas según lo necesario -->
+												</ComboBox.Items>
+											</ComboBox>
+										</StackPanel>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
 
-                            <DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" />
-                            <DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding Alojamiento}" />
-                            <DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" />
+							<DataGridTemplateColumn Header="Día y Hora Fin Actuación">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<StackPanel>
+											<DatePicker SelectedDate="{Binding DiaYHoraFinActuacion, Converter={StaticResource DateTimeToDateConverter}}"/>
+											<ComboBox SelectedItem="{Binding HoraFinActuacion}">
+												<ComboBox.Items>
+													<sys:String>00:00</sys:String>
+													<sys:String>01:00</sys:String>
+													<sys:String>02:00</sys:String>
+													<sys:String>03:00</sys:String>
+													<sys:String>04:00</sys:String>
+													<sys:String>05:00</sys:String>
+													<!-- Agregar más horas según lo necesario -->
+												</ComboBox.Items>
+											</ComboBox>
+										</StackPanel>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
 
-                            <DataGridTemplateColumn Header="Estado" Width="100">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
-                                            <ComboBox.Items>
-                                                <sys:String>ACTIVO</sys:String>
-                                                <sys:String>APLAZADO</sys:String>
-                                                <sys:String>CANCELADO</sys:String>
-                                            </ComboBox.Items>
-                                        </ComboBox>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+							<DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" />
+							<DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding Alojamiento}" />
+							<DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" />
 
-                    <!-- StackPanel para los botones -->
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5" Grid.Row="1">
-                        <!-- Botón para agregar artista -->
-                        <Button Content="Añadir Artista" Click="AñadirArtista_Click" Margin="5"/>
-                    </StackPanel>
-                </Grid>
-            </TabItem>
+							<DataGridTemplateColumn Header="Estado" Width="100">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
+											<ComboBox.Items>
+												<sys:String>ACTIVO</sys:String>
+												<sys:String>APLAZADO</sys:String>
+												<sys:String>CANCELADO</sys:String>
+											</ComboBox.Items>
+										</ComboBox>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+					</DataGrid>
 
-            <TabItem Header="Escenarios">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <ListBox x:Name="EscenariosListBox" SelectedIndex="0" Width="210" Margin="5">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Width="32" Height="37" Source="{Binding LogoPath}"/>
-                                    <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Nombre}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="Margin" Value="2"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Foreground" Value="Blue"/>
-                                        <Setter Property="FontWeight" Value="Bold"/>
-                                        <Setter Property="BorderBrush" Value="Blue"/>
-                                        <Setter Property="BorderThickness" Value="3"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
+					<!-- StackPanel para los botones -->
+					<StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5" Grid.Row="1">
+						<!-- Botón para agregar artista -->
+						<Button Content="Añadir Artista" Click="AñadirArtista_Click" Margin="5"/>
+					</StackPanel>
+				</Grid>
+			</TabItem>
 
-                    <GridSplitter Grid.Column="1" Grid.Row="0" Width="5" HorizontalAlignment="Stretch"/>
-                    <StackPanel x:Name="spDetallesEscenario" Grid.Column="2" Grid.Row="0" Orientation="Vertical" Margin="5">
-                        <DataGrid x:Name="dataGridEscenarios" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
-                                <DataGridTextColumn Header="Aforo Máximo" Binding="{Binding AforoMaximo}" />
-                                <DataGridTextColumn Header="Localización Entradas" Binding="{Binding LocalizacionEntradas}" />
-                                <DataGridTextColumn Header="Salidas de Emergencia" Binding="{Binding SalidasEmergencia}" />
-                                <DataGridTextColumn Header="Servicios Médicos" Binding="{Binding ServiciosMedicos}" />
-                                <DataGridTextColumn Header="Aseos" Binding="{Binding Aseos}" />
-                                <DataGridTextColumn Header="Seguridad" Binding="{Binding Seguridad}" />
-                                <DataGridTextColumn Header="Día y Hora Actuación" Binding="{Binding DiaYHoraActuacion}" />
-                                <DataGridTemplateColumn Header="Fotos" Width="100">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Image Width="32" Height="32" Source="{Binding FotoPath}" />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <TextBlock Text="Detalles del Escenario" Margin="10" FontWeight="Bold" />
-                        <TextBox x:Name="txtDetallesEscenario" Margin="10" Height="100" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
-                    </StackPanel>
-                    <Button Content="Añadir Escenario" Grid.Column="0" Grid.Row="1" Click="AñadirEscenario_Click" Margin="5"/>
-                </Grid>
-            </TabItem>
-        </TabControl>
-    </Grid>
+			<TabItem Header="Escenarios">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="200"/>
+						<ColumnDefinition Width="auto"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<ListBox x:Name="EscenariosListBox" SelectedIndex="0" Width="210" Margin="5">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<Image Width="32" Height="37" Source="{Binding LogoPath}"/>
+									<TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Nombre}"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+						<ListBox.ItemContainerStyle>
+							<Style TargetType="ListBoxItem">
+								<Setter Property="Margin" Value="2"/>
+								<Style.Triggers>
+									<Trigger Property="IsSelected" Value="True">
+										<Setter Property="Foreground" Value="Blue"/>
+										<Setter Property="FontWeight" Value="Bold"/>
+										<Setter Property="BorderBrush" Value="Blue"/>
+										<Setter Property="BorderThickness" Value="3"/>
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</ListBox.ItemContainerStyle>
+					</ListBox>
+
+					<GridSplitter Grid.Column="1" Grid.Row="0" Width="5" HorizontalAlignment="Stretch"/>
+					<StackPanel x:Name="spDetallesEscenario" Grid.Column="2" Grid.Row="0" Orientation="Vertical" Margin="5">
+						<DataGrid x:Name="dataGridEscenarios" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
+								<DataGridTextColumn Header="Aforo Máximo" Binding="{Binding AforoMaximo}" />
+								<DataGridTextColumn Header="Localización Entradas" Binding="{Binding LocalizacionEntradas}" />
+								<DataGridTextColumn Header="Salidas de Emergencia" Binding="{Binding SalidasEmergencia}" />
+								<DataGridTextColumn Header="Servicios Médicos" Binding="{Binding ServiciosMedicos}" />
+								<DataGridTextColumn Header="Aseos" Binding="{Binding Aseos}" />
+								<DataGridTextColumn Header="Seguridad" Binding="{Binding Seguridad}" />
+								<DataGridTextColumn Header="Día y Hora Actuación" Binding="{Binding DiaYHoraActuacion}" />
+								<DataGridTemplateColumn Header="Fotos" Width="100">
+									<DataGridTemplateColumn.CellTemplate>
+										<DataTemplate>
+											<Image Width="32" Height="32" Source="{Binding FotoPath}" />
+										</DataTemplate>
+									</DataGridTemplateColumn.CellTemplate>
+								</DataGridTemplateColumn>
+							</DataGrid.Columns>
+						</DataGrid>
+						<TextBlock Text="Detalles del Escenario" Margin="10" FontWeight="Bold" />
+						<TextBox x:Name="txtDetallesEscenario" Margin="10" Height="100" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
+					</StackPanel>
+					<Button Content="Añadir Escenario" Grid.Column="0" Grid.Row="1" Click="AñadirEscenario_Click" Margin="5"/>
+				</Grid>
+			</TabItem>
+		</TabControl>
+	</Grid>
 </Window>

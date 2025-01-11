@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoIPo"
         mc:Ignorable="d"
-        Title="IntroducirDatosAdmin" Height="200" Width="400">
+        Title="IntroducirDatosAdmin" Height="200" Width="400"
+		WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
             <TextBlock HorizontalAlignment="Center" FontSize="16" FontWeight="Bold">Introduce el usuario y contraseña del admin</TextBlock>
