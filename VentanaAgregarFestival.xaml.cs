@@ -45,14 +45,14 @@ namespace ProyectoIPo
                 return;
             }
 
-            if (!decimal.TryParse(PrecioEstandarTextBox.Text?.Trim(), out decimal precioEstandar))
+            if (!int.TryParse(PrecioEstandarTextBox.Text?.Trim(), out int precioEstandar))
             {
                 MessageBox.Show("Por favor, ingrese un valor válido para Precio Estándar.",
                                 "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (!decimal.TryParse(PrecioVIPTextBox.Text?.Trim(), out decimal precioVIP))
+            if (!int.TryParse(PrecioVIPTextBox.Text?.Trim(), out int precioVIP))
             {
                 MessageBox.Show("Por favor, ingrese un valor válido para Precio VIP.",
                                 "Error", MessageBoxButton.OK, MessageBoxImage.Error);

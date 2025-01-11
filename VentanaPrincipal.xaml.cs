@@ -90,8 +90,8 @@ namespace ProyectoIPo
                     estado: "ACTIVO"
                 )
                  },
-                    PrecioEstandar = 60.00m,
-                    PrecioVIP = 150.00m
+                    PrecioEstandar = 60,
+                    PrecioVIP = 150
                 });
 
                 Festivales.Add(new Festival
@@ -132,8 +132,8 @@ namespace ProyectoIPo
                     estado: "ACTIVO"
                 )
                  },
-                    PrecioEstandar = 50.00m,
-                    PrecioVIP = 180.00m
+                    PrecioEstandar = 50,
+                    PrecioVIP = 180
                 });
 
                 Festivales.Add(new Festival
@@ -189,8 +189,8 @@ namespace ProyectoIPo
             estado: "ACTIVO"
         )
     },
-                    PrecioEstandar = 40.00m,
-                    PrecioVIP = 100.00m
+                    PrecioEstandar = 40,
+                    PrecioVIP = 100
                 });
 
                 Festivales.Add(new Festival
@@ -246,8 +246,8 @@ namespace ProyectoIPo
             estado: "ACTIVO"
         )
     },
-                    PrecioEstandar = 70.00m,
-                    PrecioVIP = 200.00m
+                    PrecioEstandar = 70,
+                    PrecioVIP = 200
                 });
 
                 Festivales.Add(new Festival
@@ -288,8 +288,8 @@ namespace ProyectoIPo
             estado: "ACTIVO"
         )
     },
-                    PrecioEstandar = 65.00m,
-                    PrecioVIP = 175.00m
+                    PrecioEstandar = 65,
+                    PrecioVIP = 175
                 });
             }
 
@@ -430,30 +430,33 @@ namespace ProyectoIPo
         {
             if (sender is TextBox tb)
             {
-                if (decimal.TryParse(tb.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal value))
+                // Intentar parsear el texto a entero usando la cultura invariante
+                // o puedes usar CultureInfo.CurrentCulture según tus necesidades.
+                if (int.TryParse(tb.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out int value))
                 {
-                    tb.Text = value.ToString("F2", CultureInfo.InvariantCulture);
+                    // Formatear el valor como entero (sin decimales)
+                    tb.Text = value.ToString("N0", CultureInfo.InvariantCulture);
 
                     if (tb.Tag is Festival festival)
                     {
-                        // Verifica qué precio se debe actualizar
-                        if (tb.Name == "PrecioEstandarTextBox") // Reemplaza con el nombre real del TextBox
+                        // Verificar qué TextBox se está editando y actualizar la propiedad correspondiente
+                        if (tb.Name == "PrecioEstandarTextBox")
                         {
                             festival.PrecioEstandar = value;
                         }
-                        else if (tb.Name == "PrecioVIPTextBox") // Reemplaza con el nombre real del TextBox
+                        else if (tb.Name == "PrecioVIPTextBox")
                         {
                             festival.PrecioVIP = value;
                         }
 
-                        // Actualiza el festival en la colección local
+                        // Actualizar el festival en la colección local
                         int index = Festivales.IndexOf(festival);
                         if (index >= 0)
                         {
                             Festivales[index] = festival;
                         }
 
-                        // Actualiza el festival en la colección de DatosApp
+                        // Actualizar el festival
                         index = DatosApp.Festivales.IndexOf(festival);
                         if (index >= 0)
                         {
