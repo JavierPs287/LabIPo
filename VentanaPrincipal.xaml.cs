@@ -41,58 +41,62 @@ namespace ProyectoIPo
                     Fecha = new DateTime(2027, 6, 15),
                     Ubicacion = "Madrid, España",
                     Artistas = new ObservableCollection<Artista>
-            {
-               new Artista(
-                    nombre: "Queen",
-                    generoMusical: "Rock",
-                    datosPersonales: "Información personal de Queen",
-                    correoElectronico: "contacto@queen.com",
-                    redesSociales: "X: @QueenOfficial",
-                    cache: "100,000,000",
-                    fechaFestival: new DateTime(2027, 6, 15),
-                    diaYHoraInicioActuacion: null,
-                    diaYHoraFinActuacion: null,
-                    escenario: null,
-                    alojamiento: "Hotel Beatriz",
-                    peticionEspecial: "nada",
-                    estado: "ACTIVO"
-                ),
-
-                new Artista(
-                    nombre: "Bon Jovi",
-                    generoMusical: "Rock",
-                    datosPersonales: "Información personal de Bon Jovi",
-                    correoElectronico: "info@bonjovi.com",
-                    redesSociales: "X: @BonJovi",
-                    cache: "90,000,000",
-                    fechaFestival: new DateTime(2027, 6, 15),
-                    diaYHoraInicioActuacion: null,
-                    diaYHoraFinActuacion: null,
-                    escenario: null,
-                    alojamiento: "Hotel Beatriz",
-                    peticionEspecial: "nada",
-                    estado: "ACTIVO"
-                ),
-
-                new Artista(
-                     nombre: "Guns N' Roses",
-                    generoMusical: "Rock",
-                    datosPersonales: "Información personal de Guns N' Roses",
-                    correoElectronico: "contact@gunsnroses.com",
-                    redesSociales: "X: @GunsNRoses",
-                    cache: "95,000,000",
-                    fechaFestival: new DateTime(2027, 6, 15),
-                    diaYHoraInicioActuacion: null,
-                    diaYHoraFinActuacion: null,
-                    escenario: null,
-                    alojamiento: "Hotel Beatriz",
-                    peticionEspecial: "nada",
-                    estado: "ACTIVO"
-                )
-                 },
+        {
+            new Artista(
+                nombre: "Queen",
+                generoMusical: "Rock",
+                datosPersonales: "Información personal de Queen",
+                correoElectronico: "contacto@queen.com",
+                redesSociales: "X: @QueenOfficial",
+                cache: "100,000,000",
+                fechaInicioFestival: new DateTime(2027, 6, 15),
+                duracionFestival: 6,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Beatriz",
+                peticionEspecial: "nada",
+                estado: "ACTIVO"
+            ),
+            new Artista(
+                nombre: "Bon Jovi",
+                generoMusical: "Rock",
+                datosPersonales: "Información personal de Bon Jovi",
+                correoElectronico: "info@bonjovi.com",
+                redesSociales: "X: @BonJovi",
+                cache: "90,000,000",
+                fechaInicioFestival: new DateTime(2027, 6, 15),
+                duracionFestival: 6,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Beatriz",
+                peticionEspecial: "nada",
+                estado: "ACTIVO"
+            ),
+            new Artista(
+                nombre: "Guns N' Roses",
+                generoMusical: "Rock",
+                datosPersonales: "Información personal de Guns N' Roses",
+                correoElectronico: "contact@gunsnroses.com",
+                redesSociales: "X: @GunsNRoses",
+                cache: "95,000,000",
+                fechaInicioFestival: new DateTime(2027, 6, 15),
+                duracionFestival: 6,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Beatriz",
+                peticionEspecial: "nada",
+                estado: "ACTIVO"
+            )
+        },
                     PrecioEstandar = 60,
                     PrecioVIP = 150,
-                    Duracion=6
+                    Duracion = 6
                 });
 
                 Festivales.Add(new Festival
@@ -101,41 +105,45 @@ namespace ProyectoIPo
                     Fecha = new DateTime(2024, 5, 20),
                     Ubicacion = "Barcelona, España",
                     Artistas = new ObservableCollection<Artista>
-            {
-                new Artista(
-                    nombre: "Miles Davis",
-                    generoMusical: "Jazz",
-                    datosPersonales: "Información personal de Miles Davis",
-                    correoElectronico: "milesdavis@jazz.com",
-                    redesSociales: "@MilesDavisJazz",
-                    cache: "100,000",
-                    fechaFestival: new DateTime(2024, 5, 20),
-                    diaYHoraInicioActuacion: null,
-                    diaYHoraFinActuacion: null,
-                    escenario: null,
-                    alojamiento: "Hotel Jazz",
-                    peticionEspecial: "Ninguna",
-                    estado: "ACTIVO"
-                ),
-                new Artista(
-                    nombre: "John Coltrane",
-                    generoMusical: "Jazz",
-                    datosPersonales: "Información personal de John Coltrane",
-                    correoElectronico: "coltrane@jazz.com",
-                    redesSociales: "@JohnColtraneJazz",
-                    cache: "100,000",
-                    fechaFestival: new DateTime(2024, 5, 20),
-                    diaYHoraInicioActuacion: null,
-                    diaYHoraFinActuacion: null,
-                    escenario: null,
-                    alojamiento: "Hotel Jazz",
-                    peticionEspecial: "Ninguna",
-                    estado: "ACTIVO"
-                )
-                 },
+        {
+            new Artista(
+                nombre: "Miles Davis",
+                generoMusical: "Jazz",
+                datosPersonales: "Información personal de Miles Davis",
+                correoElectronico: "milesdavis@jazz.com",
+                redesSociales: "@MilesDavisJazz",
+                cache: "100,000",
+                fechaInicioFestival: new DateTime(2024, 5, 20),
+                duracionFestival: 5,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Jazz",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO"
+            ),
+            new Artista(
+                nombre: "John Coltrane",
+                generoMusical: "Jazz",
+                datosPersonales: "Información personal de John Coltrane",
+                correoElectronico: "coltrane@jazz.com",
+                redesSociales: "@JohnColtraneJazz",
+                cache: "100,000",
+                fechaInicioFestival: new DateTime(2024, 5, 20),
+                duracionFestival: 5,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Jazz",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO"
+            )
+        },
                     PrecioEstandar = 50,
                     PrecioVIP = 180,
-                    Duracion=5
+                    Duracion = 5
                 });
 
                 Festivales.Add(new Festival
@@ -144,53 +152,59 @@ namespace ProyectoIPo
                     Fecha = new DateTime(2024, 12, 10),
                     Ubicacion = "Buenos Aires, Argentina",
                     Artistas = new ObservableCollection<Artista>
-            {
-                new Artista(
-            nombre: "Duki",
-            generoMusical: "Trap",
-            datosPersonales: "Información personal de Duki",
-            correoElectronico: "duki@trap.com",
-            redesSociales: "@DukiTrap",
-            cache: "100,000",
-                    fechaFestival: new DateTime(2024, 12, 10),
-            diaYHoraInicioActuacion: null,
-            diaYHoraFinActuacion: null,
-            escenario: null,
-            alojamiento: "Hotel Trap",
-            peticionEspecial: "Ninguna",
-            estado: "ACTIVO"
-        ),
-        new Artista(
-            nombre: "Bad Bunny",
-            generoMusical: "Trap",
-            datosPersonales: "Información personal de Bad Bunny",
-            correoElectronico: "badbunny@trap.com",
-            redesSociales: "@BadBunnyTrap",
-            cache: "100,000",
-                    fechaFestival: new DateTime(2024, 12, 10),
-            diaYHoraInicioActuacion: null,
-            diaYHoraFinActuacion: null,
-            escenario: null,
-            alojamiento: "Hotel Trap",
-            peticionEspecial: "Ninguna",
-            estado: "ACTIVO"
-        ),
-        new Artista(
-            nombre: "Eladio Carrión",
-            generoMusical: "Trap",
-            datosPersonales: "Información personal de Eladio Carrión",
-            correoElectronico: "eladio@trap.com",
-            redesSociales: "@EladioCarrion",
-            cache: "100,000",
-                    fechaFestival: new DateTime(2024, 12, 10),
-            diaYHoraInicioActuacion: null,
-            diaYHoraFinActuacion: null,
-            escenario: null,
-            alojamiento: "Hotel Trap",
-            peticionEspecial: "Ninguna",
-            estado: "ACTIVO"
-        )
-    },
+        {
+            new Artista(
+                nombre: "Duki",
+                generoMusical: "Trap",
+                datosPersonales: "Información personal de Duki",
+                correoElectronico: "duki@trap.com",
+                redesSociales: "@DukiTrap",
+                cache: "100,000",
+                fechaInicioFestival: new DateTime(2024, 12, 10),
+                duracionFestival: 4,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Trap",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO"
+            ),
+            new Artista(
+                nombre: "Bad Bunny",
+                generoMusical: "Trap",
+                datosPersonales: "Información personal de Bad Bunny",
+                correoElectronico: "badbunny@trap.com",
+                redesSociales: "@BadBunnyTrap",
+                cache: "100,000",
+                fechaInicioFestival: new DateTime(2024, 12, 10),
+                duracionFestival: 4,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Trap",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO"
+            ),
+            new Artista(
+                nombre: "Eladio Carrión",
+                generoMusical: "Trap",
+                datosPersonales: "Información personal de Eladio Carrión",
+                correoElectronico: "eladio@trap.com",
+                redesSociales: "@EladioCarrion",
+                cache: "100,000",
+                fechaInicioFestival: new DateTime(2024, 12, 10),
+                duracionFestival: 4,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Trap",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO"
+            )
+        },
                     PrecioEstandar = 40,
                     PrecioVIP = 100,
                     Duracion = 4
@@ -198,57 +212,46 @@ namespace ProyectoIPo
 
                 Festivales.Add(new Festival
                 {
-                    Nombre = "Reggaeton Party",
-                    Fecha = new DateTime(2025, 3, 10),
-                    Ubicacion = "Miami, USA",
+                    Nombre = "EDM Wonderland",
+                    Fecha = new DateTime(2025, 7, 18),
+                    Ubicacion = "Ibiza, España",
                     Artistas = new ObservableCollection<Artista>
-            {
-                new Artista(
-            nombre: "Daddy Yankee",
-            generoMusical: "Reggaeton",
-            datosPersonales: "Información personal de Daddy Yankee",
-            correoElectronico: "daddyyankee@reggaeton.com",
-            redesSociales: "@DaddyYankee",
-            cache: "100,000",
-                    fechaFestival: new DateTime(2025, 3, 10),
-            diaYHoraInicioActuacion: null,
-            diaYHoraFinActuacion: null,
-            escenario: null,
-            alojamiento: "Hotel Reggaeton",
-            peticionEspecial: "Ninguna",
-            estado: "ACTIVO"
-        ),
-        new Artista(
-            nombre: "Feid",
-            generoMusical: "Reggaeton",
-            datosPersonales: "Información personal de Feid",
-            correoElectronico: "feid@reggaeton.com",
-            redesSociales: "@Feid",
-            cache: "100,000",
-                    fechaFestival: new DateTime(2025, 3, 10),
-            diaYHoraInicioActuacion: null,
-            diaYHoraFinActuacion: null,
-            escenario: null,
-            alojamiento: "Hotel Reggaeton",
-            peticionEspecial: "Ninguna",
-            estado: "ACTIVO"
-        ),
-        new Artista(
-            nombre: "Anuel AA",
-            generoMusical: "Reggaeton",
-            datosPersonales: "Información personal de Anuel AA",
-            correoElectronico: "anuel@reggaeton.com",
-            redesSociales: "@AnuelAA",
-            cache: "100,000",
-                    fechaFestival: new DateTime(2025, 3, 10),
-            diaYHoraInicioActuacion: null,
-            diaYHoraFinActuacion: null,
-            escenario: null,
-            alojamiento: "Hotel Reggaeton",
-            peticionEspecial: "Ninguna",
-            estado: "ACTIVO"
-        )
-    },
+        {
+            new Artista(
+                nombre: "Martin Garrix",
+                generoMusical: "EDM",
+                datosPersonales: "Información personal de Martin Garrix",
+                correoElectronico: "martin@edm.com",
+                redesSociales: "@MartinGarrix",
+                cache: "150,000",
+                fechaInicioFestival: new DateTime(2025, 7, 18),
+                duracionFestival: 3,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Ibiza Beats",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO"
+            ),
+            new Artista(
+                nombre: "David Guetta",
+                generoMusical: "EDM",
+                datosPersonales: "Información personal de David Guetta",
+                correoElectronico: "david@edm.com",
+                redesSociales: "@DavidGuetta",
+                cache: "180,000",
+                fechaInicioFestival: new DateTime(2025, 7, 18),
+                duracionFestival: 3,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Ibiza Beats",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO"
+            )
+        },
                     PrecioEstandar = 70,
                     PrecioVIP = 200,
                     Duracion = 3
@@ -256,45 +259,49 @@ namespace ProyectoIPo
 
                 Festivales.Add(new Festival
                 {
-                    Nombre = "Electronic Beats",
-                    Fecha = new DateTime(2024, 7, 12),
-                    Ubicacion = "Ibiza, España",
+                    Nombre = "Pop Paradise",
+                    Fecha = new DateTime(2026, 8, 25),
+                    Ubicacion = "Miami, USA",
                     Artistas = new ObservableCollection<Artista>
-            {
-               new Artista(
-            nombre: "David Guetta",
-            generoMusical: "Electrónica",
-            datosPersonales: "Información personal de David Guetta",
-            correoElectronico: "davidguetta@electronica.com",
-            redesSociales: "@DavidGuetta",
-            cache: "100,000",
-                    fechaFestival: new DateTime(2024, 7, 12),
-            diaYHoraInicioActuacion: null,
-            diaYHoraFinActuacion: null,
-            escenario: null,
-            alojamiento: "Hotel Electrónica",
-            peticionEspecial: "Ninguna",
-            estado: "ACTIVO"
-        ),
-        new Artista(
-            nombre: "Calvin Harris",
-            generoMusical: "Electrónica",
-            datosPersonales: "Información personal de Calvin Harris",
-            correoElectronico: "calvinharris@electronica.com",
-            redesSociales: "@CalvinHarris",
-            cache: "100,000",
-                    fechaFestival: new DateTime(2024, 7, 12),
-            diaYHoraInicioActuacion: null,
-            diaYHoraFinActuacion: null,
-            escenario: null,
-            alojamiento: "Hotel Electrónica",
-            peticionEspecial: "Ninguna",
-            estado: "ACTIVO"
-        )
-    },
-                    PrecioEstandar = 65,
-                    PrecioVIP = 175,
-                    Duracion = 8
+        {
+            new Artista(
+                nombre: "Taylor Swift",
+                generoMusical: "Pop",
+                datosPersonales: "Información personal de Taylor Swift",
+                correoElectronico: "taylor@pop.com",
+                redesSociales: "@TaylorSwift",
+                cache: "300,000",
+                fechaInicioFestival: new DateTime(2026, 8, 25),
+                duracionFestival: 2,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Miami Luxe",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO"
+            ),
+            new Artista(
+                nombre: "Ariana Grande",
+                generoMusical: "Pop",
+                datosPersonales: "Información personal de Ariana Grande",
+                correoElectronico: "ariana@pop.com",
+                redesSociales: "@ArianaGrande",
+                cache: "250,000",
+                fechaInicioFestival: new DateTime(2026, 8, 25),
+                duracionFestival: 2,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Miami Luxe",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO"
+            )
+        },
+                    PrecioEstandar = 100,
+                    PrecioVIP = 300,
+                    Duracion = 2
                 });
             }
 
@@ -363,6 +370,8 @@ namespace ProyectoIPo
 
             if (festival != null)
             {
+                DatosApp.FechaFestivalAct = festival.Fecha;
+                DatosApp.DuracionFestivalAct= festival.Duracion;
                 var ventanaArtistas = new VentanaArtistas(festival);  // Pasando el festival directamente
                 ventanaArtistas.ShowDialog();
             }

@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
+using System;
 
 namespace ProyectoIPo
 {
@@ -48,15 +49,6 @@ namespace ProyectoIPo
                     case "txtCache":
                         textBox.Text = "Caché";
                         break;
-                    case "txtDiaHoraInicioActuacion":
-                        textBox.Text = "Día y Hora del Inicio de la Actuación";
-                        break;
-                    case "txtDiaHoraFinActuacion":
-                        textBox.Text = "Día y Hora del Fin de la Actuación";
-                        break;
-                    case "txtEscenario":
-                        textBox.Text = "Escenario";
-                        break;
                     case "txtLugarAlojamiento":
                         textBox.Text = "Lugar de Alojamiento";
                         break;
@@ -83,38 +75,36 @@ namespace ProyectoIPo
             // Crear el objeto NuevoArtista solo si las validaciones son correctas
             else
             {
+                // Convertir campos opcionales o "placeholders" a null si corresponden
+                string datosPersonales = string.IsNullOrWhiteSpace(txtDatosPersonales.Text) || txtDatosPersonales.Text == "Datos Personales" ? null : txtDatosPersonales.Text;
+                string correoElectronico = string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) || txtCorreoElectronico.Text == "Correo Electrónico" ? null : txtCorreoElectronico.Text;
+                string redesSociales = string.IsNullOrWhiteSpace(txtRedesSociales.Text) || txtRedesSociales.Text == "Redes Sociales" ? null : txtRedesSociales.Text;
+                string cache = string.IsNullOrWhiteSpace(txtCache.Text) || txtCache.Text == "Caché" ? null : txtCache.Text;
+                string alojamiento = string.IsNullOrWhiteSpace(txtLugarAlojamiento.Text) || txtLugarAlojamiento.Text == "Lugar de Alojamiento" ? null : txtLugarAlojamiento.Text;
+                string peticionEspecial = string.IsNullOrWhiteSpace(txtPeticionEspecial.Text) || txtPeticionEspecial.Text == "Petición Especial" ? null : txtPeticionEspecial.Text;
+
+                // Obtener la fecha de inicio del festival y su duración (se hereda)
+                DateTime? fechaInicioFestival = DatosApp.FechaFestivalAct; // Supongamos que es un método que lo retorna
+                int duracionFestival = DatosApp.DuracionFestivalAct; // Supongamos que es un método que lo retorna
+
+                // Crear el objeto Artista
                 NuevoArtista = new Artista(
                     txtNombreArtista.Text,
                     txtGeneroMusical.Text,
-                    string.IsNullOrWhiteSpace(txtDatosPersonales.Text) || txtDatosPersonales.Text == "Datos Personales" ? null : txtDatosPersonales.Text,
-                    string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) || txtCorreoElectronico.Text == "Correo Electrónico" ? null : txtCorreoElectronico.Text,
-                    string.IsNullOrWhiteSpace(txtRedesSociales.Text) || txtRedesSociales.Text == "Redes Sociales" ? null : txtRedesSociales.Text,
-                    string.IsNullOrWhiteSpace(txtCache.Text) || txtCache.Text == "Caché" ? null : txtCache.Text,
+                    datosPersonales,
+                    correoElectronico,
+                    redesSociales,
+                    cache,
+                    fechaInicioFestival,
+                    duracionFestival,
                     null,
-                    null,  // DiaYHoraInicioActuacion
-                    null,  // DiaYHoraFinActuacion
-                    string.IsNullOrWhiteSpace(txtEscenario.Text) || txtEscenario.Text == "Escenario" ? null : txtEscenario.Text,
-                    string.IsNullOrWhiteSpace(txtLugarAlojamiento.Text) || txtLugarAlojamiento.Text == "Lugar de Alojamiento" ? null : txtLugarAlojamiento.Text,
-                    string.IsNullOrWhiteSpace(txtPeticionEspecial.Text) || txtPeticionEspecial.Text == "Petición Especial" ? null : txtPeticionEspecial.Text,
-                    cbEstado.SelectedItem.ToString() // Estado
+                    null,
+                    null,
+                    null,
+                    alojamiento,
+                    peticionEspecial,
+                    cbEstado.SelectedItem?.ToString() // Estado
                 );
-
-
-                // Manejo especial para grupos
-                if (cbTipoArtista.SelectedItem != null && cbTipoArtista.SelectedItem.ToString() == "Grupo")
-                {
-                    int cantidadMiembros;
-                    if (int.TryParse(txtCantidadMiembros.Text, out cantidadMiembros) && cantidadMiembros > 0)
-                    {
-                        // Aquí puedes implementar lógica para agregar miembros del grupo
-                        MessageBox.Show($"Grupo creado con {cantidadMiembros} miembros. Implementa lógica adicional aquí.", "Información");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Por favor, ingrese un número válido para la cantidad de miembros.", "Error");
-                        return;
-                    }
-                }
 
                 DialogResult = true; // Todo está correcto, cerramos la ventana
                 Close();
@@ -124,18 +114,6 @@ namespace ProyectoIPo
         private void cbEstado_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Manejar cambios en la selección de estado si es necesario
-        }
-
-        private void cbTipoArtista_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cbTipoArtista.SelectedItem?.ToString() == "Grupo")
-            {
-                spGrupo.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                spGrupo.Visibility = Visibility.Collapsed;
-            }
         }
     }
 }

@@ -137,13 +137,16 @@ namespace ProyectoIPo
         public string Alojamiento { get; set; }
         public string PeticionEspecial { get; set; }
         public string Estado { get; set; }
-        public DateTime? FechaFestival { get; set; }
+        public DateTime? FechaInicioFestival { get; set; }
 
-        public DateTime? DiaYHoraInicioActuacion { get; set; }
-        public DateTime? DiaYHoraFinActuacion { get; set; }
+        public DateTime? DiaActuacion { get; set; }
+        public TimeSpan? HoraInicio {  get; set; }
+        public TimeSpan? HoraFin { get; set; }
+        public int DuracionFestival { get; set; }
+
 
         // Propiedad calculada que determina si la actuación ha pasado
-        public bool EsPasado => FechaFestival < DateTime.Now;
+        public bool EsPasado => FechaInicioFestival < DateTime.Now;
 
         // Lista de estados disponibles para el artista dependiendo de si su actuación ya pasó
         public IEnumerable<string> EstadosDisponibles
@@ -175,8 +178,9 @@ namespace ProyectoIPo
                     // Si el estado no es "ACTIVO" o "PASADO", borra las fechas de inicio y fin
                     if (Estado != "ACTIVO" && Estado != "PASADO")
                     {
-                        DiaYHoraInicioActuacion = null;
-                        DiaYHoraFinActuacion = null;
+                        DiaActuacion = null;
+                        HoraInicio = null;
+                        HoraFin = null;
                     }
                 }
             }
@@ -184,8 +188,8 @@ namespace ProyectoIPo
 
         // Constructor
         public Artista(string nombre, string generoMusical, string datosPersonales,
-            string correoElectronico, string redesSociales, string cache, DateTime? fechaFestival,
-            DateTime? diaYHoraInicioActuacion, DateTime? diaYHoraFinActuacion, string escenario,
+            string correoElectronico, string redesSociales, string cache, DateTime? fechaInicioFestival, int duracionFestival,
+            DateTime? diaActuacion, TimeSpan? horaInicio, TimeSpan? horaFin, string escenario,
             string alojamiento, string peticionEspecial, string estado)
         {
             Nombre = nombre;
@@ -194,9 +198,11 @@ namespace ProyectoIPo
             CorreoElectronico = correoElectronico;
             RedesSociales = redesSociales;
             Cache = cache;
-            FechaFestival = fechaFestival;
-            DiaYHoraInicioActuacion = diaYHoraInicioActuacion;
-            DiaYHoraFinActuacion = diaYHoraFinActuacion;
+            FechaInicioFestival = fechaInicioFestival;
+            DuracionFestival = duracionFestival;
+            DiaActuacion = diaActuacion;
+            HoraInicio= horaInicio;
+            HoraFin = horaFin;
             Escenario = escenario;
             Alojamiento = alojamiento;
             PeticionEspecial = peticionEspecial;
@@ -244,6 +250,8 @@ namespace ProyectoIPo
         // Diccionario estático para almacenar usuarios y contraseñas
         public static Dictionary<string, string> UsuariosYContraseñas = new Dictionary<string, string>();
         public static ObservableCollection<Festival> Festivales { get; set; } = new ObservableCollection<Festival>();
+        public static DateTime? FechaFestivalAct {  get; set; }
+        public static int DuracionFestivalAct {  get; set; }
     }
 
     public class DateTimeToDateConverter : IValueConverter
