@@ -84,7 +84,7 @@ namespace ProyectoIPo
                 string peticionEspecial = string.IsNullOrWhiteSpace(txtPeticionEspecial.Text) || txtPeticionEspecial.Text == "Petición Especial" ? null : txtPeticionEspecial.Text;
 
                 // Obtener la fecha de inicio del festival y su duración (se hereda)
-                DateTime? fechaInicioFestival = DatosApp.FechaFestivalAct; // Supongamos que es un método que lo retorna
+                DateTime fechaInicioFestival = DatosApp.FechaFestivalAct; // Supongamos que es un método que lo retorna
                 int duracionFestival = DatosApp.DuracionFestivalAct; // Supongamos que es un método que lo retorna
 
                 // Crear el objeto Artista

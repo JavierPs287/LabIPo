@@ -374,6 +374,11 @@ namespace ProyectoIPo
                 DatosApp.DuracionFestivalAct= festival.Duracion;
                 foreach (var artista in festival.Artistas)
                 {
+                    if (festival.Estado == "APLAZADO" || festival.Estado == "PASADO" || festival.Estado == "CANCELADO")
+                    {
+                        artista.Estado = festival.Estado;
+                    }
+
                     if (festival.Fecha != artista.FechaInicioFestival||festival.Duracion!=artista.DuracionFestival)
                     {
                         artista.FechaInicioFestival = festival.Fecha;

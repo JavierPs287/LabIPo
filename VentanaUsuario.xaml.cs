@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace ProyectoIPo
@@ -17,6 +18,14 @@ namespace ProyectoIPo
             this.profileImagePath = profileImagePath;
             this.lastAccessDate = lastAccessDate;
             MostrarDatosUsuario();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) // Verifica si se presionó la tecla Enter
+            {
+                OnContinuarClick(sender, null);
+            }
         }
 
         private void MostrarDatosUsuario()

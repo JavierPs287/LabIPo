@@ -40,6 +40,8 @@
                             <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
                             <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
                             <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
+                            <DataGridTextColumn Header="Fecha Inicio Festival" Binding="{Binding FechaInicioFestival}" />
+                            <DataGridTextColumn Header="Duracion Festival" Binding="{Binding DuracionFestival}" />
 
                             <!-- Columna para el Día de Actuación -->
                             <DataGridTemplateColumn Header="Día de Actuación">
@@ -108,15 +110,14 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
-                                            <ComboBox.Items>
-                                                <sys:String>ACTIVO</sys:String>
-                                                <sys:String>APLAZADO</sys:String>
-                                                <sys:String>CANCELADO</sys:String>
-                                            </ComboBox.Items>
+                                            <ComboBox.ItemsSource>
+                                                <Binding Path="EstadosDisponibles" />
+                                            </ComboBox.ItemsSource>
                                         </ComboBox>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+
                         </DataGrid.Columns>
 
                     </DataGrid>
