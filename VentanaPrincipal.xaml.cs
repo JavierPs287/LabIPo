@@ -372,6 +372,18 @@ namespace ProyectoIPo
             {
                 DatosApp.FechaFestivalAct = festival.Fecha;
                 DatosApp.DuracionFestivalAct= festival.Duracion;
+                foreach (var artista in festival.Artistas)
+                {
+                    if (festival.Fecha != artista.FechaInicioFestival||festival.Duracion!=artista.DuracionFestival)
+                    {
+                        artista.FechaInicioFestival = festival.Fecha;
+                        artista.DuracionFestival=festival.Duracion;
+                        artista.DiaActuacion = null;
+                        artista.HoraInicio = null;
+                        artista.HoraFin = null;
+                    }
+                }
+
                 var ventanaArtistas = new VentanaArtistas(festival);  // Pasando el festival directamente
                 ventanaArtistas.ShowDialog();
             }

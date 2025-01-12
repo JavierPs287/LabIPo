@@ -32,75 +32,94 @@
                         HorizontalAlignment="Stretch"
                         ColumnWidth="*">
 
-						<DataGrid.Columns>
-							<!-- Columnas para los artistas -->
-							<DataGridTextColumn Header="Nombre del Artista" Binding="{Binding Nombre}" />
-							<DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" />
-							<DataGridTextColumn Header="Datos Personales" Binding="{Binding DatosPersonales}" />
-							<DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
-							<DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
-							<DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
-							<DataGridTemplateColumn Header="Día y Hora Inicio Actuación">
-								<DataGridTemplateColumn.CellTemplate>
-									<DataTemplate>
-										<StackPanel>
-											<DatePicker SelectedDate="{Binding DiaYHoraInicioActuacion, Converter={StaticResource DateTimeToDateConverter}}"/>
-											<ComboBox SelectedItem="{Binding HoraInicioActuacion}">
-												<ComboBox.Items>
-													<sys:String>00:00</sys:String>
-													<sys:String>01:00</sys:String>
-													<sys:String>02:00</sys:String>
-													<sys:String>03:00</sys:String>
-													<sys:String>04:00</sys:String>
-													<sys:String>05:00</sys:String>
-													<!-- Agregar más horas según lo necesario -->
-												</ComboBox.Items>
-											</ComboBox>
-										</StackPanel>
-									</DataTemplate>
-								</DataGridTemplateColumn.CellTemplate>
-							</DataGridTemplateColumn>
+                        <DataGrid.Columns>
+                            <!-- Columnas para los artistas -->
+                            <DataGridTextColumn Header="Nombre del Artista" Binding="{Binding Nombre}" />
+                            <DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" />
+                            <DataGridTextColumn Header="Datos Personales" Binding="{Binding DatosPersonales}" />
+                            <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
+                            <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
+                            <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
 
-							<DataGridTemplateColumn Header="Día y Hora Fin Actuación">
-								<DataGridTemplateColumn.CellTemplate>
-									<DataTemplate>
-										<StackPanel>
-											<DatePicker SelectedDate="{Binding DiaYHoraFinActuacion, Converter={StaticResource DateTimeToDateConverter}}"/>
-											<ComboBox SelectedItem="{Binding HoraFinActuacion}">
-												<ComboBox.Items>
-													<sys:String>00:00</sys:String>
-													<sys:String>01:00</sys:String>
-													<sys:String>02:00</sys:String>
-													<sys:String>03:00</sys:String>
-													<sys:String>04:00</sys:String>
-													<sys:String>05:00</sys:String>
-													<!-- Agregar más horas según lo necesario -->
-												</ComboBox.Items>
-											</ComboBox>
-										</StackPanel>
-									</DataTemplate>
-								</DataGridTemplateColumn.CellTemplate>
-							</DataGridTemplateColumn>
+                            <!-- Columna para el Día de Actuación -->
+                            <DataGridTemplateColumn Header="Día de Actuación">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding DiaActuacion}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
-							<DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" />
-							<DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding Alojamiento}" />
-							<DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" />
+                            <!-- Columna para la Hora de Inicio -->
+                            <DataGridTemplateColumn Header="Hora de Inicio">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox SelectedItem="{Binding HoraInicio}">
+                                            <ComboBox.Items>
+                                                <sys:String>12:00</sys:String>
+                                                <sys:String>13:00</sys:String>
+                                                <sys:String>14:00</sys:String>
+                                                <sys:String>15:00</sys:String>
+                                                <sys:String>16:00</sys:String>
+                                                <sys:String>17:00</sys:String>
+                                                <sys:String>18:00</sys:String>
+                                                <sys:String>19:00</sys:String>
+                                                <sys:String>20:00</sys:String>
+                                                <sys:String>21:00</sys:String>
+                                                <sys:String>22:00</sys:String>
+                                                <sys:String>23:00</sys:String>
+                                                <sys:String>00:00</sys:String>
+                                            </ComboBox.Items>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
-							<DataGridTemplateColumn Header="Estado" Width="100">
-								<DataGridTemplateColumn.CellTemplate>
-									<DataTemplate>
-										<ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
-											<ComboBox.Items>
-												<sys:String>ACTIVO</sys:String>
-												<sys:String>APLAZADO</sys:String>
-												<sys:String>CANCELADO</sys:String>
-											</ComboBox.Items>
-										</ComboBox>
-									</DataTemplate>
-								</DataGridTemplateColumn.CellTemplate>
-							</DataGridTemplateColumn>
-						</DataGrid.Columns>
-					</DataGrid>
+                            <!-- Columna para la Hora de Fin -->
+                            <DataGridTemplateColumn Header="Hora de Fin">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox SelectedItem="{Binding HoraFin}">
+                                            <ComboBox.Items>
+                                                <sys:String>12:00</sys:String>
+                                                <sys:String>13:00</sys:String>
+                                                <sys:String>14:00</sys:String>
+                                                <sys:String>15:00</sys:String>
+                                                <sys:String>16:00</sys:String>
+                                                <sys:String>17:00</sys:String>
+                                                <sys:String>18:00</sys:String>
+                                                <sys:String>19:00</sys:String>
+                                                <sys:String>20:00</sys:String>
+                                                <sys:String>21:00</sys:String>
+                                                <sys:String>22:00</sys:String>
+                                                <sys:String>23:00</sys:String>
+                                                <sys:String>00:00</sys:String>
+                                            </ComboBox.Items>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" />
+                            <DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding Alojamiento}" />
+                            <DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" />
+
+                            <DataGridTemplateColumn Header="Estado" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
+                                            <ComboBox.Items>
+                                                <sys:String>ACTIVO</sys:String>
+                                                <sys:String>APLAZADO</sys:String>
+                                                <sys:String>CANCELADO</sys:String>
+                                            </ComboBox.Items>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
 
 					<!-- StackPanel para los botones -->
 					<StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5" Grid.Row="1">
