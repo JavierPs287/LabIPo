@@ -57,7 +57,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Beatriz",
                 peticionEspecial: "nada",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/Queen.jpg"
             ),
             new Artista(
                 nombre: "Bon Jovi",
@@ -74,7 +75,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Beatriz",
                 peticionEspecial: "nada",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/Bon Jovi.jpg"
             ),
             new Artista(
                 nombre: "Guns N' Roses",
@@ -91,7 +93,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Beatriz",
                 peticionEspecial: "nada",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/Guns N' Roses.jpg"
             )
         },
                     PrecioEstandar = 60,
@@ -121,7 +124,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Jazz",
                 peticionEspecial: "Ninguna",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/MilesDavis.jpg"
             ),
             new Artista(
                 nombre: "John Coltrane",
@@ -138,7 +142,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Jazz",
                 peticionEspecial: "Ninguna",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/John Coltrane.jpg"
             )
         },
                     PrecioEstandar = 50,
@@ -168,7 +173,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Trap",
                 peticionEspecial: "Ninguna",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/Duki.jpg"
             ),
             new Artista(
                 nombre: "Bad Bunny",
@@ -185,7 +191,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Trap",
                 peticionEspecial: "Ninguna",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/Bad Bunny.jpg"
             ),
             new Artista(
                 nombre: "Eladio Carrión",
@@ -202,7 +209,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Trap",
                 peticionEspecial: "Ninguna",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/Eladio Carrión.jpg"
             )
         },
                     PrecioEstandar = 40,
@@ -232,7 +240,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Ibiza Beats",
                 peticionEspecial: "Ninguna",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"
             ),
             new Artista(
                 nombre: "David Guetta",
@@ -249,7 +258,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Ibiza Beats",
                 peticionEspecial: "Ninguna",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/David Guetta.jpg"
             )
         },
                     PrecioEstandar = 70,
@@ -279,7 +289,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Miami Luxe",
                 peticionEspecial: "Ninguna",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"
             ),
             new Artista(
                 nombre: "Ariana Grande",
@@ -296,7 +307,8 @@ namespace ProyectoIPo
                 escenario: null,
                 alojamiento: "Hotel Miami Luxe",
                 peticionEspecial: "Ninguna",
-                estado: "ACTIVO"
+                estado: "ACTIVO",
+                logoPath: "Recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"
             )
         },
                     PrecioEstandar = 100,

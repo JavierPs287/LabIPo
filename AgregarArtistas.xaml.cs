@@ -103,7 +103,8 @@ namespace ProyectoIPo
                     null,
                     alojamiento,
                     peticionEspecial,
-                    "ACTIVO" // Estado
+                    "ACTIVO", // Estado
+                    ""
                 );
 
                 DialogResult = true; // Todo está correcto, cerramos la ventana

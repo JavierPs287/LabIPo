@@ -157,7 +157,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg" />
+    <EmbeddedResource Include="Recursos\user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Recursos\Anuel AA.jpg">

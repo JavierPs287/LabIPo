@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace ProyectoIPo
 {
@@ -33,11 +34,13 @@ namespace ProyectoIPo
                                    .Select(g => g.First())
             );
 
-            // Asignar los datos a las vistas de la UI
-            dataGridArtistas.ItemsSource = Artistas;
+
+            ArtistasListBox.ItemsSource= Artistas;
             EscenariosListBox.ItemsSource = Escenarios;
             EscenariosListBox.SelectionChanged += EscenariosListBox_SelectionChanged;
+
         }
+
 
         private void AñadirArtista_Click(object sender, RoutedEventArgs e)
         {
@@ -59,6 +62,15 @@ namespace ProyectoIPo
                 }
             }
         }
+
+        private void ArtistasListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (ArtistasListBox.SelectedItem is Artista artistaSeleccionado)
+            {
+                dataGridArtistas.ItemsSource = new List<Artista> { artistaSeleccionado };
+            }
+        }
+
 
         private void EscenariosListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {

@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Windows.Media.Imaging;
 
 namespace ProyectoIPo
 {
@@ -143,6 +144,7 @@ namespace ProyectoIPo
         public TimeSpan? HoraInicio { get; set; }
         public TimeSpan? HoraFin { get; set; }
         public int DuracionFestival { get; set; }
+        public string LogoPath {  get; set; }
 
         // Propiedad calculada que determina si la actuación ha pasado
         public bool EsPasado
@@ -214,7 +216,7 @@ namespace ProyectoIPo
         public Artista(string nombre, string generoMusical, string datosPersonales,
             string correoElectronico, string redesSociales, string cache, DateTime fechaInicioFestival, int duracionFestival,
             DateTime? diaActuacion, TimeSpan? horaInicio, TimeSpan? horaFin, string escenario,
-            string alojamiento, string peticionEspecial, string estado)
+            string alojamiento, string peticionEspecial, string estado, string logoPath)
         {
             Nombre = nombre;
             GeneroMusical = generoMusical;
@@ -231,6 +233,7 @@ namespace ProyectoIPo
             Alojamiento = alojamiento;
             PeticionEspecial = peticionEspecial;
             Estado = estado;
+            LogoPath = logoPath;
         }
 
         protected void OnPropertyChanged(string propertyName) =>
