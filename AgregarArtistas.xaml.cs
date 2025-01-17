@@ -103,7 +103,7 @@ namespace ProyectoIPo
                     null,
                     alojamiento,
                     peticionEspecial,
-                    cbEstado.SelectedItem?.ToString() // Estado
+                    "ACTIVO" // Estado
                 );
 
                 DialogResult = true; // Todo está correcto, cerramos la ventana

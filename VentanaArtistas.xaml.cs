@@ -50,6 +50,8 @@ namespace ProyectoIPo
                     // Añadiendo el nuevo artista a la lista y al estado del festival
                     Artistas.Add(nuevoArtista);
                     festivalSeleccionado.Artistas.Add(nuevoArtista);
+                    DatosApp.Festivales.Remove(festivalSeleccionado);
+                    DatosApp.Festivales.Add(festivalSeleccionado);
                 }
                 else
                 {

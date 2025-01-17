@@ -17,18 +17,6 @@
             <TextBox x:Name="txtLugarAlojamiento" Text="Lugar de Alojamiento" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtPeticionEspecial" Text="Petición Especial" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
 
-            <TextBlock Text="Estado" Width="130"/>
-
-            <!-- Campo Estado -->
-            <ComboBox x:Name="cbEstado" Margin="10" SelectionChanged="cbEstado_SelectionChanged">
-                <ComboBox.Items>
-                    <sys:String>ACTIVO</sys:String>
-                    <sys:String>APLAZADO</sys:String>
-                    <sys:String>CANCELADO</sys:String>
-                    <sys:String>PASADO</sys:String>
-                </ComboBox.Items>
-            </ComboBox>
-
             <!-- Campos adicionales para grupo -->
             <StackPanel x:Name="spGrupo" Visibility="Collapsed">
                 <TextBox x:Name="txtCantidadMiembros" Text="Cantidad de Miembros" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
