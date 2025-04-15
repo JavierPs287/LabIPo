@@ -157,55 +157,55 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Recursos\user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg">
+    <Resource Include="Recursos\user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Recursos\Anuel AA.jpg">
+    <Resource Include="Recursos\Anuel AA.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\Bad Bunny.jpg">
+    </Resource>
+    <Resource Include="Recursos\Bad Bunny.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\Bon Jovi.jpg">
+    </Resource>
+    <Resource Include="Recursos\Bon Jovi.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\Calvin Harris.jpg">
+    </Resource>
+    <Resource Include="Recursos\Calvin Harris.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\Daddy Yankee.jpg">
+    </Resource>
+    <Resource Include="Recursos\Daddy Yankee.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\David Guetta.jpg">
+    </Resource>
+    <Resource Include="Recursos\David Guetta.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\Duki.jpg">
+    </Resource>
+    <Resource Include="Recursos\Duki.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\Eladio Carrión.jpg">
+    </Resource>
+    <Resource Include="Recursos\Eladio Carrión.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\Feid.jpg">
+    </Resource>
+    <Resource Include="Recursos\Feid.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\Guns N%27 Roses.jpg">
+    </Resource>
+    <Resource Include="Recursos\Guns N%27 Roses.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\jbalvin.jpg">
+    </Resource>
+    <Resource Include="Recursos\jbalvin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\John Coltrane.jpg">
+    </Resource>
+    <Resource Include="Recursos\John Coltrane.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Recursos\Miles Davis.jpg">
+    </Resource>
+    <Resource Include="Recursos\Miles Davis.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Recursos\Queen.jpg">
+    <Resource Include="Recursos\Queen.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
