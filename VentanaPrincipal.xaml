@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:ProyectoIPo"
-        Title="Gestión de Festivales" Height="auto" Width="auto"
+        Title="Gestión de Festivales" Height="Auto" Width="Auto"
 		WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <!-- El conversor DateVisibilityConverter definido aquí -->
@@ -13,7 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -38,10 +38,10 @@
 
         <DataGrid x:Name="FestivalDataGrid" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Festivales}" IsReadOnly="False" SelectionMode="Single" Margin="10" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
-                <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}" Width="*"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="Auto"/>
+                <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}" Width="Auto"/>
 
-                <DataGridTemplateColumn Header="Precio Estándar" Width="*">
+                <DataGridTemplateColumn Header="Precio Estándar" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding PrecioEstandar}"/>
@@ -54,7 +54,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Precio VIP" Width="*">
+                <DataGridTemplateColumn Header="Precio VIP" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding PrecioVIP}"/>
@@ -67,7 +67,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Fecha" Width="auto">
+                <DataGridTemplateColumn Header="Fecha" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Fecha, StringFormat='dd/MM/yyyy'}"/>
@@ -97,7 +97,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Estado" Width="auto">
+                <DataGridTemplateColumn Header="Estado" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox 

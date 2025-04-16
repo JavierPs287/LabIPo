@@ -104,6 +104,7 @@ namespace ProyectoIPo
                     alojamiento,
                     peticionEspecial,
                     "ACTIVO", // Estado
+                    "",
                     ""
                 );
 

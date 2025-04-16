@@ -122,6 +122,21 @@ namespace ProyectoIPo
                 OnPropertyChanged(nameof(ArtistasTexto));
             }
         }
+        private Artista artistaSeleccionado;
+        public Artista ArtistaSeleccionado
+        {
+            get => artistaSeleccionado;
+            set
+            {
+                if (artistaSeleccionado != value)
+                {
+                    artistaSeleccionado = value;
+                    OnPropertyChanged(nameof(ArtistaSeleccionado));  // Esto notifica el cambio del artista seleccionado.
+                    OnPropertyChanged(nameof(Artista.DetalleArtistas));     // Esto notifica el cambio de los detalles del artista.
+                }
+            }
+        }
+
     }
 
 
@@ -146,6 +161,7 @@ namespace ProyectoIPo
         public int DuracionFestival { get; set; }
         public string LogoPath {  get; set; }
 
+        public string DetalleArtistas { get; set; }
         // Propiedad calculada que determina si la actuación ha pasado
         public bool EsPasado
         {
@@ -216,7 +232,7 @@ namespace ProyectoIPo
         public Artista(string nombre, string generoMusical, string datosPersonales,
             string correoElectronico, string redesSociales, string cache, DateTime fechaInicioFestival, int duracionFestival,
             DateTime? diaActuacion, TimeSpan? horaInicio, TimeSpan? horaFin, string escenario,
-            string alojamiento, string peticionEspecial, string estado, string logoPath)
+            string alojamiento, string peticionEspecial, string estado, string logoPath, string detalleArtistas)
         {
             Nombre = nombre;
             GeneroMusical = generoMusical;
@@ -234,6 +250,7 @@ namespace ProyectoIPo
             PeticionEspecial = peticionEspecial;
             Estado = estado;
             LogoPath = logoPath;
+            DetalleArtistas = detalleArtistas;
         }
 
         protected void OnPropertyChanged(string propertyName) =>
