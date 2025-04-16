@@ -38,18 +38,18 @@
 
         <DataGrid x:Name="FestivalDataGrid" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Festivales}" IsReadOnly="False" SelectionMode="Single" Margin="10" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="Auto"/>
-                <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}" Width="Auto"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}" Width="Auto" IsReadOnly="True"/>
 
                 <DataGridTemplateColumn Header="Precio Estándar" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding PrecioEstandar}"/>
+                            <TextBlock Text="{Binding PrecioEstandar}" IsHitTestVisible="False" Focusable="False" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <TextBox Name="PrecioEstandarTextBox" Text="{Binding PrecioEstandar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValor" LostFocus="NumeroValido"/>
+                            <TextBox Name="PrecioEstandarTextBox" Text="{Binding PrecioEstandar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValor" LostFocus="NumeroValido" IsHitTestVisible="False" Focusable="False"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
@@ -57,12 +57,12 @@
                 <DataGridTemplateColumn Header="Precio VIP" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding PrecioVIP}"/>
+                            <TextBlock Text="{Binding PrecioVIP}" IsHitTestVisible="False" Focusable="False"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <TextBox Name="PrecioVIPTextBox" Text="{Binding PrecioVIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValor" LostFocus="NumeroValido"/>
+                            <TextBox Name="PrecioVIPTextBox" Text="{Binding PrecioVIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValor" LostFocus="NumeroValido" IsHitTestVisible="False" Focusable="False"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
@@ -70,7 +70,7 @@
                 <DataGridTemplateColumn Header="Fecha" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Fecha, StringFormat='dd/MM/yyyy'}"/>
+                            <TextBlock Text="{Binding Fecha, StringFormat='dd/MM/yyyy'}" IsHitTestVisible="False" Focusable="False"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 
@@ -87,12 +87,12 @@
                 <DataGridTemplateColumn Header="Duración" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Duracion}"/>
+                            <TextBlock Text="{Binding Duracion}" IsHitTestVisible="False" Focusable="False"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <TextBox Name="PrecioVIPTextBox" Text="{Binding Duracion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValor" LostFocus="NumeroValido"/>
+                            <TextBox Name="PrecioVIPTextBox" Text="{Binding Duracion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" GotFocus="AlmacenarValor" LostFocus="NumeroValido" IsHitTestVisible="False" Focusable="False"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>

@@ -13,7 +13,7 @@ namespace ProyectoIPo
         public ObservableCollection<Artista> Artistas { get; set; }
         public ObservableCollection<Escenario> Escenarios { get; set; } = new ObservableCollection<Escenario>();
 
-  
+
 
 
 
@@ -26,45 +26,27 @@ namespace ProyectoIPo
 
             // Agrupar solo los artistas del festival seleccionado
             Artistas = new ObservableCollection<Artista>(festival.Artistas);
-            dataGridArtistas.ItemsSource = Artistas;
+            ArtistasListBox.ItemsSource = Artistas; // Lista básica de artistas
+
+            ArtistasListBox.SelectionChanged += ArtistasListBox_SelectionChanged; // Evento para manejar la selección
+
             DataContext = this;
 
             // Verificación de que la colección Artistas no está vacía
             if (Artistas == null || Artistas.Count == 0)
             {
-
                 MessageBox.Show("No hay artistas disponibles para este festival.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            else
-            {
 
-                // Agrupando escenarios sin duplicados para este festival
-                Escenarios = new ObservableCollection<Escenario>(
-                    festival.Escenarios.GroupBy(e => e.Nombre)
-                                       .Select(g => g.First())
-                );
+            // Agrupando escenarios sin duplicados para este festival
+            Escenarios = new ObservableCollection<Escenario>(
+                festival.Escenarios.GroupBy(e => e.Nombre)
+                                   .Select(g => g.First())
+            );
 
-                // para cada Artista, se asigna su información para seleccionar y mostrar cada uno su información
-                foreach (var artista in Artistas)
-                {
-                    artista.Nombre = artista.Nombre;
-                    artista.GeneroMusical = artista.GeneroMusical;
-                    artista.DatosPersonales = artista.DatosPersonales;
-                    artista.CorreoElectronico = artista.CorreoElectronico;
-                    artista.RedesSociales = artista.RedesSociales;
-                    artista.Cache = artista.Cache;
-                    artista.FechaInicioFestival = festival.Fecha;
-                    artista.DuracionFestival = festival.Duracion;
-                }
-                // ahora la información metela en cada listBox
-
-
-
-                ArtistasListBox.ItemsSource = Artistas;
-                EscenariosListBox.ItemsSource = Escenarios;
-                EscenariosListBox.SelectionChanged += EscenariosListBox_SelectionChanged;
-            }
+            EscenariosListBox.ItemsSource = Escenarios;
+            EscenariosListBox.SelectionChanged += EscenariosListBox_SelectionChanged;
         }
 
 
@@ -133,5 +115,6 @@ namespace ProyectoIPo
                 }
             }
         }
+
     }
 }
