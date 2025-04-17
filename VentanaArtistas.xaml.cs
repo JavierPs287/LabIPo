@@ -13,12 +13,6 @@ namespace ProyectoIPo
         public ObservableCollection<Artista> Artistas { get; set; }
         public ObservableCollection<Escenario> Escenarios { get; set; } = new ObservableCollection<Escenario>();
 
-
-
-
-
-
-
         public VentanaArtistas(Festival festival)
         {
             InitializeComponent();
@@ -26,29 +20,38 @@ namespace ProyectoIPo
 
             // Agrupar solo los artistas del festival seleccionado
             Artistas = new ObservableCollection<Artista>(festival.Artistas);
-            ArtistasListBox.ItemsSource = Artistas; // Lista básica de artistas
+            ArtistasListBox.ItemsSource = Artistas;
 
-            ArtistasListBox.SelectionChanged += ArtistasListBox_SelectionChanged; // Evento para manejar la selección
+            Escenarios = new ObservableCollection<Escenario>(
+                festival.Escenarios.GroupBy(e => e.Nombre)
+                                   .Select(g => g.First())
+            );
+            EscenariosListBox.ItemsSource = Escenarios;
+
+            ArtistasListBox.SelectionChanged += ArtistasListBox_SelectionChanged;
+            EscenariosListBox.SelectionChanged += EscenariosListBox_SelectionChanged;
 
             DataContext = this;
 
-            // Verificación de que la colección Artistas no está vacía
             if (Artistas == null || Artistas.Count == 0)
             {
                 MessageBox.Show("No hay artistas disponibles para este festival.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
-            // Agrupando escenarios sin duplicados para este festival
-            Escenarios = new ObservableCollection<Escenario>(
-                festival.Escenarios.GroupBy(e => e.Nombre)
-                                   .Select(g => g.First())
-            );
-
-            EscenariosListBox.ItemsSource = Escenarios;
-            EscenariosListBox.SelectionChanged += EscenariosListBox_SelectionChanged;
+            if (Escenarios == null || Escenarios.Count == 0)
+            {
+                MessageBox.Show("No hay escenarios disponibles para este festival.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
+        private void ArtistasListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (ArtistasListBox.SelectedItem is Artista artistaSeleccionado)
+            {
+                dataGridArtistas.ItemsSource = new List<Artista> { artistaSeleccionado };
+            }
+        }
 
         private void AñadirArtista_Click(object sender, RoutedEventArgs e)
         {
@@ -58,7 +61,6 @@ namespace ProyectoIPo
                 var nuevoArtista = agregarArtistaWindow.NuevoArtista;
                 if (nuevoArtista != null && !string.IsNullOrEmpty(nuevoArtista.Nombre) && !Artistas.Any(a => a.Nombre == nuevoArtista.Nombre))
                 {
-                    // Añadiendo el nuevo artista a la lista y al estado del festival
                     Artistas.Add(nuevoArtista);
                     festivalSeleccionado.Artistas.Add(nuevoArtista);
                     DatosApp.Festivales.Remove(festivalSeleccionado);
@@ -71,42 +73,34 @@ namespace ProyectoIPo
             }
         }
 
-        private void ArtistasListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            if (ArtistasListBox.SelectedItem is Artista artistaSeleccionado)
-            {
-                dataGridArtistas.ItemsSource = new List<Artista> { artistaSeleccionado };
-            }
-        }
-
+        // GESTIÓN DE ESCENARIOS
 
         private void EscenariosListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (EscenariosListBox.SelectedItem is Escenario escenarioSeleccionado)
             {
-                // Actualizando detalles del escenario seleccionado
                 dataGridEscenarios.ItemsSource = new List<Escenario> { escenarioSeleccionado };
                 txtDetallesEscenario.Text = $"Nombre: {escenarioSeleccionado.Nombre}\n" +
                                              $"Aforo Máximo: {escenarioSeleccionado.AforoMax}\n" +
                                              $"Localización Entradas/Salidas: {escenarioSeleccionado.LocalizacionEntradasSalidas}\n" +
                                              $"Servicios Médicos: {escenarioSeleccionado.ServiciosMedicos}\n" +
                                              $"Aseos: {escenarioSeleccionado.Aseos}\n" +
-                                             $"Seguridad: {escenarioSeleccionado.Seguridad}";
+                                             $"Seguridad: {escenarioSeleccionado.Seguridad}\n" +
+                                             $"Día y Hora de Actuación: {escenarioSeleccionado.DiaHoraActuacion}";
             }
         }
 
-        private void AñadirEscenario_Click(object sender, RoutedEventArgs e)
+        private void AñadirEscenario_Click(object sender, RoutedEventArgs args)
         {
             var agregarEscenariosWindow = new AgregarEscenarios();
             if (agregarEscenariosWindow.ShowDialog() == true)
             {
                 foreach (var nuevoEscenario in agregarEscenariosWindow.NuevosEscenarios)
                 {
-                    // Añadiendo el nuevo escenario al festival si no existe
-                    if (!festivalSeleccionado.Escenarios.Any(escenario => escenario.Nombre == nuevoEscenario.Nombre))
+                    if (!festivalSeleccionado.Escenarios.Any(esc => esc.Nombre == nuevoEscenario.Nombre))
                     {
                         festivalSeleccionado.Escenarios.Add(nuevoEscenario);
-                        Escenarios.Add(nuevoEscenario); // También se agrega al listado de la UI
+                        Escenarios.Add(nuevoEscenario);
                     }
                     else
                     {
@@ -115,6 +109,5 @@ namespace ProyectoIPo
                 }
             }
         }
-
     }
 }

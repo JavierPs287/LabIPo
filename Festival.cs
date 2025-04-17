@@ -261,7 +261,6 @@ namespace ProyectoIPo
 
 
 
-
     public class Escenario
     {
         public string Nombre { get; set; }

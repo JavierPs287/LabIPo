@@ -48,7 +48,25 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
                                 <DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" />
-                                <DataGridTextColumn Header="Datos Personales" Binding="{Binding DatosPersonales}" />
+                                <DataGridTemplateColumn Header="Datos Personales" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DatosPersonales}" 
+                                               TextWrapping="Wrap" 
+                                               MaxWidth="300" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding DatosPersonales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                 TextWrapping="Wrap" 
+                                                 MaxWidth="300" 
+                                                 AcceptsReturn="True" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+
                                 <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
                                 <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
                                 <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
