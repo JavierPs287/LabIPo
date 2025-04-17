@@ -55,9 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Artista.cs" />
+    <Compile Include="DataTimeToDateConverter.cs" />
+    <Compile Include="DatosApp.cs" />
+    <Compile Include="Escenario.cs" />
     <Compile Include="IntroducirDatosAdmin.xaml.cs">
       <DependentUpon>IntroducirDatosAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="VentanaModificarFestival.xaml.cs">
       <DependentUpon>VentanaModificarFestival.xaml</DependentUpon>
     </Compile>

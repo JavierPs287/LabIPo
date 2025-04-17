@@ -55,6 +55,12 @@ namespace ProyectoIPo
                     case "txtPeticionEspecial":
                         textBox.Text = "Petición Especial";
                         break;
+                    case "txtHoraActuacion":
+                        textBox.Text = "Hora de actuación (HH:mm)";
+                        break;
+                    case "txtFoto":
+                        textBox.Text = "Foto del artista";
+                        break;
                 }
             }
         }
@@ -110,6 +116,19 @@ namespace ProyectoIPo
 
                 DialogResult = true; // Todo está correcto, cerramos la ventana
                 Close();
+            }
+        }
+
+        private void BuscarFoto_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Filter = "Imágenes (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                txtFoto.Text = openFileDialog.FileName; // Asigna la ruta del archivo seleccionado
             }
         }
 

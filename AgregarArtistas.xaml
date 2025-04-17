@@ -7,7 +7,6 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
-            <!-- Campos de texto para artista -->
             <TextBox x:Name="txtNombreArtista" Text="Nombre del artista" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtGeneroMusical" Text="Género Musical" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtDatosPersonales" Text="Datos Personales" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
@@ -16,6 +15,18 @@
             <TextBox x:Name="txtCache" Text="Caché" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtLugarAlojamiento" Text="Lugar de Alojamiento" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtPeticionEspecial" Text="Petición Especial" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+
+            <Label Content="Día de Actuación:" />
+            <DatePicker x:Name="dpDiaActuacion" Margin="10"/>
+
+            <TextBox x:Name="txtHoraActuacion" Text="Hora de actuación (HH:mm)" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBox x:Name="txtFoto" Width="250" Text="Foto del artista" Foreground="Gray"
+                     GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus"/>
+                <Button Content="Buscar" Click="BuscarFoto_Click" Width="80" Margin="5,0,0,0"/>
+            </StackPanel>
 
             <!-- Campos adicionales para grupo -->
             <StackPanel x:Name="spGrupo" Visibility="Collapsed">
