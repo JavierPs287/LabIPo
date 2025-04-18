@@ -28,19 +28,20 @@ namespace ProyectoIPo
         // Método para obtener los nombres de los artistas en formato de texto
         public string ArtistasTexto => string.Join(", ", Artistas.Select(a => a.DatosPersonales));
 
-        public List<Escenario> Escenarios { get; set; } = new List<Escenario>();
-        public string EscenariosTexto => string.Join(", ", Escenarios.Select(e => e.Nombre));
+        public ObservableCollection<Escenario> Escenarios { get; set; } = new ObservableCollection<Escenario>();
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Festival() { }
 
-        public Festival(string nombre, string ubicacion, DateTime fecha, ObservableCollection<Artista> artistas)
+        public Festival(string nombre, string ubicacion, DateTime fecha, ObservableCollection<Artista> artistas, ObservableCollection<Escenario> escenarios)
         {
             Nombre = nombre;
             Ubicacion = ubicacion;
             Fecha = fecha;
             Artistas = artistas ?? new ObservableCollection<Artista>();  // Si no se pasa artistas, se inicializa una lista vacía.
+            Escenarios = escenarios ?? new ObservableCollection<Escenario>(); // Si no se pasa escenarios, se inicializa una lista vacía.
         }
 
         public DateTime FechaFestival

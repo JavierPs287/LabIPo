@@ -151,7 +151,8 @@ namespace ProyectoIPo
                 peticionEspecial,
                 "ACTIVO", // Estado
                 foto,
-                detallesArtista
+                detallesArtista,
+                false // EsGrupo
             );
 
             DialogResult = true; // Todo está correcto, cerramos la ventana

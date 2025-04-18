@@ -221,5 +221,8 @@
   <ItemGroup>
     <Resource Include="Recursos\Ariana Grande.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\EscenarioPrincipal.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

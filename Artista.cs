@@ -27,6 +27,7 @@ namespace ProyectoIPo
         public TimeSpan? HoraFin { get; set; }
         public int DuracionFestival { get; set; }
         public string LogoPath { get; set; }
+        public bool EsGrupo { get; set; }
 
         public string DetalleArtistas { get; set; }
         // Propiedad calculada que determina si la actuación ha pasado
@@ -49,7 +50,7 @@ namespace ProyectoIPo
         public Artista(string nombre, string generoMusical, string datosPersonales,
             string correoElectronico, string redesSociales, string cache, DateTime fechaInicioFestival, int duracionFestival,
             DateTime? diaActuacion, TimeSpan? horaInicio, TimeSpan? horaFin, string escenario,
-            string alojamiento, string peticionEspecial, string estado, string logoPath, string detalleArtistas)
+            string alojamiento, string peticionEspecial, string estado, string logoPath, string detalleArtistas, bool esGrupo)
         {
             Nombre = nombre;
             GeneroMusical = generoMusical;
@@ -68,7 +69,11 @@ namespace ProyectoIPo
             Estado = estado;
             LogoPath = logoPath;
             DetalleArtistas = detalleArtistas;
+            EsGrupo = esGrupo;
+
+
         }
+
 
         protected void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

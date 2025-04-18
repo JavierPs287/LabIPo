@@ -40,31 +40,7 @@ namespace ProyectoIPo
                 return;
             }
 
-            try
-            {
-                // Crear un nuevo escenario
-                var nuevoEscenario = new Escenario
-                {
-                    Nombre = txtNombre.Text,
-                    AforoMax = txtAforo.Text,
-                    LocalizacionEntradasSalidas = txtEntradasSalidas.Text,
-                    ServiciosMedicos = txtServiciosMedicos.Text,
-                    Aseos = txtAseos.Text,
-                    Seguridad = txtSeguridad.Text,
-                    DiaHoraActuacion = dpDiaActuacion.SelectedDate.Value.Add(horaActuacion),
-                    FotoPath = txtFoto.Text
-                };
-
-                // Agregar el nuevo escenario a la lista observable
-                NuevosEscenarios.Add(nuevoEscenario);
-
-                // Limpiar los campos del formulario
-                LimpiarFormulario();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+           
         }
 
         private void LimpiarFormulario()

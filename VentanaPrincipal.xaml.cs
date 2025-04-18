@@ -15,6 +15,7 @@ namespace ProyectoIPo
 
         public ObservableCollection<Festival> Festivales { get; set; }
         public ObservableCollection<Festival> FestivalesFiltrados { get; set; }
+        public Escenario esce { get; set; }
 
         public VentanaPrincipal()
         {
@@ -59,7 +60,9 @@ namespace ProyectoIPo
                 peticionEspecial: "nada",
                 estado: "ACTIVO",
                 logoPath: "Recursos/Queen.jpg",
-                detalleArtistas: "Queen es una banda británica de rock formada en 1970 en Londres, integrada originalmente por el cantante y pianista Freddie Mercury, el guitarrista Brian May, el baterista Roger Taylor y el bajista John Deacon (el cual llegaría un año después al grupo para completar la formación clásica)"
+                detalleArtistas: "Queen es una banda británica de rock formada en 1970 en Londres, integrada originalmente por el cantante y pianista Freddie Mercury, el guitarrista Brian May, el baterista Roger Taylor y el bajista John Deacon (el cual llegaría un año después al grupo para completar la formación clásica)",
+                esGrupo: true
+
             ),
             new Artista(
                 nombre: "Bon Jovi",
@@ -73,12 +76,13 @@ namespace ProyectoIPo
                 diaActuacion: null,
                 horaInicio: null,
                 horaFin: null,
-                escenario: null,
+                escenario: "Escenario Principal",
                 alojamiento: "Hotel Beatriz",
                 peticionEspecial: "nada",
                 estado: "ACTIVO",
                 logoPath: "Recursos/Bon Jovi.jpg",
-                detalleArtistas: "Bon Jovi es una banda de rock estadounidense formada en 1983 en Sayreville, Nueva Jersey. La banda fue fundada por el cantante Jon Bon Jovi, el tecladista David Bryan, el bajista Alec John Such, el guitarrista Richie Sambora y el baterista Tico Torres."
+                detalleArtistas: "Bon Jovi es una banda de rock estadounidense formada en 1983 en Sayreville, Nueva Jersey. La banda fue fundada por el cantante Jon Bon Jovi, el tecladista David Bryan, el bajista Alec John Such, el guitarrista Richie Sambora y el baterista Tico Torres.",
+                esGrupo: true
             ),
             new Artista(
                 nombre: "Guns N' Roses",
@@ -92,17 +96,45 @@ namespace ProyectoIPo
                 diaActuacion: null,
                 horaInicio: null,
                 horaFin: null,
-                escenario: null,
+                escenario : "Escenario Principal",
                 alojamiento: "Hotel Beatriz",
                 peticionEspecial: "nada",
                 estado: "ACTIVO",
                 logoPath: "Recursos/Guns N' Roses.jpg",
-                detalleArtistas:"Guns N' Roses es una banda de rock estadounidense formada en 1985 en Los Ángeles, California. La banda fue fundada por el vocalista Axl Rose y el guitarrista Slash, y se considera una de las bandas más influyentes y exitosas de la historia del rock."
+                detalleArtistas:"Guns N' Roses es una banda de rock estadounidense formada en 1985 en Los Ángeles, California. La banda fue fundada por el vocalista Axl Rose y el guitarrista Slash, y se considera una de las bandas más influyentes y exitosas de la historia del rock.",
+                esGrupo: true
             )
         },
+                    // CREACION DE ESCENARIOS YA TU SBS BB
+                    Escenarios = new ObservableCollection<Escenario>
+                    {
+                        new Escenario(
+                            
+                            nombre: "Escenario Principal",
+                            aforoMax: "10000",
+                            localizacionEntradasSalidas: "Entrada Principal",
+                            serviciosMedicos: "Servicio de Emergencias",
+                            aseos: "Aseos Públicos",
+                            seguridad: "Seguridad Privada",
+                            diaHoraActuacion: new DateTime(2027, 6, 15, 20, 0, 0),
+                            fotoPath: "Recursos/EscenarioPrincipal.jpg"
+                            ),
+                    },
+
+                    // AÑADE AQUI LO QUE QUIERAS TU BB
+                    // NEW ESCENARIO(..............)
+
+
+
+
+
+
+
+
                     PrecioEstandar = 60,
                     PrecioVIP = 150,
                     Duracion = 6
+                 
                 });
 
                 Festivales.Add(new Festival
@@ -129,8 +161,9 @@ namespace ProyectoIPo
                 peticionEspecial: "Ninguna",
                 estado: "ACTIVO",
                 logoPath: "Recursos/Miles Davis.jpg",
-                detalleArtistas: "Miles Davis fue un trompetista, compositor y líder de banda estadounidense, considerado uno de los músicos más influyentes del siglo XX. Su estilo innovador y su enfoque vanguardista en el jazz lo convirtieron en una figura clave en la evolución del género."
-            ),
+                detalleArtistas: "Miles Davis fue un trompetista, compositor y líder de banda estadounidense, considerado uno de los músicos más influyentes del siglo XX. Su estilo innovador y su enfoque vanguardista en el jazz lo convirtieron en una figura clave en la evolución del género.",
+                esGrupo: false
+                ),
             new Artista(
                 nombre: "John Coltrane",
                 generoMusical: "Jazz",
@@ -148,8 +181,9 @@ namespace ProyectoIPo
                 peticionEspecial: "Ninguna",
                 estado: "ACTIVO",
                 logoPath: "Recursos/John Coltrane.jpg",
-                detalleArtistas:"John Coltrane fue un saxofonista y compositor estadounidense, conocido por su virtuosismo y su enfoque innovador en el jazz. Su trabajo abarcó desde el bebop hasta el free jazz, y su álbum 'A Love Supreme' es considerado una obra maestra del género."
-            )
+                detalleArtistas:"John Coltrane fue un saxofonista y compositor estadounidense, conocido por su virtuosismo y su enfoque innovador en el jazz. Su trabajo abarcó desde el bebop hasta el free jazz, y su álbum 'A Love Supreme' es considerado una obra maestra del género.",
+                esGrupo: false
+                )
         },
                     PrecioEstandar = 50,
                     PrecioVIP = 180,
@@ -180,8 +214,9 @@ namespace ProyectoIPo
                 peticionEspecial: "Ninguna",
                 estado: "ACTIVO",
                 logoPath: "Recursos/Duki.jpg",
-                detalleArtistas: "Duki es un rapero y cantante argentino, conocido por su estilo innovador y su influencia en la escena del trap latino. Su música combina elementos de trap, reguetón y hip-hop, y ha colaborado con varios artistas destacados en la industria."
-            ),
+                detalleArtistas: "Duki es un rapero y cantante argentino, conocido por su estilo innovador y su influencia en la escena del trap latino. Su música combina elementos de trap, reguetón y hip-hop, y ha colaborado con varios artistas destacados en la industria.",
+                esGrupo: false
+                ),
             new Artista(
                 nombre: "Bad Bunny",
                 generoMusical: "Trap",
@@ -199,8 +234,9 @@ namespace ProyectoIPo
                 peticionEspecial: "Ninguna",
                 estado: "ACTIVO",
                 logoPath: "Recursos/Bad Bunny.jpg",
-                detalleArtistas:"Bad Bunny es un cantante y rapero puertorriqueño, conocido por su estilo único y su impacto en la música urbana. Su música combina reguetón, trap y otros géneros, y ha sido aclamado por su innovación y autenticidad en la industria musical."
-            ),
+                detalleArtistas:"Bad Bunny es un cantante y rapero puertorriqueño, conocido por su estilo único y su impacto en la música urbana. Su música combina reguetón, trap y otros géneros, y ha sido aclamado por su innovación y autenticidad en la industria musical.",
+                esGrupo: false
+                ),
             new Artista(
                 nombre: "Eladio Carrión",
                 generoMusical: "Trap",
@@ -218,8 +254,9 @@ namespace ProyectoIPo
                 peticionEspecial: "Ninguna",
                 estado: "ACTIVO",
                 logoPath: "Recursos/Eladio Carrión.jpg",
-                detalleArtistas:"Eladio Carrión es un rapero y cantante puertorriqueño, conocido por su estilo fresco y su habilidad lírica. Ha ganado reconocimiento en la escena del trap latino y ha colaborado con varios artistas destacados, consolidándose como una figura influyente en la música urbana."
-            )
+                detalleArtistas:"Eladio Carrión es un rapero y cantante puertorriqueño, conocido por su estilo fresco y su habilidad lírica. Ha ganado reconocimiento en la escena del trap latino y ha colaborado con varios artistas destacados, consolidándose como una figura influyente en la música urbana.",
+                esGrupo: false
+                )
         },
                     PrecioEstandar = 40,
                     PrecioVIP = 100,
@@ -250,8 +287,9 @@ namespace ProyectoIPo
                 peticionEspecial: "Ninguna",
                 estado: "ACTIVO",
                 logoPath: "Recursos/Martin Garrix.jpg",
-                detalleArtistas:"Martin Garrix es un DJ y productor holandés, conocido por su estilo innovador en la música electrónica. Ha sido reconocido como uno de los mejores DJs del mundo y ha colaborado con varios artistas destacados, creando éxitos que han dominado las listas de popularidad."
-            ),
+                detalleArtistas:"Martin Garrix es un DJ y productor holandés, conocido por su estilo innovador en la música electrónica. Ha sido reconocido como uno de los mejores DJs del mundo y ha colaborado con varios artistas destacados, creando éxitos que han dominado las listas de popularidad.",
+                esGrupo: false
+                ),
             new Artista(
                 nombre: "David Guetta",
                 generoMusical: "EDM",
@@ -269,8 +307,9 @@ namespace ProyectoIPo
                 peticionEspecial: "Ninguna",
                 estado: "ACTIVO",
                 logoPath: "Recursos/David Guetta.jpg",
-                detalleArtistas: "David Guetta es un DJ y productor francés, conocido por su influencia en la música electrónica y su capacidad para fusionar géneros. Ha trabajado con numerosos artistas de renombre y ha sido pionero en la popularización de la música dance a nivel mundial."
-            )
+                detalleArtistas: "David Guetta es un DJ y productor francés, conocido por su influencia en la música electrónica y su capacidad para fusionar géneros. Ha trabajado con numerosos artistas de renombre y ha sido pionero en la popularización de la música dance a nivel mundial.",
+                esGrupo: false
+                )
         },
                     PrecioEstandar = 70,
                     PrecioVIP = 200,
@@ -301,8 +340,9 @@ namespace ProyectoIPo
                 peticionEspecial: "Ninguna",
                 estado: "ACTIVO",
                 logoPath: "Recursos/Taylor Swift.jpg",
-                detalleArtistas:"Taylor Swift es una cantante y compositora estadounidense, conocida por su estilo versátil que abarca country, pop y rock. Ha ganado numerosos premios y es reconocida por su habilidad para contar historias a través de sus letras, convirtiéndose en una de las artistas más influyentes de su generación."
-            ),
+                detalleArtistas:"Taylor Swift es una cantante y compositora estadounidense, conocida por su estilo versátil que abarca country, pop y rock. Ha ganado numerosos premios y es reconocida por su habilidad para contar historias a través de sus letras, convirtiéndose en una de las artistas más influyentes de su generación.",
+                esGrupo: false
+                ),
             new Artista(
                 nombre: "Ariana Grande",
                 generoMusical: "Pop",
@@ -320,8 +360,51 @@ namespace ProyectoIPo
                 peticionEspecial: "Ninguna",
                 estado: "ACTIVO",
                 logoPath: "Recursos/Ariana Grande.jpg",
-                detalleArtistas:"Ariana Grande es una cantante y actriz estadounidense, conocida por su potente voz y su estilo musical que combina pop, R&B y hip-hop. Ha sido aclamada por su talento vocal y ha logrado numerosos éxitos en las listas de popularidad, convirtiéndose en una de las artistas más influyentes de la música contemporánea."
-            )
+                detalleArtistas:"Ariana Grande es una cantante y actriz estadounidense, conocida por su potente voz y su estilo musical que combina pop, R&B y hip-hop. Ha sido aclamada por su talento vocal y ha logrado numerosos éxitos en las listas de popularidad, convirtiéndose en una de las artistas más influyentes de la música contemporánea.",
+                esGrupo: false
+
+                ),
+            new Artista(
+
+                nombre: "Freddie Mercury",
+                generoMusical: "rock",
+                datosPersonales: "Cantante de la Banda",
+                correoElectronico: "@freddiemercury.com",
+                redesSociales: "@FreddieMercury",
+                cache: "10000",
+                fechaInicioFestival: new DateTime(2025, 7, 18),
+                duracionFestival: 3,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Miami Luxe",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO",
+                logoPath: "queen",
+                detalleArtistas:"Freddie Mercury fue un cantante, compositor y pianista británico, conocido por ser el vocalista principal de la banda de rock Queen. Su poderosa voz y su carisma en el escenario lo convirtieron en una de las figuras más icónicas de la música rock, y su legado perdura hasta hoy.",
+                esGrupo: false
+                ),
+            new Artista(
+                nombre: "Brian May",
+                generoMusical: "rock",
+                datosPersonales: "Guitarrista de la Banda",
+                correoElectronico: "@brianmay.com",
+                redesSociales: "@BrianMay",
+                cache: "10000",
+                fechaInicioFestival: new DateTime(2025, 7, 18),
+                duracionFestival: 3,
+                diaActuacion: null,
+                horaInicio: null,
+                horaFin: null,
+                escenario: null,
+                alojamiento: "Hotel Miami Luxe",
+                peticionEspecial: "Ninguna",
+                estado: "ACTIVO",
+                logoPath: "queen",
+                detalleArtistas:"Brian May es un guitarrista, compositor y astrofísico británico, conocido por ser el guitarrista principal de la banda de rock Queen. Su estilo distintivo y su habilidad para componer canciones memorables lo han convertido en una figura influyente en la música rock.",
+                esGrupo: false
+                ),
         },
                     PrecioEstandar = 100,
                     PrecioVIP = 300,
@@ -330,6 +413,8 @@ namespace ProyectoIPo
             }
 
             Festivales = new ObservableCollection<Festival>(Festivales.OrderBy(f => f.Fecha));
+
+
 
             DataContext = this;
         }

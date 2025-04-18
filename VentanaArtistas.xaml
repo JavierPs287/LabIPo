@@ -44,14 +44,14 @@
 
                     <GridSplitter Grid.Column="1" Grid.Row="0" Width="5" HorizontalAlignment="Stretch"/>
                     <StackPanel x:Name="spDetallesArtista" Grid.Column="2" Grid.Row="0" Orientation="Vertical" Margin="5">
-                        <DataGrid x:Name="dataGridArtistas" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400" ItemsSource="{Binding Artistas}" IsReadOnly="False">
+                        <DataGrid x:Name="dataGridArtistas" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400"  IsReadOnly="False" SelectionChanged="dataGridArtistas_SelectionChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
-                                <DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" />
+                                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto" />
+                                <DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" Width="auto" />
                                 <DataGridTemplateColumn Header="Datos Personales" Width="Auto">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding DatosPersonales}" 
+                                            <TextBlock Text="{Binding DatosPersonales}" Width="Auto" 
                                    TextWrapping="Wrap" 
                                    MaxWidth="300" />
                                         </DataTemplate>
@@ -67,15 +67,15 @@
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
 
-                                <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
-                                <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
-                                <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
+                                <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" Width="auto" />
+                                <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" Width="auto" />
+                                <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" Width="auto"/>
 
                                 <!-- Día de actuación -->
                                 <DataGridTemplateColumn Header="Día" Width="Auto">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <DatePicker SelectedDate="{Binding DiaActuacion}" />
+                                            <DatePicker SelectedDate="{Binding DiaActuacion}" Width="auto"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -85,7 +85,7 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                            SelectedItem="{Binding HoraInicio, Mode=TwoWay}" />
+                                            SelectedItem="{Binding HoraInicio, Mode=TwoWay}" Width="auto" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -95,20 +95,20 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                            SelectedItem="{Binding HoraFin, Mode=TwoWay}" />
+                                            SelectedItem="{Binding HoraFin, Mode=TwoWay}" Width="auto"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
 
 
 
-                                <DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" />
-                                <DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding LugarAlojamiento}" />
-                                <DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" />
+                                <DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" Width="auto"/>
+                                <DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding Alojamiento}" Width="auto" />
+                                <DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" Width="auto"/>
                                 <DataGridTemplateColumn Header="Estado" Width="100">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray">
+                                            <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray" Width="auto">
                                                 <ComboBox.Items>
                                                     <sys:String>ACTIVO</sys:String>
                                                     <sys:String>APLAZADO</sys:String>
@@ -121,7 +121,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBlock Text="Detalles del Artista" Margin="10" FontWeight="Bold" />
-                        <TextBox x:Name="txtDetallesArtista" Text="{Binding DetalleArtistas}" Margin="10" Height="100" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
+                        <TextBox x:Name="txtDetallesArtista" Text="{Binding DetalleArtistas}" Margin="10" Height="100" Width="1000" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" HorizontalAlignment="Left" />
                     </StackPanel>
                     <Button Content="Añadir Artista" Grid.Column="0" Grid.Row="1" Click="AñadirArtista_Click" Margin="5"/>
                 </Grid>
@@ -138,11 +138,11 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ListBox x:Name="EscenariosListBox" SelectedIndex="0" Width="210" Margin="5">
+                    <ListBox x:Name="EscenariosListBox" SelectedIndex="0" Width="auto" Margin="5" SelectionChanged="EscenariosListBox_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Width="32" Height="37" Source="{Binding LogoPath}"/>
+                                    <Image Width="32" Height="37" Source="{Binding FotoPath}"/>
                                     <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Nombre}"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -167,20 +167,12 @@
                         <DataGrid x:Name="dataGridEscenarios" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
-                                <DataGridTextColumn Header="Aforo Máximo" Binding="{Binding AforoMaximo}" />
-                                <DataGridTextColumn Header="Localización Entradas" Binding="{Binding LocalizacionEntradas}" />
-                                <DataGridTextColumn Header="Salidas de Emergencia" Binding="{Binding SalidasEmergencia}" />
+                                <DataGridTextColumn Header="Aforo Máximo" Binding="{Binding AforoMax}" />
+                                <DataGridTextColumn Header="Localización Entradas" Binding="{Binding LocalizacionEntradasSalidas}" />
                                 <DataGridTextColumn Header="Servicios Médicos" Binding="{Binding ServiciosMedicos}" />
                                 <DataGridTextColumn Header="Aseos" Binding="{Binding Aseos}" />
                                 <DataGridTextColumn Header="Seguridad" Binding="{Binding Seguridad}" />
                                 <DataGridTextColumn Header="Día y Hora de Actuación" Binding="{Binding DiaHoraActuacion}" />
-                                <DataGridTemplateColumn Header="Fotos" Width="100">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Image Width="32" Height="32" Source="{Binding FotoPath}" />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBlock Text="Detalles del Escenario" Margin="10" FontWeight="Bold" />

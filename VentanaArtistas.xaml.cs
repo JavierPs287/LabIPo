@@ -11,7 +11,7 @@ namespace ProyectoIPo
     {
         private Festival festivalSeleccionado;
         public ObservableCollection<Artista> Artistas { get; set; }
-        public ObservableCollection<Escenario> Escenarios { get; set; } = new ObservableCollection<Escenario>();
+        public ObservableCollection<Escenario> Escenarios { get; set; } 
         public List<TimeSpan> HorasDisponibles { get; } = GenerarHoras();
 
         public VentanaArtistas(Festival festival)
@@ -28,7 +28,6 @@ namespace ProyectoIPo
                                    .Select(g => g.First())
             );
             EscenariosListBox.ItemsSource = Escenarios;
-
             ArtistasListBox.SelectionChanged += ArtistasListBox_SelectionChanged;
             EscenariosListBox.SelectionChanged += EscenariosListBox_SelectionChanged;
 
@@ -50,7 +49,10 @@ namespace ProyectoIPo
         {
             if (ArtistasListBox.SelectedItem is Artista artistaSeleccionado)
             {
+                
+                // Mostrar detalles del artista seleccionado
                 dataGridArtistas.ItemsSource = new List<Artista> { artistaSeleccionado };
+                txtDetallesArtista.Text = artistaSeleccionado.DetalleArtistas;
             }
         }
 
@@ -99,7 +101,11 @@ namespace ProyectoIPo
                                              $"Aseos: {escenarioSeleccionado.Aseos}\n" +
                                              $"Seguridad: {escenarioSeleccionado.Seguridad}\n" +
                                              $"Día y Hora de Actuación: {escenarioSeleccionado.DiaHoraActuacion}";
+
+                dataGridEscenarios.ItemsSource = new List<Escenario> { escenarioSeleccionado };
+
             }
+
         }
 
         private void AñadirEscenario_Click(object sender, RoutedEventArgs args)
@@ -120,6 +126,11 @@ namespace ProyectoIPo
                     }
                 }
             }
+        }
+
+        private void dataGridArtistas_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
