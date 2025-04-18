@@ -12,6 +12,7 @@ namespace ProyectoIPo
         private Festival festivalSeleccionado;
         public ObservableCollection<Artista> Artistas { get; set; }
         public ObservableCollection<Escenario> Escenarios { get; set; } = new ObservableCollection<Escenario>();
+        public List<TimeSpan> HorasDisponibles { get; } = GenerarHoras();
 
         public VentanaArtistas(Festival festival)
         {
@@ -71,6 +72,17 @@ namespace ProyectoIPo
                     MessageBox.Show("El artista ya existe o el nombre es inválido.");
                 }
             }
+        }
+
+        private static List<TimeSpan> GenerarHoras()
+        {
+            var lista = new List<TimeSpan>();
+            for (int h = 0; h < 24; h++)
+            {
+                lista.Add(new TimeSpan(h, 0, 0));
+                lista.Add(new TimeSpan(h, 30, 0));
+            }
+            return lista;
         }
 
         // GESTIÓN DE ESCENARIOS

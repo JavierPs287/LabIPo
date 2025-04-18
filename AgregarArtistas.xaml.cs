@@ -61,6 +61,9 @@ namespace ProyectoIPo
                     case "txtFoto":
                         textBox.Text = "Foto del artista";
                         break;
+                    case "txtDetallesArtista":
+                        textBox.Text = "Detalles del artista";
+                        break;
                 }
             }
         }
@@ -120,6 +123,7 @@ namespace ProyectoIPo
             string cache = string.IsNullOrWhiteSpace(txtCache.Text) || txtCache.Text == "Caché" ? null : txtCache.Text;
             string alojamiento = string.IsNullOrWhiteSpace(txtLugarAlojamiento.Text) || txtLugarAlojamiento.Text == "Lugar de Alojamiento" ? null : txtLugarAlojamiento.Text;
             string peticionEspecial = string.IsNullOrWhiteSpace(txtPeticionEspecial.Text) || txtPeticionEspecial.Text == "Petición Especial" ? null : txtPeticionEspecial.Text;
+            string detallesArtista = string.IsNullOrWhiteSpace(txtDetallesArtista.Text) || txtDatosPersonales.Text == "Detalles Artista" ? null : txtDatosPersonales.Text;
             string foto = string.IsNullOrWhiteSpace(txtFoto.Text) || txtFoto.Text == "Foto" ? null : txtFoto.Text;
             DateTime? fechaActuacion = dpFechaActuacion.SelectedDate;
             TimeSpan? horaActuacionInicio = (TimeSpan.TryParse(cbHoraInicio.SelectedItem?.ToString(), out var hInicio) && cbHoraInicio.SelectedItem?.ToString() != "Hora de inicio de la actuación") ? hInicio : (TimeSpan?)null;
@@ -147,7 +151,7 @@ namespace ProyectoIPo
                 peticionEspecial,
                 "ACTIVO", // Estado
                 foto,
-                ""
+                detallesArtista
             );
 
             DialogResult = true; // Todo está correcto, cerramos la ventana

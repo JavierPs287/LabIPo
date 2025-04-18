@@ -15,6 +15,7 @@
             <TextBox x:Name="txtCache" Text="Caché" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtLugarAlojamiento" Text="Lugar de Alojamiento" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtPeticionEspecial" Text="Petición Especial" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+            <TextBox x:Name="txtDetallesArtista" Text="Detalles del artista" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
 
             <Label Content="Horario de la actuación:                Hora inicio          Hora fin"/>
             <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">

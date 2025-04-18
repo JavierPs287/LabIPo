@@ -52,17 +52,17 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding DatosPersonales}" 
-                                               TextWrapping="Wrap" 
-                                               MaxWidth="300" />
+                                   TextWrapping="Wrap" 
+                                   MaxWidth="300" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
 
                                     <DataGridTemplateColumn.CellEditingTemplate>
                                         <DataTemplate>
                                             <TextBox Text="{Binding DatosPersonales, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                 TextWrapping="Wrap" 
-                                                 MaxWidth="300" 
-                                                 AcceptsReturn="True" />
+                                     TextWrapping="Wrap" 
+                                     MaxWidth="300" 
+                                     AcceptsReturn="True" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
@@ -70,7 +70,38 @@
                                 <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" />
                                 <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" />
                                 <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" />
-                                <DataGridTextColumn Header="Día y Hora de Actuación" Binding="{Binding DiaHoraActuacion}" />
+
+                                <!-- Día de actuación -->
+                                <DataGridTemplateColumn Header="Día" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <DatePicker SelectedDate="{Binding DiaActuacion}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <!-- Hora de inicio -->
+                                <DataGridTemplateColumn Header="Hora Inicio" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            SelectedItem="{Binding HoraInicio, Mode=TwoWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <!-- Hora de fin -->
+                                <DataGridTemplateColumn Header="Hora Fin" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            SelectedItem="{Binding HoraFin, Mode=TwoWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+
                                 <DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" />
                                 <DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding LugarAlojamiento}" />
                                 <DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" />
@@ -95,6 +126,7 @@
                     <Button Content="Añadir Artista" Grid.Column="0" Grid.Row="1" Click="AñadirArtista_Click" Margin="5"/>
                 </Grid>
             </TabItem>
+
             <TabItem Header="Escenarios">
                 <Grid>
                     <Grid.RowDefinitions>
