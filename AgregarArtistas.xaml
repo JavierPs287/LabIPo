@@ -16,10 +16,17 @@
             <TextBox x:Name="txtLugarAlojamiento" Text="Lugar de Alojamiento" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
             <TextBox x:Name="txtPeticionEspecial" Text="Petición Especial" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
 
-            <Label Content="Día de Actuación:" />
-            <DatePicker x:Name="dpDiaActuacion" Margin="10"/>
+            <Label Content="Horario de la actuación:                Hora inicio          Hora fin"/>
+            <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
+                <!-- Fecha -->
+                <DatePicker x:Name="dpFechaActuacion" Width="150" Margin="0,0,10,0" RenderTransformOrigin="0.476,-0.289"/>
 
-            <TextBox x:Name="txtHoraActuacion" Text="Hora de actuación (HH:mm)" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+                <!-- Hora de inicio -->
+                <ComboBox x:Name="cbHoraInicio" Width="80" Margin="0,0,10,0" Loaded="OnHoraComboBoxLoaded"/>
+
+                <!-- Hora de fin -->
+                <ComboBox x:Name="cbHoraFin" Width="80" Loaded="OnHoraComboBoxLoaded"/>
+            </StackPanel>
 
 
             <StackPanel Orientation="Horizontal" Margin="10">
