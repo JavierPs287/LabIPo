@@ -121,9 +121,15 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBlock Text="Detalles del Artista" Margin="10" FontWeight="Bold" />
-                        <TextBox x:Name="txtDetallesArtista" Text="{Binding DetalleArtistas}" Margin="10" Height="100" Width="1000" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" HorizontalAlignment="Left" />
+                        <TextBox x:Name="txtDetallesArtista" Text="{Binding DetalleArtistas}" Height="100" Width="1000" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
                     </StackPanel>
                     <Button Content="Añadir Artista" Grid.Column="0" Grid.Row="1" Click="AñadirArtista_Click" Margin="5"/>
+                    <Button Content="?" Width="30" Height="30" FontWeight="Bold"
+                        HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0,346,10,0"
+                        Click="BotonAyudaArtista_Click"
+                        ToolTip="Ayuda"
+                        Grid.Column="2" Grid.Row="0" RenderTransformOrigin="-0.733,6.436" Grid.RowSpan="2"/>
                 </Grid>
             </TabItem>
 
@@ -179,6 +185,12 @@
                         <TextBox x:Name="txtDetallesEscenario" Margin="10" Height="100" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
                     </StackPanel>
                     <Button Content="Añadir Escenario" Grid.Column="0" Grid.Row="1" Click="AñadirEscenario_Click" Margin="5"/>
+                    <Button Content="?" Width="30" Height="30" FontWeight="Bold"
+                        HorizontalAlignment="Right" VerticalAlignment="Top" 
+                        Margin="0,346,10,0"
+                        Click="BotonAyudaEscenario_Click"
+                        ToolTip="Ayuda"
+                        Grid.Column="2" Grid.Row="0" RenderTransformOrigin="-0.733,6.436" Grid.RowSpan="2"/>
                 </Grid>
             </TabItem>
         </TabControl>

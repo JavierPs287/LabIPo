@@ -63,9 +63,6 @@
       <DependentUpon>IntroducirDatosAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="InverseBooleanConverter.cs" />
-    <Compile Include="VentanaModificarFestival.xaml.cs">
-      <DependentUpon>VentanaModificarFestival.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AgregarArtistas.xaml.cs">
       <DependentUpon>AgregarArtistas.xaml</DependentUpon>
     </Compile>
@@ -88,10 +85,6 @@
     <Page Include="IntroducirDatosAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="VentanaModificarFestival.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="AgregarArtistas.xaml">
       <Generator>MSBuild:Compile</Generator>

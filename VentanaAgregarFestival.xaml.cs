@@ -105,6 +105,10 @@ namespace ProyectoIPo
                 datePicker.DisplayDateStart = DateTime.Today.AddDays(1);
             }
         }
+        private void BotonAyuda_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Introduzca los datos del festival a agregar y haga click al boton 'Agregar'.", "Ayuda Agreagar Festival", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
 
     }
 

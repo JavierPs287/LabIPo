@@ -191,5 +191,10 @@ namespace ProyectoIPo
         {
             // Manejar cambios en la selección de estado si es necesario
         }
+
+        private void BotonAyuda_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Introduzca los datos del artista a agregar y haga click al boton 'Agregar'.", "Ayuda Agregar Artista", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

@@ -132,5 +132,21 @@ namespace ProyectoIPo
         {
 
         }
+
+        private void BotonAyudaArtista_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("En la lista de la izquierda, selecciona el artista del cual quiera ver los datos.\n" +
+                "Si quiere modificar algun dato, haga click en el cuadro de texto correspondiente.\n" +
+                "Si quiere añadir algun artista haga click en 'Añadir Artista'.\n" +
+                "Si quiere ver la información de los escenarios, haga click en el tab 'Escenarios'.", "Ayuda Artistas", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void BotonAyudaEscenario_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("En la lista de la izquierda, selecciona el escenario del cual quiera ver los datos.\n" +
+                "Si quiere modificar algun dato, haga click en el cuadro de texto correspondiente.\n" +
+                "Si quiere añadir algun escenario haga click en 'Añadir Escenario'.\n" +
+                "Si quiere ver la información de los artistas, haga click en el tab 'Artistas'.", "Ayuda Escenarios", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

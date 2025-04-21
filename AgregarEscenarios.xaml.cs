@@ -73,6 +73,10 @@ namespace ProyectoIPo
                 txtFoto.Text = openFileDialog.FileName; // Asigna la ruta del archivo seleccionado
             }
         }
+        private void BotonAyuda_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Introduzca los datos del escenario a agregar y haga click al boton 'Agregar'.", "Ayuda Agregar Escenario", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 
 }

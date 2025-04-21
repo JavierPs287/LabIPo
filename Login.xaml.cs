@@ -147,6 +147,12 @@ namespace ProyectoIPo
             }
         }
 
+        private void BotonAyuda_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Introduzca su usuario y contraseña en los cuadros para iniciar sesión.\n" +
+                "En caso de querer crear un nuevo usuario, haga click en registrarse (NOTA: Necesitará estar con el administrador del sistema para darse de alta).\n" +
+                "Si tiene algún problema con su usuario y contraseña contacte con el administrador del sistema.", "Ayuda Inicio de Sesión", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
 

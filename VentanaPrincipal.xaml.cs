@@ -636,5 +636,13 @@ namespace ProyectoIPo
             FestivalDataGrid.ItemsSource = null; // Resetear el ItemsSource antes de asignar nuevamente
             FestivalDataGrid.ItemsSource = Festivales; // Refrescar el DataGrid
         }
+
+        private void BotonAyuda_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Esta es la pantalla principal de la aplicación.\n" +
+                "Aquí se pueden observar todos los festivales, tanto pasados, como presentes y futuros.\n" +
+                "Para modificar cualqueir dato, haga click en el cuadro de texto correspondiente y modifíquelo.\n" +
+                "Para modificar los artistas y escenario haga click en el botón 'Visualizar Artistas y Escenerios'" , "Ayuda Ventana Gestión de Festivales", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

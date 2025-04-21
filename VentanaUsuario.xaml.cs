@@ -58,6 +58,11 @@ namespace ProyectoIPo
             ventanaPrincipal.Show();
             this.Close();
         }
+        private void BotonAyuda_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Aquí puede observar los datos del usuario.\n" +
+                "Para acceder al acceder al sistema, haga click en continuar." , "Ayuda Ventana Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
 
