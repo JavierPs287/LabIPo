@@ -13,6 +13,7 @@ namespace ProyectoIPo
         public string ProfileImagePath { get; set; }
         public DateTime LastAccessDate { get; set; }
 
+        public Login Login { get; set; }
         public ObservableCollection<Festival> Festivales { get; set; }
         public ObservableCollection<Festival> FestivalesFiltrados { get; set; }
         public Escenario esce { get; set; }
@@ -22,15 +23,29 @@ namespace ProyectoIPo
             InitializeComponent();
             InicializarDatos();
         }
-        public VentanaPrincipal(string username, string profileImagePath, DateTime lastAccessDate)
+        public VentanaPrincipal(string username, DateTime lastAccessDate)
         {
             InitializeComponent();
             Username = username;
-            ProfileImagePath = profileImagePath;
             LastAccessDate = lastAccessDate;
             InicializarDatos();
 
         }
+        private VentanaUsuario ventanaUsuario; // Creamos la variable a nivel de clase
+
+        private void btnEntrarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            if (ventanaUsuario == null || !ventanaUsuario.IsLoaded)
+            {
+                ventanaUsuario = new VentanaUsuario(Username, this.LastAccessDate);
+                ventanaUsuario.Show();
+            }
+            else
+            {
+                ventanaUsuario.Activate(); // Si ya estaba abierta, la traemos al frente
+            }
+        }
+
         private void InicializarDatos()
         {
             Festivales = DatosApp.Festivales;
@@ -644,5 +659,6 @@ namespace ProyectoIPo
                 "Para modificar cualqueir dato, haga click en el cuadro de texto correspondiente y modifíquelo.\n" +
                 "Para modificar los artistas y escenario haga click en el botón 'Visualizar Artistas y Escenerios'" , "Ayuda Ventana Gestión de Festivales", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
     }
 }

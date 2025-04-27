@@ -7,10 +7,11 @@ namespace ProyectoIPo
 {
     public partial class Login : Window
     {
-
+        private DateTime fechaUltimoAcceso;
         public Login()
         {
             InitializeComponent();
+            fechaUltimoAcceso = DateTime.Now; // Inicializa la fecha del último acceso
         }
 
         // Manejo del foco para el cuadro de texto "Usuario"
@@ -41,13 +42,23 @@ namespace ProyectoIPo
             }
         }
 
+
         private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                btnLogin_Click(sender, e); // Llama al método de clic del botón
+                if (!string.IsNullOrWhiteSpace(txtUsuario.Text)) // Solo si escribió algo
+                {
+                    txtPassword.IsEnabled = true; // Habilitamos la contraseña
+                    txtPassword.Focus();          // Mandamos el foco a la contraseña
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, ingrese el nombre de usuario.", "Campo obligatorio", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
+
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
@@ -60,91 +71,78 @@ namespace ProyectoIPo
         // Evento del botón Login
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            stackPanelRegistro.Visibility = Visibility.Collapsed;
+            stackPanelLogin.Visibility = Visibility.Visible;
             string username = txtUsuario.Text;
             string password = txtPassword.Password;
+            Usuario user = new Usuario(username, password, "admin@gmail.com", "admin", "admin");
+            // Limpiamos el mensaje de error anterior
+            txtError.Text = "";
+            txtError.Visibility = Visibility.Collapsed;
 
             if (username == "admin" && password == "admin")
             {
-                MessageBox.Show($"Bienvenido {username}", "¡Login Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 // Datos del usuario autenticado
-                string profileImagePath = "Recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
-                DateTime lastAccessDate = DateTime.Now;
-
-                VentanaUsuario ventanaUsuario = new VentanaUsuario(username, profileImagePath, lastAccessDate);
-                ventanaUsuario.Show();
+                VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(username, fechaUltimoAcceso);
+                DatosApp.Usuarios.Add(username, user);
+                ventanaPrincipal.Show();
                 this.Close();
             }
             else
             {
-                if (DatosApp.UsuariosYContraseñas.ContainsKey(username))
+                int maxIntentos = 3;
+                int error = 0;
+
+                for (int i = 0; i < maxIntentos; i++)
                 {
-                    if (DatosApp.UsuariosYContraseñas[username] == password)
+                    // Verificar si el usuario existe en el diccionario
+                    if (DatosApp.Usuarios.ContainsKey(username))
                     {
-                        MessageBox.Show($"Bienvenido {username}", "¡Login Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        string profileImagePath = "Recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
-                        DateTime lastAccessDate = DateTime.Now;
-
-                        VentanaUsuario ventanaUsuario = new VentanaUsuario(username, profileImagePath, lastAccessDate);
-                        ventanaUsuario.Show();
-                        this.Close();
+                        // Verificar si la contraseña también existe y es correcta
+                        if (DatosApp.Usuarios[username].Contraseña == password)
+                        {
+                            // Si el usuario y la contraseña son correctos
+                            VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(username, fechaUltimoAcceso);
+                            ventanaPrincipal.Show();
+                            this.Close();
+                            return;  // Salimos del método si ya se ha abierto la ventana
+                        }
+                        else
+                        {
+                            // Contraseña incorrecta
+                            txtError.Text = "La contraseña no es válida.";
+                            txtError.Visibility = Visibility.Visible;
+                            error++;
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Credenciales incorrectas.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        // Usuario no encontrado
+                        txtError.Text = "El usuario no es válido.";
+                        txtError.Visibility = Visibility.Visible;
+                        error++;
+                    }
+
+                    // Si hemos alcanzado el número máximo de intentos
+                    if (error >= maxIntentos)
+                    {
+                        // Llamar al método de recuperación de contraseña
+                        btnOlvidarContraseña_Click(sender, e);
+                        break;  // Salimos del bucle después de llamar a la recuperación
                     }
                 }
-                else
-                {
-                    MessageBox.Show("El usuario no existe.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+
             }
+        }
+        private void btnOlvidarContraseña_Click(object sender, RoutedEventArgs e)
+        {   
+            btnOlvidarContraseña.Visibility = Visibility.Visible;
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            string username = txtUsuario.Text;
-            string password = txtPassword.Password;
-
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {
-                MessageBox.Show("Registro fallido. Por favor, rellene todos los campos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                if (DatosApp.UsuariosYContraseñas.ContainsKey(username))
-                {
-                    MessageBox.Show("El usuario ya existe. Intenta con otro nombre de usuario.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
-                    IntroducirDatosAdmin introducirDatosAdmin = new IntroducirDatosAdmin();
-                    bool? result = introducirDatosAdmin.ShowDialog();  // Muestra la ventana como modal y espera el resultado
-
-                    if (result == true)
-                    {
-                        // Si la ventana devuelve un resultado válido (IsAdminValid = true), ejecutamos el código comentado
-
-                        MessageBox.Show($"Bienvenido {username}", "¡Registro Exitoso!", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        DatosApp.UsuariosYContraseñas.Add(username, password);
-
-                        // Datos del usuario registrado
-                        string profileImagePath = "Recursos/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background.jpg"; // Ruta de la imagen de perfil
-                        DateTime lastAccessDate = DateTime.Now;
-
-                        VentanaUsuario ventanaUsuario = new VentanaUsuario(username, profileImagePath, lastAccessDate);
-                        ventanaUsuario.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        // Si no es válido, mostramos un mensaje de error
-                        MessageBox.Show("Acceso fallido al panel de administración", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-            }
+            stackPanelLogin.Visibility = Visibility.Collapsed;
+            stackPanelRegistro.Visibility = Visibility.Visible;
         }
 
         private void BotonAyuda_Click(object sender, EventArgs e)
@@ -153,6 +151,124 @@ namespace ProyectoIPo
                 "En caso de querer crear un nuevo usuario, haga click en registrarse (NOTA: Necesitará estar con el administrador del sistema para darse de alta).\n" +
                 "Si tiene algún problema con su usuario y contraseña contacte con el administrador del sistema.", "Ayuda Inicio de Sesión", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        // Evento para lblRegistro got Focus y Lost Focus
+        // Evento para lblregisterNombreApellidos GotFocus y LostFocus
+        private void lblregisterNombreApellidos_GotFocus(object sender, RoutedEventArgs e)
+        {
+            lblregisterNombreApellidos.Visibility = Visibility.Collapsed;
+        }
+        private void lblRegisterNombreApellidos_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNombreApellidos.Text))  // CAMBIADO
+            {
+                lblregisterNombreApellidos.Visibility = Visibility.Visible;
+            }
+        }
+
+        // Evento para lblregisterNombreUsuario GotFocus y LostFocus
+        private void lblregisterNombreUsuario_GotFocus(object sender, RoutedEventArgs e)
+        {
+            lblregisterNombreUsuario.Visibility = Visibility.Collapsed;
+        }
+        private void lblregisterNombreUsuario_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNombreUsuario.Text))  // CAMBIADO
+            {
+                lblregisterNombreUsuario.Visibility = Visibility.Visible;
+            }
+        }
+
+        // Evento para lblregisterContraseña GotFocus y LostFocus
+        private void lblregisterContraseña_GotFocus(object sender, RoutedEventArgs e)
+        {
+            lblregisterContraseña.Visibility = Visibility.Collapsed;
+        }
+        private void lblregisterContraseña_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPasswordRegistro.Password))  // CAMBIADO
+            {
+                lblregisterContraseña.Visibility = Visibility.Visible;
+            }
+        }
+
+        // Evento para lblregisterCorreo GotFocus y LostFocus
+        private void lblregisterCorreo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            lblregisterCorreo.Visibility = Visibility.Collapsed;
+        }
+        private void lblregisterCorreo_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtCorreo.Text))  // CAMBIADO
+            {
+                lblregisterCorreo.Visibility = Visibility.Visible;
+            }
+        }
+        private void btnRegisterFormulario_Click(object sender, RoutedEventArgs e)
+        {
+            // Limpiar errores anteriores
+            txtErrorNombreApellidos.Visibility = Visibility.Collapsed;
+            txtErrorNombreUsuario.Visibility = Visibility.Collapsed;
+            txtErrorCorreo.Visibility = Visibility.Collapsed;
+            txtErrorContraseña.Visibility = Visibility.Collapsed;
+
+            bool hayError = false;
+
+            // Validar Nombre y Apellidos
+            if (string.IsNullOrWhiteSpace(txtNombreApellidos.Text))
+            {
+                txtErrorNombreApellidos.Text = "Debe ingresar su nombre y apellidos.";
+                txtErrorNombreApellidos.Visibility = Visibility.Visible;
+                hayError = true;
+            }
+
+            // Validar Nombre de Usuario
+            if (string.IsNullOrWhiteSpace(txtNombreUsuario.Text))
+            {
+                txtErrorNombreUsuario.Text = "Debe ingresar un nombre de usuario.";
+                txtErrorNombreUsuario.Visibility = Visibility.Visible;
+                hayError = true;
+            }
+            else if (DatosApp.Usuarios.ContainsKey(txtNombreUsuario.Text))
+            {
+                txtErrorNombreUsuario.Text = "Este nombre de usuario ya existe.";
+                txtErrorNombreUsuario.Visibility = Visibility.Visible;
+                hayError = true;
+            }
+
+            // Validar Correo
+            if (string.IsNullOrWhiteSpace(txtCorreo.Text))
+            {
+                txtErrorCorreo.Text = "Debe ingresar un correo electrónico válido.";
+                txtErrorCorreo.Visibility = Visibility.Visible;
+                hayError = true;
+            }
+
+            // Validar Contraseña
+            if (string.IsNullOrWhiteSpace(txtPasswordRegistro.Password))
+            {
+                txtErrorContraseña.Text = "Debe ingresar una contraseña.";
+                txtErrorContraseña.Visibility = Visibility.Visible;
+                hayError = true;
+            }
+
+            if (hayError)
+                return; // Si hay errores, no seguir
+
+            // Si todo está bien, registrar el usuario
+            string nombreApellidos = txtNombreApellidos.Text;
+            string nombreUsuario = txtNombreUsuario.Text;
+            string contraseña = txtPasswordRegistro.Password;
+            string correo = txtCorreo.Text;
+
+            DatosApp.Usuarios[nombreUsuario] = new Usuario(correo, nombreApellidos, correo, nombreUsuario, contraseña);
+
+        }
+
+
+
+
+
     }
 }
 
