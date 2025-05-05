@@ -112,6 +112,7 @@ namespace ProyectoIPo
                             // Contraseña incorrecta
                             txtError.Text = "La contraseña no es válida.";
                             txtError.Visibility = Visibility.Visible;
+                            btnOlvidarContraseña.Visibility = Visibility.Visible;
                             error++;
                         }
                     }
@@ -120,14 +121,15 @@ namespace ProyectoIPo
                         // Usuario no encontrado
                         txtError.Text = "El usuario no es válido.";
                         txtError.Visibility = Visibility.Visible;
+                        btnOlvidarContraseña.Visibility = Visibility.Visible;
                         error++;
                     }
 
                     // Si hemos alcanzado el número máximo de intentos
                     if (error >= maxIntentos)
                     {
+                        btnOlvidarContraseña.Visibility = Visibility.Visible;
                         // Llamar al método de recuperación de contraseña
-                        btnOlvidarContraseña_Click(sender, e);
                         break;  // Salimos del bucle después de llamar a la recuperación
                     }
                 }
@@ -136,7 +138,8 @@ namespace ProyectoIPo
         }
         private void btnOlvidarContraseña_Click(object sender, RoutedEventArgs e)
         {   
-            btnOlvidarContraseña.Visibility = Visibility.Visible;
+            OlvidarContraseña olvidarContraseña = new OlvidarContraseña();
+            olvidarContraseña.Show();
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)

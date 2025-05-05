@@ -66,6 +66,9 @@
     <Compile Include="AgregarArtistas.xaml.cs">
       <DependentUpon>AgregarArtistas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OlvidarContraseña.xaml.cs">
+      <DependentUpon>OlvidarContraseña.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanaArtistas.xaml.cs">
       <DependentUpon>VentanaArtistas.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,10 @@
     <Page Include="AgregarArtistas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="OlvidarContraseña.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VentanaArtistas.xaml">
       <Generator>MSBuild:Compile</Generator>
