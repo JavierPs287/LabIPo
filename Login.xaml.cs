@@ -146,6 +146,13 @@ namespace ProyectoIPo
         {
             stackPanelLogin.Visibility = Visibility.Collapsed;
             stackPanelRegistro.Visibility = Visibility.Visible;
+            btnOlvidarContraseña.Visibility= Visibility.Collapsed;
+        }
+
+        private void btnLoginFormulario_Click(object sender, RoutedEventArgs e)
+        {
+            stackPanelLogin.Visibility = Visibility.Visible;
+            stackPanelRegistro.Visibility = Visibility.Collapsed;
         }
 
         private void BotonAyuda_Click(object sender, EventArgs e)
