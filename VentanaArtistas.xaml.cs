@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace ProyectoIPo
@@ -10,6 +11,8 @@ namespace ProyectoIPo
     public partial class VentanaArtistas : Window
     {
         private Festival festivalSeleccionado;
+        public DateTime FechaInicioFestival => festivalSeleccionado.FechaFestival;
+        public DateTime FechaFinFestival => festivalSeleccionado.FechaFestival.AddDays(festivalSeleccionado.Duracion - 1);
         public ObservableCollection<Artista> Artistas { get; set; }
         public ObservableCollection<Escenario> Escenarios { get; set; } 
         public List<TimeSpan> HorasDisponibles { get; } = GenerarHoras();
@@ -44,6 +47,17 @@ namespace ProyectoIPo
                 MessageBox.Show("No hay escenarios disponibles para este festival.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        private void DatePicker_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is DatePicker datePicker)
+            {
+                // Limitar las fechas que se pueden seleccionar en el DatePicker, usando las propiedades del festival
+                datePicker.DisplayDateStart = FechaInicioFestival;
+                datePicker.DisplayDateEnd = FechaFinFestival;
+            }
+        }
+
 
         private void ArtistasListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
