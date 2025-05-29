@@ -81,8 +81,9 @@
                                     <DataGridTemplateColumn.CellEditingTemplate>
                                         <DataTemplate>
                                             <DatePicker SelectedDate="{Binding DiaActuacion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Loaded="DatePicker_Loaded"
-                        Width="Auto"/>
+                                                Loaded="DatePicker_Loaded"
+                                                SelectedDateChanged="DatePicker_SelectedDateChanged"
+                                                Width="Auto"/>                      
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>

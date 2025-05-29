@@ -48,24 +48,49 @@ namespace ProyectoIPo
             }
         }
 
+        private DateTime? fechaInicialDatePicker = null;
+
         private void DatePicker_Loaded(object sender, RoutedEventArgs e)
         {
-            if (sender is DatePicker datePicker)
+            if (sender is DatePicker dp)
             {
-                // Limitar las fechas que se pueden seleccionar en el DatePicker, usando las propiedades del festival
-                datePicker.DisplayDateStart = FechaInicioFestival;
-                datePicker.DisplayDateEnd = FechaFinFestival;
+                // Guardamos la fecha inicial que tenía el DatePicker
+                fechaInicialDatePicker = dp.SelectedDate;
+
+                dp.DisplayDateStart = FechaInicioFestival;
+                dp.DisplayDateEnd = FechaFinFestival;
+            }
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is DatePicker dp && dp.SelectedDate.HasValue)
+            {
+                var fecha = dp.SelectedDate.Value;
+                if (fecha < FechaInicioFestival || fecha > FechaFinFestival)
+                {
+                    dp.SelectedDate = fechaInicialDatePicker;
+                    MessageBox.Show($"La fecha debe estar entre {FechaInicioFestival:dd/MM/yyyy} y {FechaFinFestival:dd/MM/yyyy}.", "Fecha inválida", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                else
+                {
+                    fechaInicialDatePicker = fecha;
+                }
             }
         }
 
 
-        private void ArtistasListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ArtistasListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ArtistasListBox.SelectedItem is Artista artistaSeleccionado)
             {
-                
-                // Mostrar detalles del artista seleccionado
-                dataGridArtistas.ItemsSource = new List<Artista> { artistaSeleccionado };
+                // El DataGrid mostrará la colección completa, para que edites directamente
+                dataGridArtistas.ItemsSource = Artistas;
+                // Seleccionar en DataGrid el artista actual para facilitar edición
+                dataGridArtistas.SelectedItem = artistaSeleccionado;
+
+                // Mostrar detalles actualizados
                 txtDetallesArtista.Text = artistaSeleccionado.DetalleArtistas;
             }
         }
