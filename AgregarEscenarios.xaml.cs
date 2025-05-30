@@ -25,18 +25,9 @@ namespace ProyectoIPo
                 string.IsNullOrWhiteSpace(txtServiciosMedicos.Text) ||
                 string.IsNullOrWhiteSpace(txtAseos.Text) ||
                 string.IsNullOrWhiteSpace(txtSeguridad.Text) ||
-                dpDiaActuacion.SelectedDate == null || // Verifica que se haya seleccionado una fecha
-                string.IsNullOrWhiteSpace(txtHoraActuacion.Text) ||
                 string.IsNullOrWhiteSpace(txtFoto.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            // Validar formato de la hora
-            if (!TimeSpan.TryParse(txtHoraActuacion.Text, out TimeSpan horaActuacion))
-            {
-                MessageBox.Show("El formato de la hora es inválido. Use HH:mm.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -51,9 +42,7 @@ namespace ProyectoIPo
             txtServiciosMedicos.Clear();
             txtAseos.Clear();
             txtSeguridad.Clear();
-            txtHoraActuacion.Clear();
             txtFoto.Clear();
-            dpDiaActuacion.SelectedDate = null;
         }
 
         private void Cerrar_Click(object sender, RoutedEventArgs e)

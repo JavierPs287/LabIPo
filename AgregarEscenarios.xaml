@@ -25,19 +25,6 @@
             <Label Content="Seguridad:"/>
             <TextBox x:Name="txtSeguridad" Margin="0,0,0,10"/>
 
-            <Label Content="Día de Actuación:"/>
-            <DatePicker x:Name="dpDiaActuacion" Margin="0,0,0,10"/>
-
-            <Label Content="Hora de Actuación:"/>
-            <TextBox x:Name="txtHoraActuacion" Width="200" Margin="5">
-                <TextBox.Text>
-                    <Binding Path="HoraActuacion" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.FallbackValue>HH:mm</Binding.FallbackValue>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-
             <Label Content="Foto:"/>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBox x:Name="txtFoto" Width="250"/>

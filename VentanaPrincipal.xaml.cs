@@ -131,7 +131,6 @@ namespace ProyectoIPo
                             serviciosMedicos: "Servicio de Emergencias",
                             aseos: "Aseos Públicos",
                             seguridad: "Seguridad Privada",
-                            diaHoraActuacion: new DateTime(2027, 6, 15, 20, 0, 0),
                             fotoPath: "Recursos/EscenarioPrincipal.jpg"
                             ),
                     },

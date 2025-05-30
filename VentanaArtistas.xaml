@@ -187,7 +187,6 @@
                                 <DataGridTextColumn Header="Servicios Médicos" Binding="{Binding ServiciosMedicos}" />
                                 <DataGridTextColumn Header="Aseos" Binding="{Binding Aseos}" />
                                 <DataGridTextColumn Header="Seguridad" Binding="{Binding Seguridad}" />
-                                <DataGridTextColumn Header="Día y Hora de Actuación" Binding="{Binding DiaHoraActuacion}" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBlock Text="Detalles del Escenario" Margin="10" FontWeight="Bold" />

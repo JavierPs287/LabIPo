@@ -138,8 +138,7 @@ namespace ProyectoIPo
                                              $"Localización Entradas/Salidas: {escenarioSeleccionado.LocalizacionEntradasSalidas}\n" +
                                              $"Servicios Médicos: {escenarioSeleccionado.ServiciosMedicos}\n" +
                                              $"Aseos: {escenarioSeleccionado.Aseos}\n" +
-                                             $"Seguridad: {escenarioSeleccionado.Seguridad}\n" +
-                                             $"Día y Hora de Actuación: {escenarioSeleccionado.DiaHoraActuacion}";
+                                             $"Seguridad: {escenarioSeleccionado.Seguridad}\n";
 
                 dataGridEscenarios.ItemsSource = new List<Escenario> { escenarioSeleccionado };
 
