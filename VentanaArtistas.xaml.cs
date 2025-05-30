@@ -126,6 +126,38 @@ namespace ProyectoIPo
             }
         }
 
+        private void EliminarArtista_Click(object sender, RoutedEventArgs e)
+        {
+            if (ArtistasListBox.SelectedItem is Artista artistaSeleccionado)
+            {
+                MessageBoxResult confirmacion = MessageBox.Show(
+                    $"¿Estás seguro de que deseas eliminar al artista: {artistaSeleccionado.Nombre}?",
+                    "Confirmar eliminación",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (confirmacion == MessageBoxResult.Yes)
+                {
+                    Artistas.Remove(artistaSeleccionado);
+                    festivalSeleccionado.Artistas.Remove(artistaSeleccionado);
+
+                    // Refrescar los datos en la lista de festivales (si se usa por referencia no es necesario, pero por si acaso)
+                    DatosApp.Festivales.Remove(festivalSeleccionado);
+                    DatosApp.Festivales.Add(festivalSeleccionado);
+
+                    // Refrescar la lista visual
+                    ArtistasListBox.Items.Refresh();
+
+                    MessageBox.Show("Artista eliminado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un artista para eliminar.", "Ningún artista seleccionado", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+
         private static List<TimeSpan> GenerarHoras()
         {
             var lista = new List<TimeSpan>();

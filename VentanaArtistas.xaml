@@ -18,7 +18,7 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ListBox x:Name="ArtistasListBox" SelectedIndex="0" Width="auto" Margin="5" SelectionChanged="ArtistasListBox_SelectionChanged">
+                    <ListBox x:Name="ArtistasListBox" SelectedIndex="0" Width="auto" Margin="5,5,5,30" SelectionChanged="ArtistasListBox_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -83,7 +83,7 @@
                                             <DatePicker SelectedDate="{Binding DiaActuacion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Loaded="DatePicker_Loaded"
                                                 SelectedDateChanged="DatePicker_SelectedDateChanged"
-                                                Width="Auto"/>                      
+                                                Width="Auto"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
@@ -133,7 +133,7 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
-                                
+
                                 <DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding Alojamiento}" Width="auto" />
                                 <DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" Width="auto"/>
                                 <DataGridTemplateColumn Header="Estado" Width="100">
@@ -155,6 +155,7 @@
                         <TextBox x:Name="txtDetallesArtista" Text="{Binding DetalleArtistas}" Height="100" Width="1000" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
                     </StackPanel>
                     <Button Content="Añadir Artista" Grid.Column="0" Grid.Row="1" Click="AñadirArtista_Click" Margin="5"/>
+                    <Button Content="Eliminar Artista" Grid.Column="0" Click="EliminarArtista_Click" Margin="5,326,5,0"/>
                     <Button Content="?" Width="30" Height="30" FontWeight="Bold"
                         HorizontalAlignment="Right" VerticalAlignment="Top" 
                         Margin="0,346,10,0"

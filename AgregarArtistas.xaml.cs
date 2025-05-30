@@ -158,6 +158,8 @@ namespace ProyectoIPo
             DialogResult = true; // Todo está correcto, cerramos la ventana
             Close();
         }
+      
+
 
         private void BuscarFoto_Click(object sender, RoutedEventArgs e)
         {
