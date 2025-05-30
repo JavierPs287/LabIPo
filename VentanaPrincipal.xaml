@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:ProyectoIPo"
-        Title="Gestión de Festivales" Height="auto" Width="auto"
+        Title="Gestión de Festivales" Height="600" Width="1100"
 		WindowStartupLocation="CenterScreen"
-        MinHeight="200" MinWidth="300">
+        ResizeMode="NoResize">
 
     <Window.Resources>
         <!-- El conversor DateVisibilityConverter definido aquí -->
@@ -40,10 +40,10 @@
 
         <DataGrid x:Name="FestivalDataGrid" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Festivales}" IsReadOnly="False" SelectionMode="Single" Margin="10" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="Auto" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Ubicación" Binding="{Binding Ubicacion}" Width="*" IsReadOnly="True"/>
 
-                <DataGridTemplateColumn Header="Precio Estándar" Width="Auto">
+                <DataGridTemplateColumn Header="Precio Estándar" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding PrecioEstandar}" IsHitTestVisible="False" Focusable="False" />
@@ -56,7 +56,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Precio VIP" Width="Auto">
+                <DataGridTemplateColumn Header="Precio VIP" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding PrecioVIP}" IsHitTestVisible="False" Focusable="False"/>
@@ -69,7 +69,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Fecha" Width="Auto">
+                <DataGridTemplateColumn Header="Fecha" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Fecha, StringFormat='dd/MM/yyyy'}" IsHitTestVisible="False" Focusable="False"/>
@@ -86,7 +86,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Duración" Width="auto">
+                <DataGridTemplateColumn Header="Duración" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Duracion}" IsHitTestVisible="False" Focusable="False"/>
@@ -99,7 +99,7 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Estado" Width="Auto">
+                <DataGridTemplateColumn Header="Estado" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox 

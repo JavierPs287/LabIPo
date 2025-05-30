@@ -93,25 +93,47 @@
                                 <DataGridTemplateColumn Header="Hora Inicio" Width="Auto">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                            SelectedItem="{Binding HoraInicio, Mode=TwoWay}" Width="auto" />
+                                            <TextBlock Text="{Binding HoraInicio}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            SelectedItem="{Binding HoraInicio, Mode=TwoWay}" SelectionChanged="HoraInicio_SelectionChanged" Width="auto"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
 
                                 <!-- Hora de fin -->
                                 <DataGridTemplateColumn Header="Hora Fin" Width="Auto">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                            SelectedItem="{Binding HoraFin, Mode=TwoWay}" Width="auto"/>
+                                            <TextBlock Text="{Binding HoraFin}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            SelectedItem="{Binding HoraFin, Mode=TwoWay}" SelectionChanged="HoraFin_SelectionChanged" Width="auto"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
 
-
-
-                                <DataGridTextColumn Header="Escenario" Binding="{Binding Escenario}" Width="auto"/>
+                                <DataGridTemplateColumn Header="Escenario" Width="auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Escenario}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <ComboBox SelectedItem="{Binding Escenario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    DropDownOpened="ComboBox_DropDownOpened"
+                                                    Width="auto" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                
                                 <DataGridTextColumn Header="Lugar de Alojamiento" Binding="{Binding Alojamiento}" Width="auto" />
                                 <DataGridTextColumn Header="Petición Especial" Binding="{Binding PeticionEspecial}" Width="auto"/>
                                 <DataGridTemplateColumn Header="Estado" Width="100">

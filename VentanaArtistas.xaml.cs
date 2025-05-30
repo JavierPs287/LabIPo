@@ -46,6 +46,7 @@ namespace ProyectoIPo
             {
                 MessageBox.Show("No hay escenarios disponibles para este festival.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+
         }
 
         private DateTime? fechaInicialDatePicker = null;
@@ -59,6 +60,17 @@ namespace ProyectoIPo
 
                 dp.DisplayDateStart = FechaInicioFestival;
                 dp.DisplayDateEnd = FechaFinFestival;
+            }
+        }
+        private void ComboBox_DropDownOpened(object sender, EventArgs args)
+        {
+            // Obtener la lista actualizada de nombres de escenarios
+            var listaActualizada = Escenarios.Select(esc => esc.Nombre).ToList();
+
+            if (sender is ComboBox comboBox)
+            {
+                // Asignar la lista actualizada al ComboBox que abrió el desplegable
+                comboBox.ItemsSource = listaActualizada;
             }
         }
 
@@ -79,7 +91,6 @@ namespace ProyectoIPo
                 }
             }
         }
-
 
         private void ArtistasListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -118,12 +129,107 @@ namespace ProyectoIPo
         private static List<TimeSpan> GenerarHoras()
         {
             var lista = new List<TimeSpan>();
-            for (int h = 0; h < 24; h++)
+            for (int h = 12; h < 24; h++)
             {
                 lista.Add(new TimeSpan(h, 0, 0));
                 lista.Add(new TimeSpan(h, 30, 0));
             }
+            for (int h = 0; h < 2; h++)
+            {
+                lista.Add(new TimeSpan(h, 0, 0));
+                lista.Add(new TimeSpan(h, 30, 0));
+            }
+            lista.Add(new TimeSpan(2, 0, 0));
             return lista;
+        }
+        private void HoraInicio_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox && comboBox.DataContext is Artista artista)
+            {
+                var nuevaHoraInicio = comboBox.SelectedItem as TimeSpan?;
+
+                if (nuevaHoraInicio == null)
+                    return;
+
+                var horaInicioOriginal = artista.HoraInicio;
+
+                artista.HoraInicio = nuevaHoraInicio;
+
+                if (HaySolapamiento(artista, Artistas))
+                {
+                    MessageBox.Show("No se pueden solapar las horas de las actuaciones.\n Cambia el horario o estado.", "Solapamiento Actuaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    artista.HoraInicio = horaInicioOriginal;
+                    comboBox.SelectedItem = horaInicioOriginal;
+                }
+                else
+                {
+                    if (artista.HoraFin.HasValue && artista.HoraInicio >= artista.HoraFin)
+                    {
+                        MessageBox.Show("La hora de inicio debe ser menor que la hora de fin.", "Horas No Validas", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        artista.HoraInicio = horaInicioOriginal;
+                        comboBox.SelectedItem = horaInicioOriginal;
+                    }
+                }
+            }
+        }
+
+
+        private void HoraFin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox && comboBox.DataContext is Artista artista)
+            {
+                var nuevaHoraFin = comboBox.SelectedItem as TimeSpan?;
+
+                if (nuevaHoraFin == null)
+                    return;
+
+                var horaFinOriginal = artista.HoraFin;
+                artista.HoraFin = nuevaHoraFin;
+
+                if (HaySolapamiento(artista, Artistas))
+                {
+                    MessageBox.Show("¡Solapamiento detectado! Cambia el horario o estado.", "Error");
+
+                    artista.HoraFin = horaFinOriginal;
+                    comboBox.SelectedItem = horaFinOriginal;
+                }
+                else
+                {
+                    if (artista.HoraInicio.HasValue && artista.HoraInicio >= artista.HoraFin)
+                    {
+                        MessageBox.Show("La hora de inicio debe ser menor que la hora de fin.", "Error");
+
+                        artista.HoraFin = horaFinOriginal;
+                        comboBox.SelectedItem = horaFinOriginal;
+                    }
+                }
+            }
+        }
+
+
+        public bool HaySolapamiento(Artista artistaActual, IEnumerable<Artista> listaArtistas)
+        {
+            foreach (var artista in listaArtistas)
+            {
+                if (artista == artistaActual)
+                    continue;
+
+                if (artista.DiaActuacion == artistaActual.DiaActuacion &&
+                    artista.Escenario == artistaActual.Escenario)
+                {
+                    // Comprobar si los horarios se solapan
+                    // Condición para solapamiento de intervalos [a1,a2) y [b1,b2):
+                    // a1 < b2 && b1 < a2
+                    if (artistaActual.HoraInicio < artista.HoraFin &&
+                        artista.HoraInicio < artistaActual.HoraFin)
+                    {
+                        return true; // Hay solapamiento
+                    }
+                }
+            }
+            return false; // No hay solapamientos
         }
 
         // GESTIÓN DE ESCENARIOS
