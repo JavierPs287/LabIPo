@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -39,45 +40,80 @@ namespace ProyectoIPo
             MessageBox.Show("Aquí puede observar los datos del usuario.\n" +
                 "Para acceder al acceder al sistema, haga click en continuar.", "Ayuda Ventana Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private bool enEdicion = false; // pon esto como campo de la clase
+
         private void modificar_click(object sender, RoutedEventArgs e)
         {
-            txtNombreUsuario.IsReadOnly = false;
-            txtNombre.IsReadOnly = false;
-            txtApellidos.IsReadOnly = false;
-            CorreoElectronico.IsReadOnly = false;
-            UltimoAcceso.IsReadOnly = false;
+            // Usamos sender para acceder al botón
+            var boton = sender as Button;
 
-            DatosApp.Usuarios[username].NombreUsuario = txtNombreUsuario.Text;
-            DatosApp.Usuarios[username].Nombre = txtNombre.Text;
-            DatosApp.Usuarios[username].Apellidos = txtApellidos.Text;
-            DatosApp.Usuarios[username].Correo = CorreoElectronico.Text;
-            DatosApp.Usuarios[username].Contraseña = txtContraseña.Text;
-            DatosApp.Usuarios[username].FechaUltimoAcceso = DateTime.Now; // Actualiza la fecha de último acceso
-
-
-            if (DatosApp.Usuarios[username].NombreUsuario != txtNombreUsuario.Text ||
-                DatosApp.Usuarios[username].Nombre != txtNombre.Text ||
-                DatosApp.Usuarios[username].Apellidos != txtApellidos.Text ||
-                DatosApp.Usuarios[username].Correo != CorreoElectronico.Text ||
-                DatosApp.Usuarios[username].Contraseña != txtContraseña.Text)
+            if (!enEdicion)
             {
-                DatosApp.Usuarios.Remove(username); // Elimina el usuario anterior
-                DatosApp.Usuarios.Add(txtNombreUsuario.Text, DatosApp.Usuarios[txtNombreUsuario.Text]); // Agrega el nuevo usuario
-                DatosApp.Usuarios.Add(txtNombre.Text, DatosApp.Usuarios[txtNombre.Text]); // Actualiza el nombre de usuario
-                DatosApp.Usuarios.Add(txtApellidos.Text, DatosApp.Usuarios[txtApellidos.Text]); // Actualiza el apellido
-                DatosApp.Usuarios.Add(CorreoElectronico.Text, DatosApp.Usuarios[CorreoElectronico.Text]); // Actualiza el correo
-                DatosApp.Usuarios.Add(txtContraseña.Text, DatosApp.Usuarios[txtContraseña.Text]); // Actualiza la contraseña
-                DatosApp.Usuarios.Add(UltimoAcceso.Text, DatosApp.Usuarios[UltimoAcceso.Text]); // Actualiza la fecha de último acceso
+                // Activar edición
+                txtNombreUsuario.IsReadOnly = false;
+                txtNombre.IsReadOnly = false;
+                txtApellidos.IsReadOnly = false;
+                CorreoElectronico.IsReadOnly = false;
+                UltimoAcceso.IsReadOnly = false;
 
-
+                if (boton != null)
+                    boton.Content = "Guardar";
+                enEdicion = true;
             }
+            else
+            {
+                // GUARDAR cambios
+                var usuarioActual = DatosApp.Usuarios[username];
+                bool hayCambios =
+                    usuarioActual.NombreUsuario != txtNombreUsuario.Text ||
+                    usuarioActual.Nombre != txtNombre.Text ||
+                    usuarioActual.Apellidos != txtApellidos.Text ||
+                    usuarioActual.Correo != CorreoElectronico.Text ||
+                    usuarioActual.Contraseña != txtContraseña.Text;
 
+                if (!hayCambios)
+                {
+                    MessageBox.Show("No se han realizado cambios.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    usuarioActual.NombreUsuario = txtNombreUsuario.Text;
+                    usuarioActual.Nombre = txtNombre.Text;
+                    usuarioActual.Apellidos = txtApellidos.Text;
+                    usuarioActual.Correo = CorreoElectronico.Text;
+                    usuarioActual.Contraseña = txtContraseña.Text;
+                    usuarioActual.FechaUltimoAcceso = DateTime.Now;
 
+                    if (username != txtNombreUsuario.Text)
+                    {
+                        DatosApp.Usuarios.Remove(username);
+                        DatosApp.Usuarios.Add(txtNombreUsuario.Text, usuarioActual);
 
+                        // ACTUALIZA el username en la ventana principal si existe:
+                        var principal = Application.Current.Windows.OfType<VentanaPrincipal>().FirstOrDefault();
+                        if (principal != null)
+                        {
+                            principal.Username = txtNombreUsuario.Text;
+                        }
 
+                        username = txtNombreUsuario.Text;
+                    }
 
+                    MessageBox.Show("Datos modificados correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
 
+                // Desactivar edición
+                txtNombreUsuario.IsReadOnly = true;
+                txtNombre.IsReadOnly = true;
+                txtApellidos.IsReadOnly = true;
+                CorreoElectronico.IsReadOnly = true;
+                UltimoAcceso.IsReadOnly = true;
 
+                if (boton != null)
+                    boton.Content = "Modificar";
+                enEdicion = false;
+            }
         }
         private bool contraseñaVisible = false; // Variable para saber el estado
 

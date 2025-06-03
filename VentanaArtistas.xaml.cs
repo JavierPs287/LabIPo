@@ -324,5 +324,31 @@ namespace ProyectoIPo
                 "Si quiere añadir algun escenario haga click en 'Añadir Escenario'.\n" +
                 "Si quiere ver la información de los artistas, haga click en el tab 'Artistas'.", "Ayuda Escenarios", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+        public void EliminarEscenario_click(object sender, RoutedEventArgs e)
+        {
+            if (EscenariosListBox.SelectedItem is Escenario escenarioSeleccionado)
+            {
+                MessageBoxResult confirmacion = MessageBox.Show(
+                    $"¿Estás seguro de que deseas eliminar el escenario: {escenarioSeleccionado.Nombre}?",
+                    "Confirmar eliminación",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+                if (confirmacion == MessageBoxResult.Yes)
+                {
+                    Escenarios.Remove(escenarioSeleccionado);
+                    festivalSeleccionado.Escenarios.Remove(escenarioSeleccionado);
+                    // Refrescar los datos en la lista de festivales (si se usa por referencia no es necesario, pero por si acaso)
+                    DatosApp.Festivales.Remove(festivalSeleccionado);
+                    DatosApp.Festivales.Add(festivalSeleccionado);
+                    // Refrescar la lista visual
+                    EscenariosListBox.Items.Refresh();
+                    MessageBox.Show("Escenario eliminado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un escenario para eliminar.", "Ningún escenario seleccionado", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }

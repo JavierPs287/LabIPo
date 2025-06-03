@@ -11,14 +11,14 @@ namespace ProyectoIPo
     public class Escenario
     {
         public string Nombre { get; set; }
-        public string AforoMax { get; set; }
+        public int AforoMax { get; set; }
         public string LocalizacionEntradasSalidas { get; set; }
         public string ServiciosMedicos { get; set; }
         public string Aseos { get; set; }
         public string Seguridad { get; set; }
         public string FotoPath { get; set; } // Ruta de la foto
 
-        public Escenario(string nombre, string aforoMax, string localizacionEntradasSalidas, string serviciosMedicos, string aseos, string seguridad, string fotoPath)
+        public Escenario(string nombre, int aforoMax, string localizacionEntradasSalidas, string serviciosMedicos, string aseos, string seguridad, string fotoPath)
         {
             Nombre = nombre;
             AforoMax = aforoMax;

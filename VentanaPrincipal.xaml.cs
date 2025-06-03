@@ -45,7 +45,6 @@ namespace ProyectoIPo
                 ventanaUsuario.Activate(); // Si ya estaba abierta, la traemos al frente
             }
         }
-
         private void InicializarDatos()
         {
             Festivales = DatosApp.Festivales;
@@ -126,7 +125,7 @@ namespace ProyectoIPo
                         new Escenario(
                             
                             nombre: "Escenario Principal",
-                            aforoMax: "10000",
+                            aforoMax: 10000,
                             localizacionEntradasSalidas: "Entrada Principal",
                             serviciosMedicos: "Servicio de Emergencias",
                             aseos: "Aseos Públicos",
