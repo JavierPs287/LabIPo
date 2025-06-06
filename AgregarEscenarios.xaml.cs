@@ -28,6 +28,7 @@ namespace ProyectoIPo
                 txtNombre.BorderBrush = Brushes.Red;
                 txtNombre.BorderThickness = new Thickness(2);
                 camposInvalidos = true;
+                MessageBox.Show("El nombre del escenario es obligatorio.", "Campo obligatorio", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -40,6 +41,7 @@ namespace ProyectoIPo
                 txtAforo.BorderBrush = Brushes.Red;
                 txtAforo.BorderThickness = new Thickness(2);
                 camposInvalidos = true;
+                MessageBox.Show("El aforo debe ser un número válido.", "Dato incorrecto", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -52,6 +54,7 @@ namespace ProyectoIPo
                 txtEntradasSalidas.BorderBrush = Brushes.Red;
                 txtEntradasSalidas.BorderThickness = new Thickness(2);
                 camposInvalidos = true;
+                MessageBox.Show("Debe indicar la localización de entradas y salidas.", "Campo obligatorio", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -64,6 +67,7 @@ namespace ProyectoIPo
                 txtServiciosMedicos.BorderBrush = Brushes.Red;
                 txtServiciosMedicos.BorderThickness = new Thickness(2);
                 camposInvalidos = true;
+                MessageBox.Show("Debe indicar los servicios médicos disponibles.", "Campo obligatorio", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -76,6 +80,7 @@ namespace ProyectoIPo
                 txtAseos.BorderBrush = Brushes.Red;
                 txtAseos.BorderThickness = new Thickness(2);
                 camposInvalidos = true;
+                MessageBox.Show("Debe indicar los aseos disponibles.", "Campo obligatorio", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -88,23 +93,12 @@ namespace ProyectoIPo
                 txtSeguridad.BorderBrush = Brushes.Red;
                 txtSeguridad.BorderThickness = new Thickness(2);
                 camposInvalidos = true;
+                MessageBox.Show("Debe indicar las medidas de seguridad.", "Campo obligatorio", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
                 txtSeguridad.ClearValue(TextBox.BorderBrushProperty);
                 txtSeguridad.ClearValue(TextBox.BorderThicknessProperty);
-            }
-
-            if (string.IsNullOrWhiteSpace(txtFoto.Text))
-            {
-                txtFoto.BorderBrush = Brushes.Red;
-                txtFoto.BorderThickness = new Thickness(2);
-                camposInvalidos = true;
-            }
-            else
-            {
-                txtFoto.ClearValue(TextBox.BorderBrushProperty);
-                txtFoto.ClearValue(TextBox.BorderThicknessProperty);
             }
 
             if (camposInvalidos)

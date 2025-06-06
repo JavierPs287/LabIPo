@@ -289,20 +289,31 @@ namespace ProyectoIPo
             var agregarEscenariosWindow = new AgregarEscenarios();
             if (agregarEscenariosWindow.ShowDialog() == true)
             {
+                bool seAgregoEscenario = false;
+
                 foreach (var nuevoEscenario in agregarEscenariosWindow.NuevosEscenarios)
                 {
                     if (!festivalSeleccionado.Escenarios.Any(esc => esc.Nombre == nuevoEscenario.Nombre))
                     {
                         festivalSeleccionado.Escenarios.Add(nuevoEscenario);
                         Escenarios.Add(nuevoEscenario);
+                        seAgregoEscenario = true;
                     }
                     else
                     {
                         MessageBox.Show($"El escenario {nuevoEscenario.Nombre} ya existe.");
                     }
                 }
+
+                // Refrescar la vista del DataGrid para que muestre todos los escenarios actualizados
+                if (seAgregoEscenario)
+                {
+                    dataGridEscenarios.ItemsSource = null;
+                    dataGridEscenarios.ItemsSource = Escenarios;
+                }
             }
         }
+
 
         private void BotonAyudaArtista_Click(object sender, EventArgs e)
         {
