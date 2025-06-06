@@ -13,11 +13,8 @@
                 <Grid Height="554">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <!-- Botón ayuda -->
                         <RowDefinition Height="Auto"/>
-                        <!-- ListBox y DataGrid -->
                         <RowDefinition Height="Auto"/>
-                        <!-- Botones añadir/eliminar -->
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -163,10 +160,6 @@
                         <TextBox x:Name="txtDetallesArtista" Text="{Binding DetalleArtistas}" Height="100" Width="1000" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
                     </StackPanel>
                     <!-- Botón ayuda ahora está por encima del StackPanel -->
-                    <Button Content="?" Width="30" Height="30"
-                            HorizontalAlignment="Right" VerticalAlignment="Top"
-                            Margin="0,10,10,0"
-                            Click="BotonAyudaArtista_Click" />
 
                     <Button Content="Añadir Artista" Grid.Column="0" Click="AñadirArtista_Click" Margin="5,0,5,24" Grid.ColumnSpan="4" Grid.Row="1"/>
                     <Button Content="Eliminar Artista" Grid.Column="0" Click="EliminarArtista_Click" Margin="5,484,5,5" Grid.ColumnSpan="4" />
