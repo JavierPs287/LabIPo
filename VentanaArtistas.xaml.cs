@@ -62,6 +62,7 @@ namespace ProyectoIPo
                 dp.DisplayDateEnd = FechaFinFestival;
             }
         }
+
         private void ComboBox_DropDownOpened(object sender, EventArgs args)
         {
             // Obtener la lista actualizada de nombres de escenarios
@@ -69,7 +70,6 @@ namespace ProyectoIPo
 
             if (sender is ComboBox comboBox)
             {
-                // Asignar la lista actualizada al ComboBox que abrió el desplegable
                 comboBox.ItemsSource = listaActualizada;
             }
         }
@@ -304,11 +304,6 @@ namespace ProyectoIPo
             }
         }
 
-        private void dataGridArtistas_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void BotonAyudaArtista_Click(object sender, EventArgs e)
         {
             MessageBox.Show("En la lista de la izquierda, selecciona el artista del cual quiera ver los datos.\n" +
@@ -324,7 +319,7 @@ namespace ProyectoIPo
                 "Si quiere añadir algun escenario haga click en 'Añadir Escenario'.\n" +
                 "Si quiere ver la información de los artistas, haga click en el tab 'Artistas'.", "Ayuda Escenarios", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-        public void EliminarEscenario_click(object sender, RoutedEventArgs e)
+        public void EliminarEscenario_Click(object sender, RoutedEventArgs e)
         {
             if (EscenariosListBox.SelectedItem is Escenario escenarioSeleccionado)
             {

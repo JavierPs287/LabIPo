@@ -120,7 +120,21 @@ namespace ProyectoIPo
             string datosPersonales = string.IsNullOrWhiteSpace(txtDatosPersonales.Text) || txtDatosPersonales.Text == "Datos Personales" ? null : txtDatosPersonales.Text;
             string correoElectronico = string.IsNullOrWhiteSpace(txtCorreoElectronico.Text) || txtCorreoElectronico.Text == "Correo Electrónico" ? null : txtCorreoElectronico.Text;
             string redesSociales = string.IsNullOrWhiteSpace(txtRedesSociales.Text) || txtRedesSociales.Text == "Redes Sociales" ? null : txtRedesSociales.Text;
-            string cache = string.IsNullOrWhiteSpace(txtCache.Text) || txtCache.Text == "Caché" ? null : txtCache.Text;
+            float? cache = null;
+            if (!string.IsNullOrWhiteSpace(txtCache.Text) && txtCache.Text != "Caché")
+            {
+                if (float.TryParse(txtCache.Text, out float parsedCache))
+                {
+                    cache = parsedCache;
+                }
+                else
+                {
+                    MessageBox.Show("El valor de Caché debe ser un número válido", "Error de formato", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtCache.BorderBrush = Brushes.Red;
+                    txtCache.BorderThickness = new Thickness(2);
+                    return;
+                }
+            }
             string alojamiento = string.IsNullOrWhiteSpace(txtLugarAlojamiento.Text) || txtLugarAlojamiento.Text == "Lugar de Alojamiento" ? null : txtLugarAlojamiento.Text;
             string peticionEspecial = string.IsNullOrWhiteSpace(txtPeticionEspecial.Text) || txtPeticionEspecial.Text == "Petición Especial" ? null : txtPeticionEspecial.Text;
             string detallesArtista = string.IsNullOrWhiteSpace(txtDetallesArtista.Text) || txtDatosPersonales.Text == "Detalles Artista" ? null : txtDatosPersonales.Text;
@@ -140,7 +154,7 @@ namespace ProyectoIPo
                 datosPersonales,
                 correoElectronico,
                 redesSociales,
-                cache,
+                cache ?? 0f,
                 fechaInicioFestival,
                 duracionFestival,
                 fechaActuacion,

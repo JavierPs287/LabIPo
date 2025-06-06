@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="Gestión Artistas" 
-        Width="auto"
+        Width="1800"
         Height="600"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
@@ -12,14 +12,20 @@
             <TabItem Header="Artistas">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
+                        <!-- Botón ayuda -->
+                        <RowDefinition Height="*"/>
+                        <!-- ListBox y DataGrid -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Botones añadir/eliminar -->
                     </Grid.RowDefinitions>
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="5"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+
                     <ListBox x:Name="ArtistasListBox" SelectedIndex="0" Width="auto" Margin="5,5,5,64" SelectionChanged="ArtistasListBox_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -46,7 +52,7 @@
 
                     <GridSplitter Grid.Column="1" Grid.Row="0" Width="5" HorizontalAlignment="Stretch"/>
                     <StackPanel x:Name="spDetallesArtista" Grid.Column="2" Grid.Row="0" Orientation="Vertical" Margin="5">
-                        <DataGrid x:Name="dataGridArtistas" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400"  IsReadOnly="False" SelectionChanged="dataGridArtistas_SelectionChanged">
+                        <DataGrid x:Name="dataGridArtistas" AutoGenerateColumns="False" MinHeight="200" MaxHeight="400"  IsReadOnly="False" Height="252">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto" />
                                 <DataGridTextColumn Header="Género Musical" Binding="{Binding GeneroMusical}" Width="auto" />
@@ -71,13 +77,13 @@
 
                                 <DataGridTextColumn Header="Correo Electrónico" Binding="{Binding CorreoElectronico}" Width="auto" />
                                 <DataGridTextColumn Header="Redes Sociales" Binding="{Binding RedesSociales}" Width="auto" />
-                                <DataGridTextColumn Header="Caché" Binding="{Binding Cache}" Width="auto"/>
+                                <DataGridTextColumn Header="Caché" Binding="{Binding Cache, StringFormat=N0}" Width="auto"/>
 
                                 <!-- Día de actuación -->
                                 <DataGridTemplateColumn Header="Día de actuación" Width="Auto">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding DiaActuacion, StringFormat='dd/MM/yyyy'}" IsHitTestVisible="False" Focusable="False"/>
+                                            <TextBlock Text="{Binding DiaActuacion, StringFormat=dd/MM/yyyy}" IsHitTestVisible="False" Focusable="False"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                     <DataGridTemplateColumn.CellEditingTemplate>
@@ -90,7 +96,6 @@
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
 
-
                                 <!-- Hora de inicio -->
                                 <DataGridTemplateColumn Header="Hora Inicio" Width="Auto">
                                     <DataGridTemplateColumn.CellTemplate>
@@ -100,7 +105,7 @@
                                     </DataGridTemplateColumn.CellTemplate>
                                     <DataGridTemplateColumn.CellEditingTemplate>
                                         <DataTemplate>
-                                            <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                             SelectedItem="{Binding HoraInicio, Mode=TwoWay}" SelectionChanged="HoraInicio_SelectionChanged" Width="auto"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
@@ -115,7 +120,7 @@
                                     </DataGridTemplateColumn.CellTemplate>
                                     <DataGridTemplateColumn.CellEditingTemplate>
                                         <DataTemplate>
-                                            <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            <ComboBox ItemsSource="{Binding DataContext.HorasDisponibles, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                             SelectedItem="{Binding HoraFin, Mode=TwoWay}" SelectionChanged="HoraFin_SelectionChanged" Width="auto"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
@@ -142,11 +147,9 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <ComboBox SelectedItem="{Binding Estado}" IsReadOnly="True" Background="LightGray" Width="auto">
-                                                <ComboBox.Items>
-                                                    <sys:String>ACTIVO</sys:String>
-                                                    <sys:String>APLAZADO</sys:String>
-                                                    <sys:String>CANCELADO</sys:String>
-                                                </ComboBox.Items>
+                                                <sys:String>ACTIVO</sys:String>
+                                                <sys:String>APLAZADO</sys:String>
+                                                <sys:String>CANCELADO</sys:String>
                                             </ComboBox>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -156,14 +159,14 @@
                         <TextBlock Text="Detalles del Artista" Margin="10" FontWeight="Bold" />
                         <TextBox x:Name="txtDetallesArtista" Text="{Binding DetalleArtistas}" Height="100" Width="1000" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
                     </StackPanel>
+                    <!-- Botón ayuda ahora está por encima del StackPanel -->
+                    <Button Content="?" Width="30" Height="30"
+                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                            Margin="0,5,5,0"
+                            Click="BotonAyudaArtista_Click"
+                            ToolTip="Ayuda" />
                     <Button Content="Añadir Artista" Grid.Column="0" Grid.Row="1" Click="AñadirArtista_Click" Margin="5"/>
                     <Button Content="Eliminar Artista" Grid.Column="0" Click="EliminarArtista_Click" Margin="5,479,5,5" />
-                    <Button Content="?" Width="30" Height="30" FontWeight="Bold"
-                        HorizontalAlignment="Right" VerticalAlignment="Top" 
-                        Margin="0,346,10,0"
-                        Click="BotonAyudaArtista_Click"
-                        ToolTip="Ayuda"
-                        Grid.Column="2" Grid.Row="0" RenderTransformOrigin="-0.733,6.436" Grid.RowSpan="2"/>
                 </Grid>
             </TabItem>
 
@@ -215,16 +218,10 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBlock Text="Detalles del Escenario" Margin="10" FontWeight="Bold" />
-                        <TextBox x:Name="txtDetallesEscenario" Margin="10" Height="100" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
+                        <TextBox x:Name="txtDetallesEscenario" Text="{Binding DetalleEscenarios}" Height="100" Width="1000" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
                     </StackPanel>
                     <Button Content="Añadir Escenario" Grid.Column="0" Grid.Row="1" Click="AñadirEscenario_Click" Margin="5"/>
-                    <Button Content="?" Width="30" Height="30" FontWeight="Bold"
-                        HorizontalAlignment="Right" VerticalAlignment="Top" 
-                        Margin="0,346,10,0"
-                        Click="BotonAyudaEscenario_Click"
-                        ToolTip="Ayuda"
-                        Grid.Column="2" Grid.Row="0" RenderTransformOrigin="-0.733,6.436" Grid.RowSpan="2"/>
-                    <Button Content="Eliminar Escenario" Margin="5,440,5,0" Click="EliminarEscenario_click"/>
+                    <Button Content="Eliminar Escenario" Grid.Column="0" Grid.Row="1" Click="EliminarEscenario_Click" Margin="5,0,5,5"/>
                 </Grid>
             </TabItem>
         </TabControl>

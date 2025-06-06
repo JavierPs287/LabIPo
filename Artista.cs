@@ -15,7 +15,7 @@ namespace ProyectoIPo
         public string DatosPersonales { get; set; }
         public string CorreoElectronico { get; set; }
         public string RedesSociales { get; set; }
-        public string Cache { get; set; }
+        public float Cache { get; set; }
         public string Escenario { get; set; }
         public string Alojamiento { get; set; }
         public string PeticionEspecial { get; set; }
@@ -48,7 +48,7 @@ namespace ProyectoIPo
 
         // Constructor
         public Artista(string nombre, string generoMusical, string datosPersonales,
-            string correoElectronico, string redesSociales, string cache, DateTime fechaInicioFestival, int duracionFestival,
+            string correoElectronico, string redesSociales, float cache, DateTime fechaInicioFestival, int duracionFestival,
             DateTime? diaActuacion, TimeSpan? horaInicio, TimeSpan? horaFin, string escenario,
             string alojamiento, string peticionEspecial, string estado, string logoPath, string detalleArtistas, bool esGrupo)
         {

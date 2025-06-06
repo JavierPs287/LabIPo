@@ -4,50 +4,60 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="Agregar Artista" 
         SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        Height="800"
+        Width="400">
     <Grid>
-        <StackPanel>
-            <TextBox x:Name="txtNombreArtista" Text="Nombre del artista" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-            <TextBox x:Name="txtGeneroMusical" Text="Género Musical" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-            <TextBox x:Name="txtDatosPersonales" Text="Datos Personales" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-            <TextBox x:Name="txtCorreoElectronico" Text="Correo Electrónico" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-            <TextBox x:Name="txtRedesSociales" Text="Redes Sociales" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-            <TextBox x:Name="txtCache" Text="Caché" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-            <TextBox x:Name="txtLugarAlojamiento" Text="Lugar de Alojamiento" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-            <TextBox x:Name="txtPeticionEspecial" Text="Petición Especial" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-            <TextBox x:Name="txtDetallesArtista" Text="Detalles del artista" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+        <!-- Definimos dos filas -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Fila para el botón de ayuda -->
+            <RowDefinition Height="*"/>
+            <!-- Fila para el contenido principal -->
+        </Grid.RowDefinitions>
 
-            <Label Content="Horario de la actuación:                Hora inicio          Hora fin"/>
-            <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
-                <!-- Fecha -->
-                <DatePicker x:Name="dpFechaActuacion" Width="150" Margin="0,0,10,0" RenderTransformOrigin="0.476,-0.289"/>
-
-                <!-- Hora de inicio -->
-                <ComboBox x:Name="cbHoraInicio" Width="80" Margin="0,0,10,0" Loaded="OnHoraComboBoxLoaded"/>
-
-                <!-- Hora de fin -->
-                <ComboBox x:Name="cbHoraFin" Width="80" Loaded="OnHoraComboBoxLoaded"/>
-            </StackPanel>
-
-
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBox x:Name="txtFoto" Width="250" Text="Foto del artista" Foreground="Gray"
-                     GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus"/>
-                <Button Content="Buscar" Click="BuscarFoto_Click" Width="80" Margin="5,0,0,0"/>
-            </StackPanel>
-
-            <!-- Campos adicionales para grupo -->
-            <StackPanel x:Name="spGrupo" Visibility="Collapsed">
-                <TextBox x:Name="txtCantidadMiembros" Text="Cantidad de Miembros" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
-            </StackPanel>
-
-            <!-- Botón Agregar -->
-            <Button Content="Agregar" Click="Agregar_Click" Margin="10"/>
-        </StackPanel>
+        <!-- Botón de ayuda en la parte superior derecha -->
         <Button Content="?" Width="30" Height="30" FontWeight="Bold"
-            HorizontalAlignment="Right" VerticalAlignment="Top" 
-            Margin="0,10,10,0"
-            Click="BotonAyuda_Click"
-            ToolTip="Ayuda" RenderTransformOrigin="17.533,0.335" Grid.Column="2" />
+                HorizontalAlignment="Right" VerticalAlignment="Top" 
+                Margin="0,10,10,0"
+                Click="BotonAyuda_Click"
+                ToolTip="Ayuda"
+                Grid.Row="0"/>
+
+        <!-- Contenido principal desplazado hacia abajo -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBox x:Name="txtNombreArtista" Text="Nombre del artista" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+                <TextBox x:Name="txtGeneroMusical" Text="Género Musical" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+                <TextBox x:Name="txtDatosPersonales" Text="Datos Personales" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+                <TextBox x:Name="txtCorreoElectronico" Text="Correo Electrónico" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+                <TextBox x:Name="txtRedesSociales" Text="Redes Sociales" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+                <TextBox x:Name="txtCache" Text="Caché" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+                <TextBox x:Name="txtLugarAlojamiento" Text="Lugar de Alojamiento" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+                <TextBox x:Name="txtPeticionEspecial" Text="Petición Especial" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+                <TextBox x:Name="txtDetallesArtista" Text="Detalles del artista" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+
+                <Label Content="Horario de la actuación:                Hora inicio          Hora fin"/>
+                <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
+                    <DatePicker x:Name="dpFechaActuacion" Width="150" Margin="0,0,10,0"/>
+                    <ComboBox x:Name="cbHoraInicio" Width="80" Margin="0,0,10,0" Loaded="OnHoraComboBoxLoaded"/>
+                    <ComboBox x:Name="cbHoraFin" Width="80" Loaded="OnHoraComboBoxLoaded"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBox x:Name="txtFoto" Width="250" Text="Foto del artista" Foreground="Gray"
+                             GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus"/>
+                    <Button Content="Buscar" Click="BuscarFoto_Click" Width="80" Margin="5,0,0,0"/>
+                </StackPanel>
+
+                <StackPanel x:Name="spGrupo" Visibility="Collapsed">
+                    <TextBox x:Name="txtCantidadMiembros" Text="Cantidad de Miembros" Foreground="Gray" GotFocus="OnTextBoxGotFocus" LostFocus="OnTextBoxLostFocus" Margin="10" />
+                </StackPanel>
+
+                <Button Content="Agregar" Click="Agregar_Click" Margin="10"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
