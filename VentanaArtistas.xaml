@@ -170,7 +170,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Escenarios">
+            <TabItem Header="Escenarios" Height="20" VerticalAlignment="Bottom">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -178,10 +178,11 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="5"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ListBox x:Name="EscenariosListBox" SelectedIndex="0" Width="auto" Margin="5,5,5,60" SelectionChanged="EscenariosListBox_SelectionChanged">
+
+                    <ListBox x:Name="EscenariosListBox" Grid.Row="0" Grid.Column="0" SelectedIndex="0" Margin="5,5,5,64" SelectionChanged="EscenariosListBox_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -220,8 +221,10 @@
                         <TextBlock Text="Detalles del Escenario" Margin="10" FontWeight="Bold" />
                         <TextBox x:Name="txtDetallesEscenario" Text="{Binding DetalleEscenarios}" Height="100" Width="1000" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" />
                     </StackPanel>
+
+                    <!-- Botones igual que los de artista -->
                     <Button Content="Añadir Escenario" Grid.Column="0" Grid.Row="1" Click="AñadirEscenario_Click" Margin="5"/>
-                    <Button Content="Eliminar Escenario" Grid.Column="0" Grid.Row="1" Click="EliminarEscenario_Click" Margin="5,0,5,5"/>
+                    <Button Content="Eliminar Escenario" Grid.Column="0" Grid.Row="1" Click="EliminarEscenario_Click" Margin="5,45,5,5"/>
                 </Grid>
             </TabItem>
         </TabControl>
