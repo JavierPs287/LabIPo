@@ -1,43 +1,45 @@
 ﻿<Window x:Class="ProyectoIPo.AgregarEscenarios"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Agregar Escenarios" Height="auto" Width="auto"
+        Title="Agregar Escenarios" Height="612" Width="400"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
 
-    <Grid Margin="10">
+    <Grid Margin="10,42,10,10">
         <StackPanel>
 
             <Label Content="Nombre:"/>
-            <TextBox x:Name="txtNombre" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtNombre" Margin="0,0,0,10" Height="25" TextWrapping="NoWrap"/>
 
             <Label Content="Aforo Máximo:"/>
-            <TextBox x:Name="txtAforo" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtAforo" Margin="0,0,0,10" Height="25" TextWrapping="NoWrap"/>
 
             <Label Content="Entradas/Salidas:"/>
-            <TextBox x:Name="txtEntradasSalidas" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtEntradasSalidas" Margin="0,0,0,10" Height="25" TextWrapping="NoWrap"/>
 
             <Label Content="Servicios Médicos:"/>
-            <TextBox x:Name="txtServiciosMedicos" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtServiciosMedicos" Margin="0,0,0,10" Height="25" TextWrapping="NoWrap"/>
 
             <Label Content="Aseos:"/>
-            <TextBox x:Name="txtAseos" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtAseos" Margin="0,0,0,10" Height="25" TextWrapping="NoWrap"/>
 
             <Label Content="Seguridad:"/>
-            <TextBox x:Name="txtSeguridad" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtSeguridad" Margin="0,0,0,10" Height="25" TextWrapping="NoWrap"/>
 
             <Label Content="Foto:"/>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBox x:Name="txtFoto" Width="250"/>
+                <TextBox x:Name="txtFoto" Width="250" Height="25" TextWrapping="NoWrap"/>
                 <Button Content="Buscar" Click="BuscarFoto_Click" Width="80" Margin="5,0,0,0"/>
             </StackPanel>
 
-            <Button Content="Agregar Escenario" Click="AgregarEscenario_Click" Margin="0,10,0,0"/>
-            <Button Content="Cerrar" Click="Cerrar_Click" Margin="0,10,0,0"/>
+            <Button Content="Agregar Escenario" Click="AgregarEscenario_Click" Margin="0,10,0,0" Height="30"/>
+            <Button Content="Cerrar" Click="Cerrar_Click" Margin="0,10,0,0" Height="30"/>
         </StackPanel>
+
         <Button Content="?" Width="30" Height="30" FontWeight="Bold"
             HorizontalAlignment="Right" VerticalAlignment="Top" 
-            Margin="0,10,10,0"
+            Margin="0,-35,0,0"
             Click="BotonAyuda_Click"
-            ToolTip="Ayuda" RenderTransformOrigin="17.533,0.335" Grid.Column="2" />
+            ToolTip="Ayuda" RenderTransformOrigin="1.237,-1.408"/>
     </Grid>
 </Window>

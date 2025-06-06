@@ -345,5 +345,10 @@ namespace ProyectoIPo
                 MessageBox.Show("Por favor, selecciona un escenario para eliminar.", "Ningún escenario seleccionado", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        private void BotonAyudaArtista_Click(object sender, RoutedEventArgs e)
+        {
+                    }
+
     }
 }
